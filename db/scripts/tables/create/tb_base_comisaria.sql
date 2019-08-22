@@ -1,4 +1,4 @@
-CREATE TABLE `Tb_Empleados` (
+CREATE TABLE IF NOT EXISTS `Tb_Empleados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
   `nombre` varchar(45) DEFAULT NULL,
@@ -31,10 +31,8 @@ CREATE TABLE `Tb_Empleados` (
   KEY `IdEmpleado` (`user`),
   KEY `user` (`user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9848 DEFAULT CHARSET=latin1;
-;
 
-
-CREATE TABLE `Tb_DatosLaborales` (
+CREATE TABLE IF NOT EXISTS `Tb_DatosLaborales` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
   `rfc` varchar(45) DEFAULT NULL,
@@ -70,10 +68,7 @@ CREATE TABLE `Tb_DatosLaborales` (
   KEY `IdEmpleado` (`user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9821 DEFAULT CHARSET=latin1;
 
-
-SELECT * FROM db_helpdesk.Tb_DatosLaborales WHERE USER = 23326
-
-CREATE TABLE `Tb_Departamentos` (
+CREATE TABLE IF NOT EXISTS `Tb_Departamentos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `estado` int(11) DEFAULT NULL,
@@ -81,21 +76,21 @@ CREATE TABLE `Tb_Departamentos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `Tb_CatDirecciones` (
+CREATE TABLE IF NOT EXISTS `Tb_CatDirecciones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `Tb_CatTipoEmpleado` (
+CREATE TABLE IF NOT EXISTS `Tb_CatTipoEmpleado` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `estado` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `Tb_CatNombramientos` (
+CREATE TABLE IF NOT EXISTS `Tb_CatNombramientos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `tipo` int(11) DEFAULT NULL,
@@ -105,14 +100,14 @@ CREATE TABLE `Tb_CatNombramientos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `Tb_CatEstadoEmpleados` (
+CREATE TABLE IF NOT EXISTS `Tb_CatEstadoEmpleados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `Tb_CatSexo` (
+CREATE TABLE IF NOT EXISTS `Tb_CatSexo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
