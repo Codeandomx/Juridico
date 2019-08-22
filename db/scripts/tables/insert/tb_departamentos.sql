@@ -1,4 +1,3 @@
-select * from tb_departamentos;
 truncate table tb_departamentos;
 
 insert into tb_departamentos(nombre,estado,operativo) values ('TECNOLOGÍAS DE LA INFORMACIÓN',1,1);

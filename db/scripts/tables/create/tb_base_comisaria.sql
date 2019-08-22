@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `Tb_Empleados` (
+CREATE TABLE IF NOT EXISTS `tb_empleados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
   `nombre` varchar(45) DEFAULT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `Tb_Empleados` (
   KEY `user` (`user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9848 DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `Tb_DatosLaborales` (
+CREATE TABLE IF NOT EXISTS `tb_datoslaborales` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
   `rfc` varchar(45) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `Tb_DatosLaborales` (
   KEY `IdEmpleado` (`user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9821 DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `Tb_Departamentos` (
+CREATE TABLE IF NOT EXISTS `tb_departamentos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `estado` int(11) DEFAULT NULL,
@@ -76,21 +76,21 @@ CREATE TABLE IF NOT EXISTS `Tb_Departamentos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `Tb_CatDirecciones` (
+CREATE TABLE IF NOT EXISTS `tb_catdirecciones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `Tb_CatTipoEmpleado` (
+CREATE TABLE IF NOT EXISTS `tb_cattipoempleado` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `estado` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `Tb_CatNombramientos` (
+CREATE TABLE IF NOT EXISTS `tb_catnombramientos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `tipo` int(11) DEFAULT NULL,
@@ -100,14 +100,14 @@ CREATE TABLE IF NOT EXISTS `Tb_CatNombramientos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `Tb_CatEstadoEmpleados` (
+CREATE TABLE IF NOT EXISTS `tb_catestadoempleados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `Tb_CatSexo` (
+CREATE TABLE IF NOT EXISTS `tb_catsexo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
