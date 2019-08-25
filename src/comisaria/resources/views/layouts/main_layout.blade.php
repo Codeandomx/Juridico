@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-	
+
 <!-- Mirrored from big-bang-studio.com/neptune/neptune-default/index3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Feb 2017 18:29:35 GMT -->
 <head>
     <!-- Meta tags -->
@@ -53,10 +53,85 @@
 								<span class="tag tag-purple">3</span>
 							-->
 							<span class="s-icon"><i class="ti-book"></i></span>
-							<span class="s-text">Departamento 1</span>
+							<span class="s-text">Amparos</span>
 						</a>
 						<ul>
-							<li><a href="index.html">Formulario 1</a></li>
+							<li><a href="/amparos">Formulario 1</a></li>
+							<li><a href="index2.html">Formulario 2</a></li>
+							<li><a href="index3.html">Formulario 3</a></li>
+						</ul>
+					</li>
+					<li class="with-sub">
+						<a href="#" class="waves-effect  waves-light">
+							<span class="s-caret"><i class="fa fa-angle-down"></i></span>
+							<!--
+								<span class="tag tag-purple">3</span>
+							-->
+							<span class="s-icon"><i class="ti-book"></i></span>
+							<span class="s-text">Armas</span>
+						</a>
+						<ul>
+							<li><a href="/armas">Formulario 1</a></li>
+							<li><a href="index2.html">Formulario 2</a></li>
+							<li><a href="index3.html">Formulario 3</a></li>
+						</ul>
+					</li>
+					<li class="with-sub">
+						<a href="#" class="waves-effect  waves-light">
+							<span class="s-caret"><i class="fa fa-angle-down"></i></span>
+							<!--
+								<span class="tag tag-purple">3</span>
+							-->
+							<span class="s-icon"><i class="ti-book"></i></span>
+							<span class="s-text">Recursos humanos</span>
+						</a>
+						<ul>
+							<li><a href="/recursos-humanos">Formulario 1</a></li>
+							<li><a href="index2.html">Formulario 2</a></li>
+							<li><a href="index3.html">Formulario 3</a></li>
+						</ul>
+					</li>
+					<li class="with-sub">
+						<a href="#" class="waves-effect  waves-light">
+							<span class="s-caret"><i class="fa fa-angle-down"></i></span>
+							<!--
+								<span class="tag tag-purple">3</span>
+							-->
+							<span class="s-icon"><i class="ti-book"></i></span>
+							<span class="s-text">Transparencia</span>
+						</a>
+						<ul>
+							<li><a href="/transparencia">Formulario 1</a></li>
+							<li><a href="index2.html">Formulario 2</a></li>
+							<li><a href="index3.html">Formulario 3</a></li>
+						</ul>
+					</li>
+					<li class="with-sub">
+						<a href="#" class="waves-effect  waves-light">
+							<span class="s-caret"><i class="fa fa-angle-down"></i></span>
+							<!--
+								<span class="tag tag-purple">3</span>
+							-->
+							<span class="s-icon"><i class="ti-book"></i></span>
+							<span class="s-text">Penal y siniestros</span>
+						</a>
+						<ul>
+							<li><a href="/penal-y-siniestros">Formulario 1</a></li>
+							<li><a href="index2.html">Formulario 2</a></li>
+							<li><a href="index3.html">Formulario 3</a></li>
+						</ul>
+					</li>
+					<li class="with-sub">
+						<a href="#" class="waves-effect  waves-light">
+							<span class="s-caret"><i class="fa fa-angle-down"></i></span>
+							<!--
+								<span class="tag tag-purple">3</span>
+							-->
+							<span class="s-icon"><i class="ti-book"></i></span>
+							<span class="s-text">Procedimientos administrativos</span>
+						</a>
+						<ul>
+							<li><a href="/procedimientos-admin">Formulario 1</a></li>
 							<li><a href="index2.html">Formulario 2</a></li>
 							<li><a href="index3.html">Formulario 3</a></li>
 						</ul>
@@ -117,7 +192,7 @@
 				</div>
 			</nav>
 		</div>
-		
+
 		<div class="site-content">
 			<!-- Content -->
 			<div class="content-area py-1">
