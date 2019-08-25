@@ -33,7 +33,7 @@ Instalar laravel de forma global.-
 composer global require laravel/installer
 ```
 
-## Inicar servidor local
+## Iniciar servidor local
 
 Solo en sistemas operativos windows hay que renombrear el archivo ".env.example" a ",env" y ejecutar el siguiente comando.-
 
@@ -46,6 +46,12 @@ Para iniciar el servidor local ejecutar el comando.-
 ```
 php artisan serve
 ```
+
+## Iconos
+
+Themify Icons.-
+
+[Iconos para bootstrap](https://aalmiray.github.io/ikonli/cheat-sheet-themify.html)
 
 ## Fe de erratas
 
