@@ -1,0 +1,20 @@
+truncate table tb_catdirecciones;
+
+insert into tb_catdirecciones (nombre, estado) values ("DIRECCIÓN ENLACE ADMINISTRATIVO",1);
+insert into tb_catdirecciones (nombre, estado) values ("COMISARÍA GENERAL",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIVISIÓN DE PLANEACIÓN Y GESTIÓN ESTRATÉGICA",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIVISIÓN DE OPERACIONES REGIONALES Y AGRUPAMIENTOS",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIRECCION DE LO JURÍDICO",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIRECCION DE EVALUACION Y SEGUIMIENTO",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIVISIÓN DE VINCULACIÓN CIUDADANA Y PREVENCIÓN SOCIAL",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIRECCION DE BOMBEROS Y PROTECCION CIVIL",1);
+insert into tb_catdirecciones (nombre, estado) values ("COMISIONADO",1);
+insert into tb_catdirecciones (nombre, estado) values ("AYUNTAMIENTO",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIRECCIÓN DE COMUNICACIÓN SOCIAL Y RELACIONES PUBLICAS",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIRECCION ACADEMIA DE FORMACION POLICIAL",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIVISIÓN DE LOGISTÍCA",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIVISIÓN DE CARRERA POLICIAL",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIVISIÓN DE INTELIGENCIA",1);
+insert into tb_catdirecciones (nombre, estado) values ("UNIDAD DE PREVENCION SOCIAL",1);
+insert into tb_catdirecciones (nombre, estado) values ("DIVISIÓN OPERATIVA",1);
+insert into tb_catdirecciones (nombre, estado) values ("DESPACHO DEL COMISARIO JEFE",1);
