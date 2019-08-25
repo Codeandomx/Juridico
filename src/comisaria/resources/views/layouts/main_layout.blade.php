@@ -72,6 +72,9 @@
 					<a class="navbar-brand" href="/">
 						<div class="logo"></div>
 					</a>
+					<div class="toggle-button dark sidebar-toggle-first float-xs-left hidden-md-up">
+						<span class="hamburger"></span>
+					</div>
 					<div class="toggle-button dark float-xs-right hidden-md-up" data-toggle="collapse" data-target="#collapse-1">
 						<span class="more"></span>
 					</div>
@@ -130,7 +133,7 @@
 				<div class="container-fluid">
 					<div class="row text-xs-center">
 						<div class="col-sm-4 text-sm-left mb-0-5 mb-sm-0">
-							2019 © Sistema de Juridico
+							2019 © Sistema Juridico
 						</div>
 						<div class="col-sm-8 text-sm-right">
 							<ul class="nav nav-inline l-h-2">
