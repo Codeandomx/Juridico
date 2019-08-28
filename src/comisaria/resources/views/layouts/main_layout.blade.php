@@ -87,7 +87,7 @@
 						</a>
 						<ul>
 							<li><a href="/recursos-humanos">Formulario 1</a></li>
-							<li><a href="index2.html">Formulario 2</a></li>
+							<li><a href="/recursos-humanos-form">Formulario 2</a></li>
 							<li><a href="index3.html">Formulario 3</a></li>
 						</ul>
 					</li>
