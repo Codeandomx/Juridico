@@ -10,7 +10,6 @@
       <div class="container-fluid">
         <h4>Formulario recursos humanos</h4>
         <div class="box box-block bg-white">
-          <h5>Registro</h5>
           <form>
             <div class="row">
               <div class="col col-md-12 form-group">
@@ -23,7 +22,7 @@
               <div class="col col-md-6 form-group">
                 <label for="exampleSelect1">Fecha de recepción</label>
                 <div class="input-group">
-                  <input type="text" class="form-control" id="fecha" placeholder="mm/dd/yyyy" name="fecha">
+                  <input type="text" class="form-control" id="fecha" placeholder="dd/mm/yyyy" name="fecha">
                   <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                 </div>
               </div>
@@ -58,8 +57,8 @@
             <div class="row">
               <div class="col col-md-12 form-group">
                 <div class="pull-right">
+                  <button type="submit" class="btn btn-danger" id="btnCancelar">Cancelar</button>
                   <button type="submit" class="btn btn-primary">Guardar</button>
-                  <button type="submit" class="btn btn-danger">Cancelar</button>
                 </div>
               </div>
             </div>
@@ -71,5 +70,6 @@
 
 @section('scripts')
 <script type="text/javascript" src="_vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="js/site/recursosHumanosSite.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
+<script type="text/javascript" src="js/site/formRecursosHumanosSite.js"></script>
 @endsection

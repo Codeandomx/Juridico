@@ -25,7 +25,9 @@
     <link rel="stylesheet" href="_vendor/jvectormap/jquery-jvectormap-2.0.3.css">
 
     <!-- Neptune CSS -->
-    <link rel="stylesheet" href="css/core.css">
+	<link rel="stylesheet" href="css/core.css">
+	
+	@yield("styles");
 
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
