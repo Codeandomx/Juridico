@@ -23,6 +23,7 @@ Route::get('/armas', 'ArmasController@index');
 
 Route::get('/recursos-humanos', 'RecursosHumanosController@index');
 Route::get('/recursos-humanos-form', 'RecursosHumanosController@form');
+Route::get('/obtenerestadosprocesales', 'RecursosHumanosController@obtenerEstadosProcesales');
 
 Route::get('/transparencia', 'TransparenciaController@index');
 

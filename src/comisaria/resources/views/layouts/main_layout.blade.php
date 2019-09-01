@@ -233,11 +233,11 @@
     <script type="text/javascript" src="_vendor/jscrollpane/jquery.jscrollpane.min.js"></script>
     <script type="text/javascript" src="_vendor/jquery-fullscreen-plugin/jquery.fullscreen-min.js"></script>
     <script type="text/javascript" src="_vendor/waves/waves.min.js"></script>
-    <script type="text/javascript" src="_vendor/switchery/dist/switchery.min.js"></script>
+	<script type="text/javascript" src="_vendor/switchery/dist/switchery.min.js"></script>
     <script type="text/javascript" src="_vendor/flot/jquery.flot.min.js"></script>
     <script type="text/javascript" src="_vendor/flot/jquery.flot.pie.js"></script>
     <script type="text/javascript" src="_vendor/flot/jquery.flot.stack.js"></script>
-    <script type="text/javascript" src="_vendor/flot/jquery.flot.resize.min.js"></script>
+	<script type="text/javascript" src="_vendor/flot/jquery.flot.resize.min.js"></script>
     <script type="text/javascript" src="_vendor/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script type="text/javascript" src="_vendor/CurvedLines/curvedLines.js"></script>
     <script type="text/javascript" src="_vendor/TinyColor/tinycolor.js"></script>
@@ -248,6 +248,7 @@
     <!-- Neptune JS -->
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/demo.js"></script>
-    <script type="text/javascript" src="js/index3.js"></script>
+	
+	@yield('scripts')
 </body>
 </html>

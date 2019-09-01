@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\EstadoProcesal;
+use Illuminate\Support\Facades\DB;
 
 class RecursosHumanosController extends Controller
 {
@@ -90,5 +93,15 @@ class RecursosHumanosController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Obtiene el catologo de estados procesales
+     */
+    public function obtenerEstadosProcesales()
+    {
+        $data = new EstadoProcesal();
+
+        return response()->json($data::all());
     }
 }

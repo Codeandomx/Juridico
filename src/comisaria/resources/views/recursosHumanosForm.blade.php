@@ -15,22 +15,21 @@
             <div class="row">
               <div class="col col-md-12 form-group">
                 <label for="exampleTextarea">Queja</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                <textarea class="form-control" id="queja" rows="3"></textarea>
               </div>
             </div>
 
             <div class="row">
               <div class="col col-md-6 form-group">
-                <label for="example-date-input">Fecha de recepcion</label>
-                <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                <label for="exampleSelect1">Fecha de recepción</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="fecha" placeholder="mm/dd/yyyy" name="fecha">
+                  <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                </div>
               </div>
               <div class="col col-md-6 form-group">
                 <label for="exampleSelect1">Abogado</label>
-                <select class="form-control" id="exampleSelect1">
-                  <option>Juan</option>
-                  <option>Francisco</option>
-                  <option>Alicia</option>
-                  <option>Tania</option>
+                <select class="form-control" id="abogado">
                 </select>
               </div>
             </div>
@@ -38,11 +37,7 @@
             <div class="row">
               <div class="col col-md-6 form-group">
                 <label for="exampleSelect1">Estado procesal</label>
-                <select class="form-control" id="exampleSelect1">
-                  <option>Investigacion</option>
-                  <option>Integracion</option>
-                  <option>Periodo aprobatorio</option>
-                  <option>informe de ley</option>
+                <select class="form-control" id="estado">
                 </select>
               </div>
             </div>
@@ -50,14 +45,14 @@
             <div class="row">
               <div class="col col-md-12 form-group">
                 <label for="exampleTextarea">Asunto</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                <textarea class="form-control" id="asunto" rows="3"></textarea>
               </div>
             </div>
 
             <div class="row">
               <div class="col col-md-12 form-group">
                 <label for="exampleTextarea">Presunto derecho violado</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                <textarea class="form-control" id="presunto" rows="3"></textarea>
               </div>
             </div>
             <div class="row">
@@ -72,4 +67,9 @@
           </form>
         </div>
 </div>
+@endsection
+
+@section('scripts')
+<script type="text/javascript" src="_vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="js/site/recursosHumanosSite.js"></script>
 @endsection
