@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
-    <meta name="author" content="">
+	<meta name="author" content="">
+	@yield("metas");
 
     <!-- Title -->
     <title>Juridico - @yield('title')</title>
@@ -22,7 +23,8 @@
     <link rel="stylesheet" href="_vendor/waves/waves.min.css">
     <link rel="stylesheet" href="_vendor/switchery/dist/switchery.min.css">
     <link rel="stylesheet" href="_vendor/morris/morris.css">
-    <link rel="stylesheet" href="_vendor/jvectormap/jquery-jvectormap-2.0.3.css">
+	<link rel="stylesheet" href="_vendor/jvectormap/jquery-jvectormap-2.0.3.css">
+	<link rel="stylesheet" href="_vendor/toastr/toastr.min.css">
 
     <!-- Neptune CSS -->
 	<link rel="stylesheet" href="css/core.css">
@@ -245,7 +247,8 @@
     <script type="text/javascript" src="_vendor/TinyColor/tinycolor.js"></script>
     <script type="text/javascript" src="_vendor/sparkline/jquery.sparkline.min.js"></script>
     <script type="text/javascript" src="_vendor/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-    <script type="text/javascript" src="_vendor/jvectormap/jquery-jvectormap-world-mill.js"></script>
+	<script type="text/javascript" src="_vendor/jvectormap/jquery-jvectormap-world-mill.js"></script>
+	<script type="text/javascript" src="_vendor/toastr/toastr.min.js"></script>
 
     <!-- Neptune JS -->
     <script type="text/javascript" src="js/app.js"></script>

@@ -21,9 +21,16 @@ Route::get('/amparos', 'AmparosController@index');
 
 Route::get('/armas', 'ArmasController@index');
 
+/**
+ * Recursos humanos
+ */
+
 Route::get('/recursos-humanos', 'RecursosHumanosController@index');
 Route::get('/recursos-humanos-form', 'RecursosHumanosController@form');
+Route::post('/recursos-humanos-form', 'RecursosHumanosController@create');
 Route::get('/obtenerestadosprocesales', 'RecursosHumanosController@obtenerEstadosProcesales');
+Route::get('/obtenerabogados', 'RecursosHumanosController@obtenerAbogados');
+Route::get('/obtenerreportes', 'RecursosHumanosController@obtenerReportes');
 
 Route::get('/transparencia', 'TransparenciaController@index');
 
