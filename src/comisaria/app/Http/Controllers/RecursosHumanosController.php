@@ -40,19 +40,26 @@ class RecursosHumanosController extends Controller
      */
     public function create(Request $request)
     {
-        $obj = new RepRecursoHumano();
-        $obj->queja = $request['queja'];
-        $obj->fecha_recepcion = Carbon::parse($request['fecha_recepcion'])->format('d-m-Y H:i:s');
-        $obj->abogados = $request['abogado'];
-        $obj->estado_procesal = $request['estado_procesal'];
-        $obj->asunto = $request['asunto'];
-        $obj->derecho_violado = $request['derecho_violado'];
-        
-        $obj->save();
-        // $data = DB::insert('insert into tb_reprecursoshumanos (queja, name) values (?, ?)', [1, 'Dayle'])
-        
-        // return redirect()->action('RecursosHumanosController@index');
-        return response()->json($obj);
+        try{
+            $obj = new RepRecursoHumano();
+
+            $obj->queja = $request['queja'];
+            // $obj->fecha_recepcion = Carbon::parse($request['fecha_recepcion'])->format('d-m-Y H:i:s');
+            $obj->fecha_recepcion = date('Y-m-d H:i:s', strtotime($request['fecha_recepcion']));
+            $obj->abogados = $request['abogado'];
+            $obj->estado_procesal = $request['estado_procesal'];
+            $obj->asunto = $request['asunto'];
+            $obj->derecho_violado = $request['derecho_violado'];
+            $obj->activo = true;
+            
+            $obj->save();
+            // $data = DB::insert('insert into tb_reprecursoshumanos (queja, name) values (?, ?)', [1, 'Dayle'])
+            
+            // return redirect()->action('RecursosHumanosController@index');
+            return response()->json($obj);
+        } catch(Excepction $e){
+            return response()->json($e);
+        }
     }
 
     /**
@@ -138,7 +145,9 @@ class RecursosHumanosController extends Controller
      * Obtenemos todos los reportes de recursos humanos
      */
     public function obtenerReportes(){
-        $data = DB::select('select t0.id, t0.created_at as fecha_captura, t0.fecha_recepcion, t0.asunto, t1.nombre as estado_procesal, t2.nombreCompleto as abogado
+        $data = DB::select('select t0.id, t0.created_at as fecha_captura, t0.fecha_recepcion,
+        t0.asunto, t1.nombre as nombre_estado_procesal, t1.id as estado_procesal,
+        t2.nombreCompleto as nombre_abogado, t2.user as abogado
         from tb_reprecursoshumanos t0
         inner join tb_catestadosprocesales t1 on t1.id = t0.estado_procesal
         inner join tb_empleados t2 on t2.user = t0.abogados');
