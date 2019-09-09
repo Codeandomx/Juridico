@@ -25,6 +25,10 @@ Route::get('/recursos-humanos', 'RecursosHumanosController@index');
 
 Route::get('/transparencia', 'TransparenciaController@index');
 
-Route::get('/penal-y-siniestros', 'PenalSiniestrosController@index');
-
 Route::get('/procedimientos-admin', 'ProcedimientosAdministrativosController@index');
+
+Route::get('/penal-siniestros', 'PenalSiniestrosController@index');
+Route::get('/penal-siniestros-form', 'PenalSiniestrosController@create');
+Route::post('/penal-siniestros-form', 'PenalSiniestrosController@store')->name('registroPS');
+//Route::get('/obtenerestadosprocesales', 'RecursosHumanosController@obtenerEstadosProcesales');
+
