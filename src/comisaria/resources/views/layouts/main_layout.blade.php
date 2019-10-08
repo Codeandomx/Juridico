@@ -24,11 +24,12 @@
     <link rel="stylesheet" href="_vendor/switchery/dist/switchery.min.css">
     <link rel="stylesheet" href="_vendor/morris/morris.css">
 	<link rel="stylesheet" href="_vendor/jvectormap/jquery-jvectormap-2.0.3.css">
-	<link rel="stylesheet" href="_vendor/toastr/toastr.min.css">
+    <link rel="stylesheet" href="_vendor/toastr/toastr.min.css">
+    <link rel="stylesheet" href="_vendor/DataTables/css/dataTables.bootstrap4.min.css">
 
     <!-- Neptune CSS -->
 	<link rel="stylesheet" href="css/core.css">
-	
+
 	@yield("styles");
 
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -75,9 +76,9 @@
 							<span class="s-text">Armas</span>
 						</a>
 						<ul>
-							<li><a href="/armas">Formulario 1</a></li>
-							<li><a href="index2.html">Formulario 2</a></li>
-							<li><a href="index3.html">Formulario 3</a></li>
+							<li><a href="/armas">Listado</a></li>
+							<li><a href="/armas-form">Altas</a></li>
+							<li><a href="index3.html">Exportar</a></li>
 						</ul>
 					</li>
 					<li class="with-sub">
@@ -120,8 +121,8 @@
 							<span class="s-text">Penal y siniestros</span>
 						</a>
 						<ul>
-							<li><a href="/penal-y-siniestros">Formulario 1</a></li>
-							<li><a href="index2.html">Formulario 2</a></li>
+							<li><a href="/penal-siniestros">Registros</a></li>
+							<li><a href="/penal-siniestros-form">Alta</a></li>
 							<li><a href="index3.html">Formulario 3</a></li>
 						</ul>
 					</li>
@@ -253,7 +254,7 @@
     <!-- Neptune JS -->
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/demo.js"></script>
-	
+
 	@yield('scripts')
 </body>
 </html>

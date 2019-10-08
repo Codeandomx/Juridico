@@ -17,10 +17,18 @@ Route::get('/', function () {
     return view('init');
 });
 
+/**
+ * Armas
+ */
+
 Route::get('/amparos', 'AmparosController@index');
 
 Route::get('/armas', 'ArmasController@index');
-
+Route::get('/armas-form', 'ArmasController@create');
+Route::post('/armas-form', 'ArmasController@store')->name('postArmas');
+Route::get('/armas-edit/{id}', 'ArmasController@edit');
+Route::delete('/armas-del/{id}', 'ArmasController@destroy');
+Route::get('/obtenerestados', 'ArmasController@obtenerEstados');
 /**
  * Recursos humanos
  */
@@ -32,8 +40,19 @@ Route::get('/obtenerestadosprocesales', 'RecursosHumanosController@obtenerEstado
 Route::get('/obtenerabogados', 'RecursosHumanosController@obtenerAbogados');
 Route::get('/obtenerreportes', 'RecursosHumanosController@obtenerReportes');
 
+/**
+ * Transparencia
+ */
 Route::get('/transparencia', 'TransparenciaController@index');
 
-Route::get('/penal-y-siniestros', 'PenalSiniestrosController@index');
+/**
+ * Penas y siniestros
+ */
+
+Route::get('/penal-siniestros', 'PenalSiniestrosController@index');
+Route::get('/penal-siniestros-form', 'PenalSiniestrosController@create');
+Route::post('/penal-siniestros-form', 'PenalSiniestrosController@store')->name('postPS');
+Route::get('/penal-siniestros-edit/{id}', 'PenalSiniestrosController@edit');
+Route::delete('/penal-siniestros-del/{id}', 'PenalSiniestrosController@destroy');
 
 Route::get('/procedimientos-admin', 'ProcedimientosAdministrativosController@index');

@@ -1,6 +1,10 @@
 <?php
 
+use App\Armas;
+use App\PenalSiniestro;
 use Illuminate\Http\Request;
+use PHPUnit\Util\Json;
+use Yajra\DataTables\Facades\DataTables;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +19,18 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/penal&siniestros', function(){
+    return datatables(PenalSiniestro::listado())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
+
+Route::get('/Armeria', function(){
+    return DataTables(Armas::listado())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
 });

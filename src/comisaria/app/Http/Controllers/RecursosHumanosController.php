@@ -47,10 +47,10 @@ class RecursosHumanosController extends Controller
         $obj->estado_procesal = $request['estado_procesal'];
         $obj->asunto = $request['asunto'];
         $obj->derecho_violado = $request['derecho_violado'];
-        
+
         $obj->save();
         // $data = DB::insert('insert into tb_reprecursoshumanos (queja, name) values (?, ?)', [1, 'Dayle'])
-        
+
         // return redirect()->action('RecursosHumanosController@index');
         return response()->json($obj);
     }
