@@ -75,6 +75,8 @@ var obtenerReportes = function (){
             // Asignamos los reportes
             db.reports = data;
 
+            console.log(data);
+
             // Llenamos el data grid
             setDataGrid();
         }
@@ -89,7 +91,7 @@ var initDB = function (){
                 return (!filter.id || report.id === filter.id)
                     && (!filter.fecha_captura || report.fecha_captura.indexOf(filter.fecha_captura) > -1)
                     && (!filter.fecha_recepcion || report.fecha_recepcion.indexOf(filter.fecha_recepcion) > -1)
-                    && (!filter.nombre || report.nombre.indexOf(filter.nombre) > -1)
+                    && (!filter.asunto || report.asunto.indexOf(filter.asunto) > -1)
                     && (!filter.estado_procesal || report.estado_procesal === filter.estado_procesal)
                     && (!filter.abogado || report.abogado === filter.abogado)
             });
@@ -156,12 +158,12 @@ var setDataGrid = function (){
             noDataContent: "No hay datos disponibles",
             controller: db,
             fields: [
-                { name: "ID", type: "text", width: 50 },
-                { name: "Fecha Captura", type: "text", width: 140 },
-                { name: "Fecha recepción", type: "text", width: 140 },
-                { name: "Asunto", type: "text", width: 200 },
-                { name: "Estado Procesal", type: "select", items: db.estados_procesales, valueField: "id", textField: "name" },
-                { name: "Abogado", type: "select", items: db.abogados, valueField: "id", textField: "name" },
+                { name: "id", type: "text", width: 50 },
+                { name: "fecha_captura", type: "text", width: 140 },
+                { name: "fecha_recepcion", type: "text", width: 140 },
+                { name: "asunto", type: "text", width: 200 },
+                { name: "estado_procesal", type: "select", items: db.estados_procesales, valueField: "id", textField: "name" },
+                { name: "abogado", type: "select", items: db.abogados, valueField: "id", textField: "name" },
                 // { type: "control" }
                 { itemTemplate: function(value, item) {
                     var btnEditar = $('<button>', { 'class': 'btn btn-warning btnEditar', 'id': item.Age });

@@ -48,7 +48,7 @@ $(document).ready(function(){
                 toastr.success('Su registro fue exitoso.');
 
                 // reditigimos a la pagina principal
-                // location.href = '/recursos-humanos';
+                location.href = '/recursos-humanos';
             }
         });
     });
