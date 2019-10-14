@@ -40,21 +40,6 @@ class RecursosHumanosController extends Controller
      */
     public function create(Request $request)
     {
-<<<<<<< HEAD
-        $obj = new RepRecursoHumano();
-        $obj->queja = $request['queja'];
-        $obj->fecha_recepcion = Carbon::parse($request['fecha_recepcion'])->format('d-m-Y H:i:s');
-        $obj->abogados = $request['abogado'];
-        $obj->estado_procesal = $request['estado_procesal'];
-        $obj->asunto = $request['asunto'];
-        $obj->derecho_violado = $request['derecho_violado'];
-
-        $obj->save();
-        // $data = DB::insert('insert into tb_reprecursoshumanos (queja, name) values (?, ?)', [1, 'Dayle'])
-
-        // return redirect()->action('RecursosHumanosController@index');
-        return response()->json($obj);
-=======
         try{
             $obj = new RepRecursoHumano();
 
@@ -75,7 +60,6 @@ class RecursosHumanosController extends Controller
         } catch(Excepction $e){
             return response()->json($e);
         }
->>>>>>> b79311304b5efa97b1c3ebf0c95b353cc2cef63e
     }
 
     /**
