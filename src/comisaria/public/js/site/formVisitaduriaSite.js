@@ -1,26 +1,31 @@
-$(document).ready(function(){
-    // Obtenemos los estados procesales
-    obtenerEstadosprocesales();
+$(document).ready(function() {
 
-    // Obtenemos los abogados
-    //obtenerAbogados();
-
-    $('label').addClass("control-label");
-
-    // Configuración para datapicker
-    $('#fecha_recepcion').datepicker({
+	$('#fecha_asignacion').datepicker({
 		autoclose: true,
         todayHighlight: true,
-        language: 'es',
-        dateFormat: 'yy-mm-dd'
+        language: 'es'
     });
 
-    // Al cancelar el formulario
+    $("#servidor_publico").select2({
+	    tags: true,
+	    tokenSeparators: [',']
+	})
+
+	$("#denunciante").select2({
+	    tags: true,
+	    tokenSeparators: [',']
+	})
+
+	$("#delito").select2({
+	    tags: true,
+	    tokenSeparators: [',']
+	})
+        // Al cancelar el formulario
     $('#btnCancelar').click(function (e){
         e.preventDefault()
 
-        // reditigimos a la pagina principal
-        location.href = '/recursos-humanos';
+        // reditirimos a la pagina principal
+        location.href = '/penal-siniestros';
     });
 
     // ajax setup
@@ -30,15 +35,17 @@ $(document).ready(function(){
         }
     });
 
-    // Guardamos el formulario
-    $("#formGuardar").submit(function(e) {
+    obtenerEstadosprocesales();
+
+    // Enviar la información del formulario
+    $('#formPenalSiniestros').submit(function(e){
         e.preventDefault();
 
         // Obtenemos los datos del formulario
         var form = $(this);
         var url = form.attr('action');
+        console.log(url);
 
-        // enviamos el formulario
         $.ajax({
             type: "POST",
             url: url,
@@ -52,12 +59,14 @@ $(document).ready(function(){
                     muestraErrores(data.error);
                 }else{
                     toastr.success(data.success,'Correcto');
-                    $(this)[0].reset();
-                    //$('#abogados').val(null).trigger('change');
+                    $("#formPenalSiniestros")[0].reset();
+                    $('#servidor_publico').val(null).trigger('change');
+                    $('#denunciante').val(null).trigger('change');
+                    $('#delito').val(null).trigger('change');
                 }
             }
         }); //Fin llamada ajax
-    }); //Fin del submit
+    }); //Fin del sumit
 });
 
 var muestraErrores = function(msg){
@@ -66,7 +75,6 @@ var muestraErrores = function(msg){
     $.each( msg, function( key, value ) {
         $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
     });
-    $('#lista-errores').append('<li>'+"Ha ocurrido un error en el servidor, revise el formulario."+'</li>');
 }
 
 // Obtiene los estados procesales
@@ -90,23 +98,3 @@ var obtenerEstadosprocesales = function (){
     });
 };
 
-// Obtiene los Abogados
-var obtenerAbogados = function (){
-    $.ajax({
-        url: "/obtenerabogados",
-        method: "GET",
-        data: { },
-        dataType: "json",
-        cache: false,
-        error: function (){
-            console.error('Error al procesar la solicitud');
-        },
-        success: function (data){
-            var elem = $('#abogado');
-
-            $.each(data, function (kay, val){
-                elem.append($('<option/>', { 'value': val.user, 'text': val.nombreCompleto }));
-            });
-        }
-    });
-};

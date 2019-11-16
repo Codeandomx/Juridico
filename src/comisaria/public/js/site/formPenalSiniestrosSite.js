@@ -123,14 +123,13 @@ $(document).ready(function(){
         // Obtenemos los datos del formulario
         var form = $(this);
         var url = form.attr('action');
-        console.log(url);
 
         $.ajax({
             type: "POST",
             url: url,
             data: form.serialize(),
             error: function (data){
-                toastr.error('Ocurrieron errores');
+                toastr.error('Error al procesar la solicitud.');
             },
             success: function(data)
             {

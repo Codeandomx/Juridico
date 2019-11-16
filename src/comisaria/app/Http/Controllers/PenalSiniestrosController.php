@@ -26,11 +26,12 @@ class PenalSiniestrosController extends Controller
      */
     public function create()
     {
-        return view('penalSiniestrosForm');
+        return view('visitaduria');
     }
 
     public function store(Request $request)
     {
+        //dd($request->all());
         $messages = [
             'required' => 'El :attribute es requerido',
             'max' => 'El :attribute tiene demaciados caracteres'
@@ -38,41 +39,38 @@ class PenalSiniestrosController extends Controller
 
         $validator = Validator::make($request->all(), [
             'fecha_asignacion' => 'required',
-            //'servidor_publico'  => 'required',
-            'denunciante'  => 'required|string|max:30',
-            'delito'  => 'required|string|max:50',
+            'servidor_publico'  => 'required',
+            'denunciante'  => 'required',
+            'delito'  => 'required',
             'poligono' => 'required',
             'estado_procesal' => 'required'
         ], $messages);
 
         if($validator->fails()){
-            //$response = $validator->messages();
             return response()->json(['error'=>$validator->errors()->all()]);
         }
         else{
-            // $penal = new PenalSiniestro();
-            // $penal->numero_consecutivo=$request->numero_consecutivo;
-            // $penal->carpeta_investigacion=$request->carpeta_investigacion;
-            // $penal->fecha_asignacion=Carbon::now();
-            // $penal->agencia_mp=$request->agencia_mp;
-            // $penal->servidor_publico=$request->servidor_publico;
-            // $penal->denunciante=$request->denunciante;
-            // $penal->delito=$request->delito;
-            // $penal->poligono=$request->poligono;
-            // $penal->estado_procesal=$request->estado_procesal;
-            // $penal->observaciones=$request->observaciones;
-            // $penal->save();
             $response = ['success' => 'Se agrego el registro.'];
+
+            $servidores = $request->input('servidor_publico');
+            $servidores = implode(',', $servidores);
+
+            $denunciantes = $request->input('denunciante');
+            $denunciantes = implode(',', $denunciantes);
+
+            $delitos = $request->input('delito');
+            $delitos = implode(',', $delitos);
 
             PenalSiniestro::updateOrCreate(['id' => $request->id],
             [
                 'numero_consecutivo' => $request->numero_consecutivo,
                 'carpeta_investigacion' => $request->carpeta_investigacion,
-                'fecha_asignacion' => Carbon::now(),
+                //'fecha_asignacion' => Carbon::now(),
+                'fecha_asignacion' => date('Y-m-d H:i:s', strtotime($request['fecha_asignacion'])),
                 'agencia_mp' => $request->agencia_mp,
-                'servidor_publico' => $request->servidor_publico,
-                'denunciante' => $request->denunciante,
-                'delito' => $request->delito,
+                'servidor_publico' => $servidores,
+                'denunciante' => $denunciantes,
+                'delito' => $delitos,
                 'poligono' => $request->poligono,
                 'estado_procesal' => $request->estado_procesal,
                 'observaciones' => $request->observaciones
@@ -91,8 +89,18 @@ class PenalSiniestrosController extends Controller
 
     public function edit($id)
     {
-        $row = PenalSiniestro::find($id);
-        return response()->json($row);
+        try {
+            $row = PenalSiniestro::find($id);
+
+            if ($row != null) {
+                return response()->json($row);
+            }
+
+            return response()->json("No se a podido cargar los datos.",203);
+        } catch (\Illuminate\Database\QueryException $exception) {
+            $errorInfo = $exception->errorInfo;
+            return response()->json($errorInfo);
+        }
     }
 
 

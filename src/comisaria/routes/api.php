@@ -2,6 +2,8 @@
 
 use App\Armas;
 use App\PenalSiniestro;
+use App\RepRecursoHumano;
+use App\Transparencia;
 use Illuminate\Http\Request;
 use PHPUnit\Util\Json;
 use Yajra\DataTables\Facades\DataTables;
@@ -30,6 +32,20 @@ Route::get('/penal&siniestros', function(){
 
 Route::get('/Armeria', function(){
     return DataTables(Armas::listado())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
+
+Route::get('/DerechosHumano', function(){
+    return DataTables(RepRecursoHumano::listado())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
+
+Route::get('/transparencia', function(){
+    return DataTables(Transparencia::listado())
     ->addColumn('btn', 'opciones')
     ->rawColumns(['btn'])
     ->toJson();

@@ -6,15 +6,33 @@
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 
+@section('styles')
+<link rel="stylesheet" href="_vendor/select2/dist/css/select2.min.css">
+@endsection
+
 @section('content')
 
 <div class="row row-md mb-2">
     <!-- Content -->
     <div class="content-area py-1">
       <div class="container-fluid">
-        <h4>Formulario recursos humanos</h4>
         <div class="box box-block bg-white">
-          <form id="formGuardar" method="POST" action="/recursos-humanos-form">
+            <nav>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Recursos Humanos</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Formulario</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mostrar los errores -->
+            <div class="alert alert-danger print-error-msg" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <ul id="lista-errores">
+                </ul>
+            </div>
+
+            <!-- Formulario de registro -->
+          <form id="formGuardar" method="POST" action="{{ route('postDH') }}">
 
             <div class="row">
               <div class="col col-md-12 form-group">
@@ -27,13 +45,17 @@
               <div class="col col-md-6 form-group">
                 <label for="exampleSelect1">Fecha de recepción</label>
                 <div class="input-group">
-                  <input type="text" class="form-control" id="fecha_recepcion" name="fecha_recepcion" placeholder="dd/mm/yyyy" name="fecha_recepcion">
+                  <input type="text" class="form-control" id="fecha_recepcion" name="fecha_recepcion" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" name="fecha_recepcion">
                   <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                 </div>
               </div>
               <div class="col col-md-6 form-group">
                 <label for="exampleSelect1">Abogado</label>
-                <select class="form-control" id="abogado" name="abogado">
+                <select class="form-control" id="abogados" name="abogados">
+                    <option value="1">Jose Manuel</option>
+                    <option value="2">Marco Antonio</option>
+                    <option value="3">Jose Luis</option>
+                    <option value="4">Angel Damian</option>
                 </select>
               </div>
             </div>
@@ -70,7 +92,10 @@
 
           </form>
         </div>
+    </div>
 </div>
+</div>
+
 @endsection
 
 @section('scripts')

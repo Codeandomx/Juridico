@@ -1,6 +1,6 @@
 @extends('layouts.main_layout')
 
-@section('title', 'Página principal')
+@section('title', 'Armas')
 
 @section('metas')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -148,7 +148,7 @@
         <div class="box box-block bg-white">
             <h4 class="mb-1">Armas</h4>
             <div class="pull-right">
-                <button id="btnNuevo" class="btn btn-primary">Nuevo</button>
+                <button id="btnNuevo" class="btn btn-primary"  href="javascript:void(0)">Nuevo</button>
             </div>
             <br>
             <br>

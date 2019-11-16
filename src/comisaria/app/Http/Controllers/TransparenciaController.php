@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Observaciones;
 use Illuminate\Http\Request;
+use App\Transparencia;
+use Carbon\Carbon;
+use Exception;
 
 class TransparenciaController extends Controller
 {
@@ -23,7 +27,7 @@ class TransparenciaController extends Controller
      */
     public function create()
     {
-        //
+        return view('transparenciaForm');
     }
 
     /**
@@ -34,7 +38,27 @@ class TransparenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $response = ['success' => 'Se agrego el registro.'];
+        try {
+            Transparencia::updateOrCreate(['id' => $request->id],
+            [
+                'Folio' => $request->Folio,
+                'Expediente' => $request->Expediente,
+                'Solicitante' => $request->Solicitante,
+                'Recepcion' => Carbon::now(),
+                'Informacion' => $request->Informacion,
+                'Derivado' => $request->Derivado,
+                'Canalizacion' => $request->Canalizacion,
+                'Respuesta' => $request->Respuesta,
+                'Envio_UT' => $request->Envio_UT,
+                'Fecha' =>  Carbon::now(), //date('Y-m-d H:i:s', strtotime($request['Fecha'])),
+                'idOservacion' => $request->idObservacion
+            ]);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e]);
+        }
+
+        return response()->json($response,200);
     }
 
     /**
@@ -56,7 +80,8 @@ class TransparenciaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $row = Transparencia::find($id);
+        return response()->json($row);
     }
 
     /**
@@ -79,6 +104,20 @@ class TransparenciaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = ['success' => 'Eliminacion completada.'];
+        $row = Transparencia::find($id);
+        if($row != null){
+            $row->activo = 0;
+            $row->save();
+            return response()->json($data,200);
+        }
+
+        return response()->json(['error:' => 'error']);
+    }
+
+    public function obtenerObservaciones()
+    {
+        $data = new Observaciones();
+        return response()->json($data::all());
     }
 }

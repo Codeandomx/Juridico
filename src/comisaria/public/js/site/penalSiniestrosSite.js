@@ -12,6 +12,18 @@ $(document).ready(function() {
         location.href = '/penal-siniestros-form';
     });
 
+    $("#servidor_publico").select2({
+        tags: true
+    });
+
+    $("#denunciante").select2({
+        tags: true
+    });
+
+    $("#delito").select2({
+        tags: true
+    });
+
     // ajax setup
     $.ajaxSetup({
         headers: {
@@ -51,6 +63,7 @@ $(document).ready(function() {
     $('#tabla').DataTable( {
         serverSide: true,
         scrollX: true,
+        lengthChange: false,
         ajax: 'api/penal&siniestros',
         columns: [
             {data: 'id'},
@@ -80,14 +93,31 @@ $(document).ready(function() {
         dom: 'Bfrtip',
         language: espanol,
         buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
+            {
+                extend: 'copyHtml5',
+                text: 'Copiar',
+            },
+            {
+                extend: 'excelHtml5',
+                title: 'Exportar EXCEL',
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Exportar PDF',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+                }
+            },
+            'colvis'
         ]
     });
 
-    //Actualizar un registro
+    //mostrar un registro
     $('body').on('click', '.edit', function () {
         var _id = $(this).data('id');
         $('#saveBtn').html('Guardar');
@@ -96,19 +126,20 @@ $(document).ready(function() {
             obtenerEstadosprocesales();
         }
         $.get(url, function (data) {
+
+            fillSelects(data);
             $('#modelHeading').html("Editar registro");
             $('#saveBtn').val("Actualizar");
             $('#ajaxModel').modal('show');
             $('#id').val(data.id);
             $('#numero_consecutivo').val(data.numero_consecutivo);
             $('#carpeta_investigacion').val(data.carpeta_investigacion);
-            $('#denunciante').val(data.denunciante);
             $('#agencia_mp').val(data.agencia_mp);
             $('#fecha_asignacion').val(data.fecha_asignacion);
-            $('#delito').val(data.delito);
             $('#poligono').val(data.poligono);
             $('#estado_procesal').val(data.estado_procesal);
             $('#observaciones').val(data.observaciones);
+            console.log(data);
         })
      });
 
@@ -120,7 +151,7 @@ $(document).ready(function() {
 
         $.ajax({
           data: $('#productForm').serialize(),
-          url: "penal-siniestros-form",
+          url: $('#productForm').attr('action'),
           type: "POST",
           dataType: 'json',
           success: function (data) {
@@ -130,11 +161,33 @@ $(document).ready(function() {
               swal("OK!", "El registro fue actualizado.", "success");
           },
           error: function (data) {
-              console.log('Error:', data);
+            swal("Error!", "El registro no fue actualizado.", "error");
               $('#saveBtn').html('Save Changes');
           }
       });
     });
+
+    //Cargar selects
+    function fillSelects(data){
+        forSelector(data.servidor_publico,"servidor_publico");
+        forSelector(data.denunciante,"denunciante");
+        forSelector(data.delito,"delito");
+    }
+
+    //recargar selects por for
+    function forSelector(array,id){
+        var sel = document.getElementById(id);
+        var arrai = array.split(',');
+
+        for(var i = 0; i < arrai.length; i++) {
+            var opt = arrai[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            el.setAttribute("selected","selected");
+            sel.append(el);
+            }
+    }
 
     //Eliminar un registro
     $('body').on('click', '.delete', function(e){
@@ -144,7 +197,7 @@ $(document).ready(function() {
 
         swal({
             title: "¿Estas seguro?",
-            text: "El registro sera desactivado.",
+            text: "El registro sera archivado.",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -156,7 +209,7 @@ $(document).ready(function() {
                     type: 'delete',
                     url: 'penal-siniestros-del/'+_id,
                     success: function(data){
-                        swal("OK!", "El registro fue eliminado.", "success");
+                        swal("OK!", "El registro fue archivado.", "success");
                         $('#tabla').DataTable().ajax.reload();
                     },
                     error: function(data){

@@ -61,9 +61,9 @@
 							<span class="s-text">Amparos</span>
 						</a>
 						<ul>
-							<li><a href="/amparos">Formulario 1</a></li>
-							<li><a href="index2.html">Formulario 2</a></li>
-							<li><a href="index3.html">Formulario 3</a></li>
+							<li><a href="/amparos">Registros</a></li>
+							<li><a href="index2.html">Formulario</a></li>
+							<li><a href="index3.html">Exportar</a></li>
 						</ul>
 					</li>
 					<li class="with-sub">
@@ -76,8 +76,8 @@
 							<span class="s-text">Armas</span>
 						</a>
 						<ul>
-							<li><a href="/armas">Listado</a></li>
-							<li><a href="/armas-form">Altas</a></li>
+							<li><a href="/armas">Registros</a></li>
+							<li><a href="/armas-form">Formulario</a></li>
 							<li><a href="index3.html">Exportar</a></li>
 						</ul>
 					</li>
@@ -88,12 +88,13 @@
 								<span class="tag tag-purple">3</span>
 							-->
 							<span class="s-icon"><i class="ti-book"></i></span>
-							<span class="s-text">Recursos humanos</span>
+							<span class="s-text">Derechos humanos</span>
 						</a>
 						<ul>
-							<li><a href="/recursos-humanos">Formulario 1</a></li>
-							<li><a href="/recursos-humanos-form">Formulario 2</a></li>
-							<li><a href="index3.html">Formulario 3</a></li>
+							<li><a href="/recursos-humanos">Registros</a></li>
+							<li><a href="/recursos-humanos-form">Formulario</a></li>
+                            <li><a href="index3.html">Exportar</a></li>
+                            <li><a href="#">Archivo</a></li>
 						</ul>
 					</li>
 					<li class="with-sub">
@@ -106,9 +107,9 @@
 							<span class="s-text">Transparencia</span>
 						</a>
 						<ul>
-							<li><a href="/transparencia">Formulario 1</a></li>
-							<li><a href="index2.html">Formulario 2</a></li>
-							<li><a href="index3.html">Formulario 3</a></li>
+							<li><a href="/transparencia">Registros</a></li>
+							<li><a href="/transparencia-form">Formulario</a></li>
+							<li><a href="index3.html">Exportar</a></li>
 						</ul>
 					</li>
 					<li class="with-sub">
@@ -122,8 +123,9 @@
 						</a>
 						<ul>
 							<li><a href="/penal-siniestros">Registros</a></li>
-							<li><a href="/penal-siniestros-form">Alta</a></li>
-							<li><a href="index3.html">Formulario 3</a></li>
+							<li><a href="/penal-siniestros-form">Formularios</a></li>
+                            <li><a href="#">Exportación</a></li>
+                            <li><a href="#">Archivo</a></li>
 						</ul>
 					</li>
 					<li class="with-sub">

@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 use App\EstadoProcesal;
 use App\RepRecursoHumano;
 use Illuminate\Support\Facades\DB;
@@ -40,42 +39,42 @@ class RecursosHumanosController extends Controller
      */
     public function create(Request $request)
     {
-<<<<<<< HEAD
-        $obj = new RepRecursoHumano();
-        $obj->queja = $request['queja'];
-        $obj->fecha_recepcion = Carbon::parse($request['fecha_recepcion'])->format('d-m-Y H:i:s');
-        $obj->abogados = $request['abogado'];
-        $obj->estado_procesal = $request['estado_procesal'];
-        $obj->asunto = $request['asunto'];
-        $obj->derecho_violado = $request['derecho_violado'];
+        //dd($request->all());
+        $messages = [
+            'required' => 'El :attribute es requerido',
+            'max' => 'El :attribute tiene demaciados caracteres'
+        ];
+        //Validaciones
+        $validator = Validator::make($request->all(), [
+            'queja' => 'required',
+            'fecha_recepcion' => 'required',
+            'abogados' => 'required',
+            'estado_procesal' => 'required',
+            'asunto' => 'required',
+            'derecho_violado' => 'required'
+        ], $messages);
 
-        $obj->save();
-        // $data = DB::insert('insert into tb_reprecursoshumanos (queja, name) values (?, ?)', [1, 'Dayle'])
+        if($validator->fails()){
+            return response()->json(['error'=>$validator->error()->all()]);
+        }else{
+            try{
+                RepRecursoHumano::updateOrCreate(['id' => $request->id],
+                [
+                    'queja' => $request->queja,
+                    'fecha_recepcion' => date('Y-m-d H:i:s', strtotime($request['fecha_recepcion'])),
+                    'abogados' => $request->abogados,
+                    'estado_procesal' => $request->estado_procesal,
+                    'asunto' => $request->asunto,
+                    'derecho_violado' => $request->derecho_violado
+                ]);
 
-        // return redirect()->action('RecursosHumanosController@index');
-        return response()->json($obj);
-=======
-        try{
-            $obj = new RepRecursoHumano();
-
-            $obj->queja = $request['queja'];
-            // $obj->fecha_recepcion = Carbon::parse($request['fecha_recepcion'])->format('d-m-Y H:i:s');
-            $obj->fecha_recepcion = date('Y-m-d H:i:s', strtotime($request['fecha_recepcion']));
-            $obj->abogados = $request['abogado'];
-            $obj->estado_procesal = $request['estado_procesal'];
-            $obj->asunto = $request['asunto'];
-            $obj->derecho_violado = $request['derecho_violado'];
-            $obj->activo = true;
-            
-            $obj->save();
-            // $data = DB::insert('insert into tb_reprecursoshumanos (queja, name) values (?, ?)', [1, 'Dayle'])
-            
-            // return redirect()->action('RecursosHumanosController@index');
-            return response()->json($obj);
-        } catch(Excepction $e){
-            return response()->json($e);
+                $response = ['success' => 'registro añadido.'];
+            } catch(Excepction $e){
+                return response()->json(['error'=>$e]);
+            }
         }
->>>>>>> b79311304b5efa97b1c3ebf0c95b353cc2cef63e
+
+        return response()->json($response,200);
     }
 
     /**
@@ -109,7 +108,18 @@ class RecursosHumanosController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $row = RepRecursoHumano::find($id);
+
+            if ($row != null) {
+                return response()->json($row);
+            }
+
+            return response()->json("No se a podido cargar los datos.",203);
+        } catch (\Illuminate\Database\QueryException $exception) {
+            $errorInfo = $exception->errorInfo;
+            return response()->json($errorInfo);
+        }
     }
 
     /**
@@ -132,7 +142,15 @@ class RecursosHumanosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = ['success' => 'Eliminacion completada.'];
+        $row = RepRecursoHumano::find($id);
+        if($row != null){
+            $row->activo = 0;
+            $row->save();
+            return response()->json($data,200);
+        }
+
+        return response()->json(['error:' => 'error']);
     }
 
     /**

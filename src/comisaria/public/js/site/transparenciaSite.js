@@ -1,10 +1,21 @@
 $(document).ready(function() {
-    obtenerEstadosprocesales();
+
+    $('#fecha').datepicker({
+		autoclose: true,
+        todayHighlight: true,
+        language: 'es'
+    });
+
+    $('#Recepcion').datepicker({
+		autoclose: true,
+        todayHighlight: true,
+        language: 'es'
+    });
 
     $('#btnNuevo').click(function (e) {
         e.preventDefault();
 
-        location.href = '/recursos-humanos-form';
+        location.href = '/transparencia-form';
     });
 
     // ajax setup
@@ -43,107 +54,96 @@ $(document).ready(function() {
         }
     };
 
-    //Configuración del datatables
     $('#tabla').DataTable( {
         serverSide: true,
         scrollX: true,
-        lengthChange: false,
-        ajax: 'api/DerechosHumano',
+        ajax: 'api/transparencia',
         columns: [
             {data: 'id'},
-            {data: 'queja'},
-            {data: 'fecha_recepcion'},
-            {data: 'abogados'},
-            {data: 'estado_procesal',
+            {data: 'Folio'},
+            {data: 'Expediente'},
+            {data: 'Solicitante'},
+            {data: 'Recepcion'},
+            {data: 'Informacion'},
+            {data: 'Derivado'},
+            {data: 'Canalizacion'},
+            {data: 'Respuesta'},
+            {data: 'Envio_UT'},
+            {data: 'Fecha'},
+            {data: 'idObservacion',
                 render: function(data, type, row){
                     if(data==1){
-                        return 'Investigación';
+                        return 'Incompetencia';
                     }else if(data==2){
-                        return 'Integración';
+                        return 'Reserva';
                     }else if(data==3){
-                        return 'Periodo aprobatorio';
-                    }else{
-                        return 'Informe de ley';
+                        return 'Confidencial';
                     }
                 }
             },
-            {data: 'asunto'},
-            {data: 'derecho_violado'},
             {data:'btn', orderable: false, searchable: false},
         ],
         dom: 'Bfrtip',
         language: espanol,
         buttons: [
-            {
-                extend: 'copyHtml5',
-                text: 'Copiar',
-            },
-            {
-                extend: 'excelHtml5',
-                title: 'Exportar EXCEL',
-                exportOptions: {
-                    columns: [ 1, 2, 3, 4, 5, 6 ]
-                }
-            },
-            {
-                extend: 'pdfHtml5',
-                title: 'Exportar PDF',
-                orientation: 'landscape',
-                pageSize: 'LEGAL',
-                exportOptions: {
-                    columns: [ 1, 2, 3, 4, 5, 6 ]
-                }
-            },
-            'colvis'
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
         ]
     });
 
-    //Mostrar un registro
+    //Actualizar un registro
     $('body').on('click', '.edit', function () {
         var _id = $(this).data('id');
         $('#saveBtn').html('Guardar');
-        var url = 'recursos-humanos-edit/'+_id;
-        if (!$('#estado_procesal').val()){
-            obtenerEstadosprocesales();
+        var url = 'transparencia-edit/'+_id;
+        //Agregamos las observaciones
+        if (!$('#idObservacion').val()){
+            obtenerObservaciones();
         }
         $.get(url, function (data) {
+            //Agregamos propiedades al form
             $('#modelHeading').html("Editar registro");
             $('#saveBtn').val("Actualizar");
             $('#ajaxModel').modal('show');
+            //Agregamos los datos
             $('#id').val(data.id);
-            $('#queja').val(data.queja);
-            $('#asunto').val(data.asunto);
-            $('#fecha_recepcion').val(data.fecha_recepcion);
-            $('#abogados').val(data.abogados);
-            $('#derecho_violado').val(data.derecho_violado);
-            $('#estado_procesal').val(data.estado_procesal);
+            $('#Folio').val(data.Folio);
+            $('#Expediente').val(data.Expediente);
+            $('#Solicitante').val(data.Solicitante);
+            $('#Recepcion').val(data.Recepcion);
+            $('#Informacion').val(data.Informacion);
+            $('#Derivado').val(data.Derivado);
+            $('#Canalizacion').val(data.Canalizacion);
+            $('#Respuesta').val(data.Respuesta);
+            $('#Envio_UT').val(data.Envio_UT);
+            $('#Fecha').val(data.Fecha);
+            $('#idObservacion').val(data.idObservacion);
         })
-    });
+     });
 
-    //Guardar o actualizar
-    $('#saveBtn').click(function (e) {
+     //Guaradar o actualizar
+     $('#saveBtn').click(function (e) {
         e.preventDefault();
 
         $(this).html('Enviando...');
-
-        var form = $('#productForm');
-
         $.ajax({
-            data: form.serialize(),
-            url: form.attr('action'),
-            type: "POST",
-            dataType: 'json',
-            success: function (data) {
-                $("#productForm")[0].reset();
-                $('#ajaxModel').modal('hide');
-                $('#tabla').DataTable().ajax.reload();
-                swal("OK!", data.success, "success");
-            },
-            error: function (data) {
-            swal("Error!", "El registro no fue actualizado:" + data.error, "error");
-                $('#saveBtn').html('Save Changes');
-            }
-        });
+          data: $('#transparenciaForm').serialize(),
+          url: "transparencia-form",
+          type: "POST",
+          dataType: 'json',
+          success: function (data) {
+              $("#transparenciaForm")[0].reset();
+              $('#ajaxModel').modal('hide');
+              $('#tabla').DataTable().ajax.reload();
+              swal("OK!", "El registro fue actualizado.", "success");
+          },
+          error: function (data) {
+              console.log('Error:', data);
+              $('#saveBtn').html('Save Changes');
+          }
+      });
     });
 
     //Eliminar un registro
@@ -154,7 +154,7 @@ $(document).ready(function() {
 
         swal({
             title: "¿Estas seguro?",
-            text: "El registro sera archivado.",
+            text: "El registro sera desactivado.",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -164,9 +164,9 @@ $(document).ready(function() {
             if (willDelete){
                 $.ajax({
                     type: 'delete',
-                    url: 'recursos-humanos-del/'+_id,
+                    url: 'transparencia-del/'+_id,
                     success: function(data){
-                        swal("OK!", "El registro fue archivado.", "success");
+                        swal("OK!", "El registro fue eliminado.", "success");
                         $('#tabla').DataTable().ajax.reload();
                     },
                     error: function(data){
@@ -176,12 +176,13 @@ $(document).ready(function() {
             }
         });
     });
-}); //Fin del onReady
+
+});//Fin del document ready!!!
 
 // Obtiene los estados procesales
-var obtenerEstadosprocesales = function (){
+var obtenerObservaciones = function (){
     $.ajax({
-        url: "/obtenerestadosprocesales",
+        url: "/obtenerobservaciones",
         method: "GET",
         data: { },
         dataType: "json",
@@ -190,7 +191,7 @@ var obtenerEstadosprocesales = function (){
             console.error('Error al procesar la solicitud');
         },
         success: function (data){
-            var elem = $('#estado_procesal');
+            var elem = $('#idObservacion');
 
             $.each(data, function (kay, val){
                 elem.append($('<option/>', { 'value': val.id, 'text': val.nombre }));
