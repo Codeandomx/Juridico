@@ -39,6 +39,7 @@ class RecursosHumanosController extends Controller
      */
     public function create(Request $request)
     {
+<<<<<<< HEAD
         //dd($request->all());
         $messages = [
             'required' => 'El :attribute es requerido',
@@ -75,6 +76,28 @@ class RecursosHumanosController extends Controller
         }
 
         return response()->json($response,200);
+=======
+        try{
+            $obj = new RepRecursoHumano();
+
+            $obj->queja = $request['queja'];
+            // $obj->fecha_recepcion = Carbon::parse($request['fecha_recepcion'])->format('d-m-Y H:i:s');
+            $obj->fecha_recepcion = date('Y-m-d H:i:s', strtotime($request['fecha_recepcion']));
+            $obj->abogados = $request['abogado'];
+            $obj->estado_procesal = $request['estado_procesal'];
+            $obj->asunto = $request['asunto'];
+            $obj->derecho_violado = $request['derecho_violado'];
+            $obj->activo = true;
+            
+            $obj->save();
+            // $data = DB::insert('insert into tb_reprecursoshumanos (queja, name) values (?, ?)', [1, 'Dayle'])
+            
+            // return redirect()->action('RecursosHumanosController@index');
+            return response()->json($obj);
+        } catch(Excepction $e){
+            return response()->json($e);
+        }
+>>>>>>> b9a4e0d29732b665f590599cddab2dada125d86a
     }
 
     /**
