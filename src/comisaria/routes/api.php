@@ -38,7 +38,7 @@ Route::get('/Armeria', function(){
 });
 
 Route::get('/DerechosHumano', function(){
-    return DataTables(RepRecursoHumano::listado())
+    return DataTables(RepRecursoHumano::where('activo', true))
     ->addColumn('btn', 'opciones')
     ->rawColumns(['btn'])
     ->toJson();

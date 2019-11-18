@@ -72,17 +72,6 @@ class DerechosHumanosController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -105,18 +94,6 @@ class DerechosHumanosController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -127,12 +104,12 @@ class DerechosHumanosController extends Controller
         $data = ['success' => 'Eliminacion completada.'];
         $row = RepRecursoHumano::find($id);
         if($row != null){
-            $row->activo = 0;
+            $row->activo = false;
             $row->save();
             return response()->json($data,200);
         }
 
-        return response()->json(['error:' => 'error']);
+        return response()->json(['error:' => 'error'], 500);
     }
 
     /**

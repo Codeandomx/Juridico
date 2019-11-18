@@ -24,7 +24,9 @@
                     </ul>
                 </nav>
             <div class="pull-right">
-                <button id="btnNuevo" class="btn btn-primary" style="margin-bottom: 10px;" href="javascript:void(0)">Nuevo</button>
+                <button id="btnNuevo" class="btn btn-primary" href="javascript:void(0)" style="margin-bottom: 15px;">
+                    <i class="fa fa-plus"> </i> &nbsp Nuevo registro
+                </button>
             </div>
             <br>
             <br>

@@ -1,11 +1,7 @@
 $(document).ready(function() {
-    obtenerEstadosprocesales();
-
-    $('#btnNuevo').click(function (e) {
-        e.preventDefault();
-
-        location.href = '/derechos-humanos-form';
-    });
+    /*************************************************
+     * Configuraciones
+     * **********************************************/
 
     // ajax setup
     $.ajaxSetup({
@@ -43,6 +39,16 @@ $(document).ready(function() {
         }
     };
 
+    /*************************************************
+     * FIN Configuraciones
+     * **********************************************/
+
+    $('#btnNuevo').click(function (e) {
+        e.preventDefault();
+
+        location.href = '/derechos-humanos-form';
+    });
+
     //Configuración del datatables
     $('#tabla').DataTable( {
         serverSide: true,
@@ -53,20 +59,8 @@ $(document).ready(function() {
             {data: 'id'},
             {data: 'queja'},
             {data: 'fecha_recepcion'},
-            {data: 'abogados'},
-            {data: 'estado_procesal',
-                render: function(data, type, row){
-                    if(data==1){
-                        return 'Investigación';
-                    }else if(data==2){
-                        return 'Integración';
-                    }else if(data==3){
-                        return 'Periodo aprobatorio';
-                    }else{
-                        return 'Informe de ley';
-                    }
-                }
-            },
+            {data: 'empleado'},
+            {data: 'estado'},
             {data: 'asunto'},
             {data: 'derecho_violado'},
             {data:'btn', orderable: false, searchable: false},
@@ -102,7 +96,7 @@ $(document).ready(function() {
     $('body').on('click', '.edit', function () {
         var _id = $(this).data('id');
         $('#saveBtn').html('Guardar');
-        var url = 'recursos-humanos-edit/'+_id;
+        var url = 'derechos-humanos-edit/'+_id;
         if (!$('#estado_procesal').val()){
             obtenerEstadosprocesales();
         }
@@ -164,7 +158,7 @@ $(document).ready(function() {
             if (willDelete){
                 $.ajax({
                     type: 'delete',
-                    url: 'recursos-humanos-del/'+_id,
+                    url: 'derechos-humanos-del/'+_id,
                     success: function(data){
                         swal("OK!", "El registro fue archivado.", "success");
                         $('#tabla').DataTable().ajax.reload();
@@ -177,24 +171,3 @@ $(document).ready(function() {
         });
     });
 }); //Fin del onReady
-
-// Obtiene los estados procesales
-var obtenerEstadosprocesales = function (){
-    $.ajax({
-        url: "/obtenerestadosprocesales",
-        method: "GET",
-        data: { },
-        dataType: "json",
-        cache: false,
-        error: function (){
-            console.error('Error al procesar la solicitud');
-        },
-        success: function (data){
-            var elem = $('#estado_procesal');
-
-            $.each(data, function (kay, val){
-                elem.append($('<option/>', { 'value': val.id, 'text': val.nombre }));
-            });
-        }
-    });
-};
