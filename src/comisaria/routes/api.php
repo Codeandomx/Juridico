@@ -51,6 +51,16 @@ Route::get('/DerechosHumanoArchivo', function(){
     ->toJson();
 });
 
+Route::post('/DerechosHumanoReporte', function(Request $request){
+    $fecha_inicio = date('Y-m-d H:i:s', strtotime($request['fecha_inicio']));
+    $fecha_fin = date('Y-m-d H:i:s', strtotime($request['fecha_fin']));
+
+    return DataTables(RepRecursoHumano::whereBetween('fecha_recepcion', [$fecha_inicio, $fecha_fin])->get())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
+
 Route::get('/transparencia', function(){
     return DataTables(Transparencia::listado())
     ->addColumn('btn', 'opciones')
