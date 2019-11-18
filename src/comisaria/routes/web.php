@@ -33,17 +33,17 @@ Route::get('/armas-edit/{id}', 'ArmasController@edit');
 Route::delete('/armas-del/{id}', 'ArmasController@destroy');
 Route::get('/obtenerestados', 'ArmasController@obtenerEstados');
 /**
- * Recursos humanos
+ * Derechos humanos
  */
 
-Route::get('/recursos-humanos', 'RecursosHumanosController@index');
-Route::get('/recursos-humanos-form', 'RecursosHumanosController@form');
-Route::post('/recursos-humanos-form', 'RecursosHumanosController@create')->name('postDH');
-Route::get('/obtenerestadosprocesales', 'RecursosHumanosController@obtenerEstadosProcesales');
-Route::get('/recursos-humanos-edit/{id}','RecursosHumanosController@edit');
-Route::delete('/recursos-humanos-del/{id}', 'RecursosHumanosController@destroy');
-Route::get('/obtenerabogados', 'RecursosHumanosController@obtenerAbogados');
-Route::get('/obtenerreportes', 'RecursosHumanosController@obtenerReportes');
+Route::get('/derechos-humanos', 'DerechosHumanosController@index');
+Route::get('/derechos-humanos-form', 'DerechosHumanosController@form');
+Route::post('/derechos-humanos-form', 'DerechosHumanosController@create')->name('postDH');
+Route::get('/obtenerestadosprocesales', 'DerechosHumanosController@obtenerEstadosProcesales');
+Route::get('/derechos-humanos-edit/{id}','DerechosHumanosController@edit');
+Route::delete('/derechos-humanos-del/{id}', 'DerechosHumanosController@destroy');
+Route::get('/obtenerabogados', 'DerechosHumanosController@obtenerAbogados');
+Route::get('/obtenerreportes', 'DerechosHumanosController@obtenerReportes');
 
 /**
  * Transparencia

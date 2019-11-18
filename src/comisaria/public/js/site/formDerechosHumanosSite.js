@@ -20,7 +20,7 @@ $(document).ready(function(){
         e.preventDefault()
 
         // reditigimos a la pagina principal
-        location.href = '/recursos-humanos';
+        location.href = '/derechos-humanos';
     });
 
     // ajax setup

@@ -91,8 +91,8 @@
 							<span class="s-text">Derechos humanos</span>
 						</a>
 						<ul>
-							<li><a href="/recursos-humanos">Registros</a></li>
-							<li><a href="/recursos-humanos-form">Formulario</a></li>
+							<li><a href="/derechos-humanos">Registros</a></li>
+							<li><a href="/derechos-humanos-form">Formulario</a></li>
                             <li><a href="index3.html">Exportar</a></li>
                             <li><a href="#">Archivo</a></li>
 						</ul>

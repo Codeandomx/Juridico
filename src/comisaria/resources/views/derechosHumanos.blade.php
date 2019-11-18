@@ -19,7 +19,7 @@
         <div class="box box-block bg-white">
                 <nav>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Recursos humanos</a></li>
+                        <li class="breadcrumb-item"><a href="#">Derechos humanos</a></li>
                         <li class="breadcrumb-item active"><a href="#">Registros</a></li>
                     </ul>
                 </nav>
@@ -69,5 +69,5 @@
 <script type="text/javascript" src="_vendor/DataTables/Buttons/js/buttons.print.min.js"></script>
 <script type="text/javascript" src="_vendor/DataTables/Buttons/js/buttons.colVis.min.js"></script>
 <script type="text/javascript" src="_vendor/select2/dist/js/select2.min.js"></script>
-<script type="text/javascript" src="js/site/recursosHumanosSite.js"></script>
+<script type="text/javascript" src="js/site/derechosHumanosSite.js"></script>
 @endsection

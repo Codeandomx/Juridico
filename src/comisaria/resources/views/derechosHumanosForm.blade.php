@@ -19,7 +19,7 @@
         <div class="box box-block bg-white">
             <nav>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Recursos Humanos</a></li>
+                    <li class="breadcrumb-item"><a href="#">Derechos Humanos</a></li>
                     <li class="breadcrumb-item active"><a href="#">Formulario</a></li>
                 </ul>
             </nav>
@@ -101,5 +101,5 @@
 @section('scripts')
 <script type="text/javascript" src="_vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
-<script type="text/javascript" src="js/site/formRecursosHumanosSite.js"></script>
+<script type="text/javascript" src="js/site/formDerechosHumanosSite.js"></script>
 @endsection

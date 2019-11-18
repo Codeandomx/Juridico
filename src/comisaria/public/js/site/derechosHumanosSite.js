@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('#btnNuevo').click(function (e) {
         e.preventDefault();
 
-        location.href = '/recursos-humanos-form';
+        location.href = '/derechos-humanos-form';
     });
 
     // ajax setup

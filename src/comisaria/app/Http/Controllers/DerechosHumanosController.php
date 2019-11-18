@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
 
-class RecursosHumanosController extends Controller
+class DerechosHumanosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class RecursosHumanosController extends Controller
      */
     public function index()
     {
-        return view('recursosHumanos');
+        return view('derechosHumanos');
     }
 
     /**
@@ -29,7 +29,7 @@ class RecursosHumanosController extends Controller
      */
     public function form()
     {
-        return view('recursosHumanosForm');
+        return view('derechosHumanosForm');
     }
 
     /**
