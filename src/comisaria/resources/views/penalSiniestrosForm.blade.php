@@ -18,12 +18,15 @@
                     <li class="breadcrumb-item active"><a href="#">Formulario</a></li>
                 </ul>
             </nav>
+
+            <!-- Errores de registro -->
             <div class="alert alert-danger print-error-msg" style="display:none">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 <ul></ul>
             </div>
+
           <form id="formPenalSiniestros" method="POST" action="{{ route('postPS') }}">
-            {{-- action="/penal-siniestros-form" --}}
+
             <div class="row">
               <div class="col col-md-4 form-group">
                 <label for="exampleTextarea">Numero consecutivo</label>
@@ -38,7 +41,7 @@
               <div class="col col-md-4 form-group">
                 <label for="exampleSelect1">Fecha de asignación</label>
                 <div class="input-group">
-                  <input type="text" class="form-control" id="fecha_asignacion" name="fecha_asignacion" placeholder="dd/mm/yyyy" required>
+                  <input type="text" class="form-control" id="fecha_asignacion" name="fecha_asignacion" placeholder="yyyy-mm-dd" data-date-format='yyyy-mm-dd' required>
                   <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                 </div>
               </div>

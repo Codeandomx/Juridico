@@ -5,3 +5,5 @@ CREATE TABLE `tb_estados` (
 	`updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (`id`)
 )
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB

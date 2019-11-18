@@ -3,13 +3,53 @@ $(document).ready(function() {
     $('#fecha').datepicker({
 		autoclose: true,
         todayHighlight: true,
-        language: 'es'
+        language: 'es',
+        dateFormat: 'yy-mm-dd'
     });
 
     $('#Recepcion').datepicker({
 		autoclose: true,
         todayHighlight: true,
-        language: 'es'
+        language: 'es',
+        dateFormat: 'yy-mm-dd'
+    });
+
+    $('#transparenciaForm').validate({
+        rules:{
+            Folio:{
+                required: true,
+            },
+            Expediente:{
+                required: true,
+            },
+            Solicitante:{
+                required: true,
+            },
+            Recepcion:{
+                required: true,
+            },
+            Informacion:{
+                required: true,
+            },
+            Derivado:{
+                required: true,
+            },
+            Canalizacion:{
+                required: true,
+            },
+            Respuesta:{
+                required: true,
+            },
+            Envio_UT:{
+                required: true,
+            },
+            Fecha:{
+                required: true,
+            },
+            idObservacion:{
+                required: true,
+            },
+        }
     });
 
     $('#btnNuevo').click(function (e) {
@@ -59,7 +99,7 @@ $(document).ready(function() {
         scrollX: true,
         ajax: 'api/transparencia',
         columns: [
-            {data: 'id'},
+            {data: 'id', 'visible': false},
             {data: 'Folio'},
             {data: 'Expediente'},
             {data: 'Solicitante'},
@@ -86,39 +126,57 @@ $(document).ready(function() {
         dom: 'Bfrtip',
         language: espanol,
         buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
+        {
+            extend: 'copyHtml5',
+            text: 'Copiar'
+        },
+        {
+            extend: 'excelHtml5',
+            title: 'Exportar EXCEL',
+            exportOptions: {
+                columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+            }
+        },
+        {
+            extend: 'pdfHtml5',
+            title: 'Exportar PDF',
+            orientation: 'landscape',
+            pageSize: 'LEGAL',
+            exportOptions: {
+                columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+            }
+        },
+            'colvis'
         ]
     });
 
     //Actualizar un registro
     $('body').on('click', '.edit', function () {
+        console.log($(this).data('id'));
         var _id = $(this).data('id');
         $('#saveBtn').html('Guardar');
         var url = 'transparencia-edit/'+_id;
-        //Agregamos las observaciones
+        
         if (!$('#idObservacion').val()){
             obtenerObservaciones();
         }
         $.get(url, function (data) {
-            //Agregamos propiedades al form
             $('#modelHeading').html("Editar registro");
             $('#saveBtn').val("Actualizar");
             $('#ajaxModel').modal('show');
-            //Agregamos los datos
+            console.log(data);
+
             $('#id').val(data.id);
             $('#Folio').val(data.Folio);
             $('#Expediente').val(data.Expediente);
             $('#Solicitante').val(data.Solicitante);
-            $('#Recepcion').val(data.Recepcion);
+            $('#Recepcion').val(data.Recepcion.substr(0,10));
             $('#Informacion').val(data.Informacion);
             $('#Derivado').val(data.Derivado);
             $('#Canalizacion').val(data.Canalizacion);
             $('#Respuesta').val(data.Respuesta);
             $('#Envio_UT').val(data.Envio_UT);
-            $('#Fecha').val(data.Fecha);
+            $('#Fecha').val(data.Fecha.substr(0,10));
             $('#idObservacion').val(data.idObservacion);
         })
      });
@@ -127,24 +185,57 @@ $(document).ready(function() {
      $('#saveBtn').click(function (e) {
         e.preventDefault();
 
+        var formu = $('#transparenciaForm');
+        console.log(formu.serialize());
         $(this).html('Enviando...');
         $.ajax({
-          data: $('#transparenciaForm').serialize(),
-          url: "transparencia-form",
-          type: "POST",
+          data: formu.serialize(),
+          url: formu.attr('action'),
+          type: 'post',
           dataType: 'json',
           success: function (data) {
-              $("#transparenciaForm")[0].reset();
+            if (data.success) {
+              formu[0].reset();
               $('#ajaxModel').modal('hide');
               $('#tabla').DataTable().ajax.reload();
-              swal("OK!", "El registro fue actualizado.", "success");
+                swal({
+                    title: "OK!", 
+                    text: "Tarea completada.", 
+                    icon: "success",
+                    timer: 2000
+                });
+            }else{
+                 $('#ajaxModel').modal('hide');
+                swal({
+                    title: "Error!",
+                    text: "No se completo la tarea.",
+                    icon: "error",
+                    timer: 2000
+                });
+                printErrorMsg(data.error);
+                $('#erroresBox').fadeOut(10000);               
+            }
           },
           error: function (data) {
-              console.log('Error:', data);
-              $('#saveBtn').html('Save Changes');
+            swal({
+                title: "Error!",
+                text: "El registro no fue actualizado " + data.error,
+                icon: "error",
+                timer: 2000
+            });
+            $('#saveBtn').html('Save Changes');
           }
       });
     });
+
+    //Mostrar errores
+    function printErrorMsg (msg) {
+        $(".print-error-msg").find("ul").html('');
+        $(".print-error-msg").css('display','block');
+        $.each( msg, function( key, value ) {
+            $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+        });
+    }
 
     //Eliminar un registro
     $('body').on('click', '.delete', function(e){

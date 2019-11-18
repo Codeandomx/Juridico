@@ -13,11 +13,10 @@
 
             <div class="modal-body">
 
-                <form id="transparenciaForm" name="transparenciaForm" class="form-horizontal">
+                <form id="transparenciaForm" name="transparenciaForm" class="form-horizontal" action="{{ route('postT') }}">
 
                    <input type="hidden" name="id" id="id">
 
-                   <!-- ---------------------------------------------------------------------------------------------------------------------- -->
                    <div class="row">
                         <div class="col col-md-6 form-group">
                             <label for="exampleTextarea">Folio</label>
@@ -30,9 +29,6 @@
                         </div>
                     </div>
 
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
-
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
                     <div class="row">
                         <div class="col col-md-4 form-group">
                             <label for="exampleTextarea">Solicitante</label>
@@ -41,7 +37,7 @@
                         <div class="col col-md-4 form-group">
                             <label for="exampleSelect1">Recepción</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="Recepcion" name="Recepcion" placeholder="dd/mm/yyyy" required>
+                                <input type="text" class="form-control" id="Recepcion" name="Recepcion" data-date-format='yyyy-mm-dd' placeholder="yyyy-mm-dd" required>
                                 <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                             </div>
                         </div>
@@ -50,17 +46,15 @@
                             <input class="form-control" id="Informacion" maxlength="50" name="Informacion" placeholder="informacion">
                         </div>
                     </div>
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
                     <div class="row">
                         <div class="col col-md-4 form-group">
                             <label for="exampleTextarea">Derivado</label>
-                            <input class="form-control" id="Derivado" name="Derivado" maxlength="30" type="text" placeholder="Derivado">
+                            <input class="form-control" id="Derivado" name="Derivado" maxlength="30" type="text" placeholder="Derivado" required>
                         </div>
                         <div class="col col-md-4 form-group">
                             <label for="exampleTextarea">Canalización</label>
-                            <input class="form-control" id="Canalizacion" name="Canalizacion" type="text" placeholder="Canalizacion" maxlength="30"/>
+                            <input class="form-control" id="Canalizacion" name="Canalizacion" type="text" placeholder="Canalizacion" maxlength="30" required/>
                         </div>
                         <div class="col col-md-12 form-group">
                             <label for="exampleTextarea">Respuesta</label>
@@ -68,34 +62,29 @@
                         </div>
                     </div>
 
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
-
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
                     <div class="row">
                         <div class="col col-md-4 form-group">
                             <label for="exampleTextarea">Envio de UT</label>
-                            <input class="form-control" id="Envio_UT" name="Envio_UT" maxlength="50" placeholder="Envio de UT">
+                            <input class="form-control" id="Envio_UT" name="Envio_UT" maxlength="50" placeholder="Envio de UT" required>
                         </div>
                         <div class="col col-md-4 form-group">
                             <label for="exampleSelect1">Fecha</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="Fecha" name="Fecha" placeholder="dd/mm/yyyy" required>
+                                <input type="text" class="form-control" id="Fecha" name="Fecha" data-date-format='yyyy-mm-dd' placeholder="yyyy-mm-dd" required>
                                 <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                             </div>
                         </div>
                         <div class="col col-md-4 form-group">
                             <label for="Observaciones">Observación</label>
-                            <select class="form-control" id="idObservacion" name="idObservacion"></select>
+                            <select class="form-control" id="idObservacion" name="idObservacion" required></select>
                         </div>
                     </div>
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
 
                     <div class="col-md-offset-8 col-md-4">
                      <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Guardar cambios</button>
                     </div>
 
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
                 </form>
             </div>
         </div>

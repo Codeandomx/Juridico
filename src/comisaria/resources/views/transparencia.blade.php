@@ -11,26 +11,37 @@
 <link rel="stylesheet" href="_vendor/DataTables/Responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="_vendor/DataTables/Buttons/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="_vendor/DataTables/Buttons/css/buttons.bootstrap4.min.css">
-<style>
-    #btnNuevo{
-        margin-bottom: 15px;
-    }
-</style>
 @endsection
 
 @section('content')
-@include('partials.modalT');
 <br>
 <div class="row row-md mb-2">
     <div class="col-md-12">
         <div class="box box-block bg-white">
-            <h4 class="mb-1">Transparencia</h4>
-            <div class="pull-right">
-                <button id="btnNuevo" class="btn btn-primary" href="javascript:void(0)">Nuevo</button>
+            <nav>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Transparencia</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Registros</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mensajes de error -->
+            <div id="erroresBox" class="alert alert-danger print-error-msg" style="display:none">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <ul></ul>
             </div>
+
+            <br>
+            <div class="pull-right">
+                <button id="btnNuevo" class="btn btn-primary" href="javascript:void(0)" style="margin-bottom: 15px;">
+                    <i class="fa fa-plus"> </i> &nbsp Nuevo registro
+                </button>
+            </div>
+
             <br>
             <br>
-            <table id="tabla" class="table table-striped table-bordered dataTable">
+            <br>
+            <table id="tabla" class="table table-striped table-bordered dataTable" style="width: 100%;">
                 <thead>
                     <tr>
                         <th>id</th>
@@ -53,6 +64,7 @@
         </div>
     </div>
 </div>
+@include('partials.modalT');
 @endsection
 
 @section('scripts')

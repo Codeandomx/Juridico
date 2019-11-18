@@ -16,7 +16,6 @@
 
                    <input type="hidden" name="id" id="id">
 
-                   <!-- ---------------------------------------------------------------------------------------------------------------------- -->
                    <div class="row">
                         <div class="col col-md-6 form-group">
                             <label for="exampleTextarea">Numero consecutivo</label>
@@ -29,14 +28,11 @@
                         </div>
                     </div>
 
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
-
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
                     <div class="row">
                         <div class="col col-md-4 form-group">
                             <label for="exampleSelect1">Fecha de asignación</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="fecha_asignacion" name="fecha_asignacion" placeholder="dd/mm/yyyy" required>
+                                <input type="text" class="form-control" id="fecha_asignacion" name="fecha_asignacion" placeholder="yyyy-mm-dd" required data-date-format='yyyy-mm-dd'>
                                 <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                             </div>
                         </div>
@@ -49,9 +45,7 @@
                             <select class="form-control" multiple="multiple" id="servidor_publico" name="servidor_publico[]"></select>
                         </div>
                     </div>
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
 
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
                     <div class="row">
                         <div class="col col-md-6 form-group">
                             <label for="exampleTextarea">Denunciante</label>
@@ -63,9 +57,6 @@
                         </div>
                     </div>
 
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
-
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
                     <div class="row">
                         <div class="col col-md-6 form-group">
                             <label for="exampleTextarea">Poligono</label>
@@ -77,22 +68,17 @@
                         </div>
                     </div>
 
-
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
                     <div class="row">
                         <div class="col col-md-12 form-group">
                             <label for="exampleTextarea">Observaciones</label>
                             <textarea class="form-control" id="observaciones" name="observaciones" rows="3" required></textarea>
                         </div>
                     </div>
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
-
 
                     <div class="col-md-offset-8 col-md-4">
                      <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Guardar cambios</button>
                     </div>
 
-                    <!-- ---------------------------------------------------------------------------------------------------------------------- -->
                 </form>
             </div>
         </div>

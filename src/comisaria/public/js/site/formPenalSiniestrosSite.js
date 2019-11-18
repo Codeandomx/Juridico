@@ -68,7 +68,7 @@ $(document).ready(function(){
         },
         messages:{
             numero_consecutivo: {
-                required: "Porfavor ingresa el numero concecutivo.",
+                required: "Porfavor ingresa el numero consecutivo.",
                 maxlength: "No puedes ingresar más de 15 digitos."
             },
 

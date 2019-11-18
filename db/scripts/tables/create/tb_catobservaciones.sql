@@ -1,0 +1,10 @@
+CREATE TABLE `tb_catobservaciones` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(20) NOT NULL,
+	`Activo` BIT(1) NULL DEFAULT b'1',
+	`createAT` TIMESTAMP NULL DEFAULT NULL,
+	`updateAT` TIMESTAMP NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB

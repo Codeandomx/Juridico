@@ -12,11 +12,6 @@
 <link rel="stylesheet" href="_vendor/DataTables/Buttons/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="_vendor/DataTables/Buttons/css/buttons.bootstrap4.min.css">
 <link rel="stylesheet" href="_vendor/select2/dist/css/select2.min.css">
-<style>
-    #btnNuevo{
-        margin-bottom: 15px;
-    }
-</style>
 @endsection
 
 @section('content')
@@ -29,8 +24,18 @@
                     <li class="breadcrumb-item active"><a href="#">Registros</a></li>
                 </ul>
             </nav>
+
+            <!-- Mensajes de error -->
+            <div id="erroresBox" class="alert alert-danger print-error-msg" style="display:none">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <ul></ul>
+            </div>
+
+            <br>
             <div class="pull-right">
-                <button id="btnNuevo" class="btn btn-primary" href="javascript:void(0)">Nuevo</button>
+                <button id="btnNuevo" class="btn btn-primary" href="javascript:void(0)" style="margin-bottom: 15px;">
+                    <i class="fa fa-plus"> </i> &nbsp Nuevo registro
+                </button>
             </div>
             <br>
             <br>
@@ -47,6 +52,7 @@
                         <th>Denunciante</th>
                         <th>Delito</th>
                         <th>Poligono</th>
+                        <th>observaciones</th>
                         <th>Estado procesal</th>
                         <th width="150px">&nbsp;</th>
                     </tr>
@@ -63,8 +69,6 @@
 @section('scripts')
 <script type="text/javascript" src="_vendor/sweetAlert/sweetalert.min.js"></script>
 <script type="text/javascript" src="_vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="_vendor/jquery-validate/jquery-validate.js"></script>
-<script type="text/javascript" src="_vendor/jquery-validate/additional-methods.min.js"></script>
 <script type="text/javascript" src="_vendor/bootstrap-datepicker/dist/js/bdLocal.js"></script>
 <script type="text/javascript" src="_vendor/DataTables/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="_vendor/DataTables/js/dataTables.bootstrap4.min.js"></script>
@@ -79,6 +83,8 @@
 <script type="text/javascript" src="_vendor/DataTables/Buttons/js/buttons.print.min.js"></script>
 <script type="text/javascript" src="_vendor/DataTables/Buttons/js/buttons.colVis.min.js"></script>
 <script type="text/javascript" src="_vendor/select2/dist/js/select2.min.js"></script>
+<script type="text/javascript" src="_vendor/jquery-validate/jquery-validate.js"></script>
+<script type="text/javascript" src="_vendor/jquery-validate/additional-methods.min.js"></script>
 <script type="text/javascript" src="js/site/penalSiniestrosSite.js"></script>
 @endsection
 

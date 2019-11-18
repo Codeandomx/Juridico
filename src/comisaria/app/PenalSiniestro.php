@@ -35,6 +35,7 @@ class PenalSiniestro extends Model
             'denunciante',
             'delito',
             'poligono',
+            'observaciones',
             'estado_procesal'
         )->where('activo', 1);
     }

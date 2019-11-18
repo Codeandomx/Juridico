@@ -6,6 +6,7 @@ use App\PenalSiniestro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use DateTime;
 
 class PenalSiniestrosController extends Controller
 {
@@ -38,11 +39,15 @@ class PenalSiniestrosController extends Controller
         ];
 
         $validator = Validator::make($request->all(), [
+            'numero_consecutivo' => 'required',
+            'carpeta_investigacion' => 'required',
             'fecha_asignacion' => 'required',
             'servidor_publico'  => 'required',
+            'agencia_mp' => 'required',
             'denunciante'  => 'required',
             'delito'  => 'required',
             'poligono' => 'required',
+            'observaciones' => 'required',
             'estado_procesal' => 'required'
         ], $messages);
 
@@ -50,31 +55,37 @@ class PenalSiniestrosController extends Controller
             return response()->json(['error'=>$validator->errors()->all()]);
         }
         else{
-            $response = ['success' => 'Se agrego el registro.'];
+            try {
+                $servidores = $request->input('servidor_publico');
+                $servidores = implode(',', $servidores);
 
-            $servidores = $request->input('servidor_publico');
-            $servidores = implode(',', $servidores);
+                $denunciantes = $request->input('denunciante');
+                $denunciantes = implode(',', $denunciantes);
 
-            $denunciantes = $request->input('denunciante');
-            $denunciantes = implode(',', $denunciantes);
+                $delitos = $request->input('delito');
+                $delitos = implode(',', $delitos);
 
-            $delitos = $request->input('delito');
-            $delitos = implode(',', $delitos);
+                $formato = 'Y-m-d H:i:s';
+                $fecha = $this->formatDate($request->fecha_asignacion);
+                $date = strtotime($fecha);
+                PenalSiniestro::updateOrCreate(['id' => $request->id],
+                [
+                    'numero_consecutivo' => $request->numero_consecutivo,
+                    'carpeta_investigacion' => $request->carpeta_investigacion,
+                    'fecha_asignacion' => date($formato, $date),
+                    'agencia_mp' => $request->agencia_mp,
+                    'servidor_publico' => $servidores,
+                    'denunciante' => $denunciantes,
+                    'delito' => $delitos,
+                    'poligono' => $request->poligono,
+                    'estado_procesal' => $request->estado_procesal,
+                    'observaciones' => $request->observaciones
+                ]);
 
-            PenalSiniestro::updateOrCreate(['id' => $request->id],
-            [
-                'numero_consecutivo' => $request->numero_consecutivo,
-                'carpeta_investigacion' => $request->carpeta_investigacion,
-                //'fecha_asignacion' => Carbon::now(),
-                'fecha_asignacion' => date('Y-m-d H:i:s', strtotime($request['fecha_asignacion'])),
-                'agencia_mp' => $request->agencia_mp,
-                'servidor_publico' => $servidores,
-                'denunciante' => $denunciantes,
-                'delito' => $delitos,
-                'poligono' => $request->poligono,
-                'estado_procesal' => $request->estado_procesal,
-                'observaciones' => $request->observaciones
-            ]);
+                $response = ['success' => 'Se agrego el registro.'];    
+            } catch (Exception $e) {
+                return response()->json(['error' => $e]);
+            }
         }
 
         return response()->json($response,200);
@@ -120,5 +131,15 @@ class PenalSiniestrosController extends Controller
         }
 
         return response()->json(['error:' => 'error']);
+    }
+
+    //Retorna un string datetime
+    public function formatDate($fechaoriginal){
+
+        $aux = Carbon::now();
+        $time = $aux->toDateTimeString();
+
+        $time = substr($time,10);
+        return $fechaoriginal . $time;
     }
 }

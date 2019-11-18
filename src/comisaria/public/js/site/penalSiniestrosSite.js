@@ -1,9 +1,46 @@
 $(document).ready(function() {
 
+    $('#productForm').validate({
+        rules:{
+            numero_consecutivo:{
+                required: true,
+                maxlength: 15
+            },
+            carpeta_investigacion:{
+                required: true
+            },
+            fecha_asignacion:{
+                required: true
+            },
+            agencia_mp:{
+                required: true
+            },
+            servidor_publico:{
+                required: true
+            },
+            denunciante:{
+                required: true
+            },
+            delito:{
+                required: true
+            },
+            poligono:{
+                required: true
+            },
+            estado_procesal:{
+                required: true
+            },
+            observaciones:{
+                required: true
+            },
+        } //Fin rules
+    }); 
+
     $('#fecha_asignacion').datepicker({
 		autoclose: true,
         todayHighlight: true,
-        language: 'es'
+        language: 'es',
+        dateFormat: 'yy-mm-dd'
     });
 
     $('#btnNuevo').click(function (e) {
@@ -66,7 +103,7 @@ $(document).ready(function() {
         lengthChange: false,
         ajax: 'api/penal&siniestros',
         columns: [
-            {data: 'id'},
+            {data: 'id', 'visible': false},
             {data: 'numero_consecutivo'},
             {data: 'carpeta_investigacion'},
             {data: 'fecha_asignacion'},
@@ -75,6 +112,7 @@ $(document).ready(function() {
             {data: 'denunciante'},
             {data: 'delito'},
             {data: 'poligono'},
+            {data: 'observaciones'},
             {data: 'estado_procesal',
                 render: function(data, type, row){
                     if(data==1){
@@ -126,43 +164,65 @@ $(document).ready(function() {
             obtenerEstadosprocesales();
         }
         $.get(url, function (data) {
-
-            fillSelects(data);
             $('#modelHeading').html("Editar registro");
             $('#saveBtn').val("Actualizar");
             $('#ajaxModel').modal('show');
             $('#id').val(data.id);
+            forSelector(data.servidor_publico,"servidor_publico");
+            forSelector(data.denunciante,"denunciante");
+            forSelector(data.delito,"delito");
             $('#numero_consecutivo').val(data.numero_consecutivo);
             $('#carpeta_investigacion').val(data.carpeta_investigacion);
             $('#agencia_mp').val(data.agencia_mp);
-            $('#fecha_asignacion').val(data.fecha_asignacion);
+            $('#fecha_asignacion').val(data.fecha_asignacion.substr(0,10));
             $('#poligono').val(data.poligono);
             $('#estado_procesal').val(data.estado_procesal);
             $('#observaciones').val(data.observaciones);
-            console.log(data);
         })
      });
 
-     //Guaradar o actualizar
+     //Guardar o actualizar
      $('#saveBtn').click(function (e) {
         e.preventDefault();
 
         $(this).html('Enviando...');
-
+        var formu = $('#productForm'); 
         $.ajax({
-          data: $('#productForm').serialize(),
-          url: $('#productForm').attr('action'),
+          data: formu.serialize(),
+          url: formu.attr('action'),
           type: "POST",
           dataType: 'json',
           success: function (data) {
-              $("#productForm")[0].reset();
+            if (data.success) {
+              formu[0].reset();
               $('#ajaxModel').modal('hide');
               $('#tabla').DataTable().ajax.reload();
-              swal("OK!", "El registro fue actualizado.", "success");
+              swal({
+                title: "OK!", 
+                text: "Tarea completada.", 
+                icon: "success",
+                timer: 2000
+            });
+            }else{
+                $('#ajaxModel').modal('hide');
+                swal({
+                    title: "Error!",
+                    text: "No se completo la tarea.",
+                    icon: "error",
+                    timer: 2000
+                });
+                printErrorMsg(data.error);
+                $('#erroresBox').fadeOut(10000);
+            }
           },
           error: function (data) {
-            swal("Error!", "El registro no fue actualizado.", "error");
-              $('#saveBtn').html('Save Changes');
+            swal({
+                title: "Error!",
+                text: "El registro no fue actualizado " + data.error,
+                icon: "error",
+                timer: 2000
+            });
+              $('#saveBtn').html('Guardar');
           }
       });
     });
@@ -177,8 +237,12 @@ $(document).ready(function() {
     //recargar selects por for
     function forSelector(array,id){
         var sel = document.getElementById(id);
+
+        //limpiamos el select
+        sel.length = 0;
         var arrai = array.split(',');
 
+        console.log(arrai);
         for(var i = 0; i < arrai.length; i++) {
             var opt = arrai[i];
             var el = document.createElement("option");
@@ -187,6 +251,15 @@ $(document).ready(function() {
             el.setAttribute("selected","selected");
             sel.append(el);
             }
+    }
+
+    //Mostrar errores
+    function printErrorMsg (msg) {
+        $(".print-error-msg").find("ul").html('');
+        $(".print-error-msg").css('display','block');
+        $.each( msg, function( key, value ) {
+            $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+        });
     }
 
     //Eliminar un registro

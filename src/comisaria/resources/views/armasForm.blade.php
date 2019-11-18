@@ -11,22 +11,26 @@
     <!-- Content -->
     <div class="content-area py-1">
       <div class="container-fluid">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/armas" style="font-size: 1.5em;">Armas</a></li>
-                <li class="breadcrumb-item active" aria-current="page" style="font-size: 1.4em;">Altas</li>
-            </ol>
-        </nav>
         <div class="box box-block bg-white">
-            <div class="alert alert-danger print-error-msg" style="display:none">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <ul></ul>
-            </div>
+
+        <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Armas</a></li>
+                <li class="breadcrumb-item active"><a href="#">Formulario</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mensajes de errores -->
+        <div id="erroresBox" class="alert alert-danger print-error-msg" style="display:none">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <ul></ul>
+        </div>
+            
           <form id="formArmas" method="POST" action="{{ route('postArmas') }}">
-            {{-- action="/penal-siniestros-form" --}}
+
             <div class="row">
               <div class="col col-md-4 form-group">
-                <label for="exampleTextarea">Numero consecutivo</label>
+                <label for="exampleTextarea">Numero de servicio</label>
                 <input class="form-control" id="numero_servicio" maxlength="15" name="numero_servicio" type="text" placeholder="Numero servicio" required>
               </div>
 
@@ -61,12 +65,12 @@
             <div class="row">
               <div class="col col-md-6 form-group">
                 <label for="exampleTextarea">Encargado</label>
-                <input class="form-control" id="encargado" name="encargado" type="text" placeholder="encargado" maxlength="30" pattern="[A-Za-z]" required/>
+                <input class="form-control" id="encargado" name="encargado" type="text" placeholder="encargado" maxlength="30" required/>
               </div>
               <div class="col col-md-6 form-group">
                 <label for="fecha registro">Fecha registro</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="fecha_registro" name="fecha_registro" placeholder="dd/mm/yyyy" required>
+                    <input type="text" class="form-control" id="fecha_registro" name="fecha_registro" placeholder="yyyy-mm-dd" data-date-format='yyyy-mm-dd' required>
                     <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                 </div>
               </div>
@@ -85,7 +89,7 @@
                 <div class="col col-md-4 form-group">
                     <label for="fecha resolucion">Fecha resolución</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="fecha_resolucion" name="fecha_resolucion" placeholder="dd/mm/yyyy" required>
+                        <input type="text" class="form-control" id="fecha_resolucion" name="fecha_resolucion" placeholder="yyyy-mm-dd" data-date-format='yyyy-mm-dd' required>
                         <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                     </div>
               </div>
@@ -119,6 +123,7 @@
 @endsection
 
 @section('scripts')
+<script type="text/javascript" src="_vendor/sweetAlert/sweetalert.min.js"></script>
 <script type="text/javascript" src="_vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="_vendor/jquery-validate/jquery-validate.js"></script>
 <script type="text/javascript" src="_vendor/jquery-validate/additional-methods.min.js"></script>

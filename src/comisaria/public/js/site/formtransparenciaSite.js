@@ -2,6 +2,46 @@ $(document).ready(function(){
 
     obtenerObservaciones();
 
+    $('input, :input').attr('autocomplete', 'off');
+
+    $('#transparenciaForm').validate({
+        rules:{
+            Folio:{
+                required: true,
+            },
+            Expediente:{
+                required: true,
+            },
+            Solicitante:{
+                required: true,
+            },
+            Recepcion:{
+                required: true,
+            },
+            Informacion:{
+                required: true,
+            },
+            Derivado:{
+                required: true,
+            },
+            Canalizacion:{
+                required: true,
+            },
+            Respuesta:{
+                required: true,
+            },
+            Envio_UT:{
+                required: true,
+            },
+            Fecha:{
+                required: true,
+            },
+            idObservacion:{
+                required: true,
+            },
+        }
+    });
+
     $('#Fecha').datepicker({
 		autoclose: true,
         todayHighlight: true,
@@ -33,25 +73,38 @@ $(document).ready(function(){
     $('#formTransparencia').submit(function(e){
         e.preventDefault();
 
-        // Obtenemos los datos del formulario
         var form = $(this);
-        var url = form.attr('action');
-
-        console.log(form.serialize());
         $.ajax({
             type: "POST",
-            url: url,
+            url: form.attr('action'),
             data: form.serialize(),
             error: function (data){
-                toastr.error('Ocurrieron errores');
+                 swal({
+                    title: "Error!",
+                    text: "El registro no fue actualizado " + data.error,
+                    icon: "error",
+                    timer: 2000
+                });               
             },
             success: function(data)
             {
-                if($.isEmptyObject(data.success)){
+                if(data.error){
+                    swal({
+                        title: "Error!",
+                        text: "No se completo la tarea.",
+                        icon: "error",
+                        timer: 2000
+                    });   
                     muestraErrores(data.error);
+                    $('#erroresBox').fadeOut(10000);
                 }else{
-                    toastr.success(data.success,'Correcto');
-                    $("#formTransparencia")[0].reset();
+                    form[0].reset();
+                    swal({
+                        title: "OK!", 
+                        text: "Tarea completada.", 
+                        icon: "success",
+                        timer: 2000
+                    });
                 }
             }
         }); //Fin llamada ajax

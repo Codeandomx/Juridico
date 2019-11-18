@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Armas;
 use App\Estado;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -37,38 +38,61 @@ class ArmasController extends Controller
      */
     public function store(Request $request)
     {
-        // $arma = new Armas();
-        // $arma->numero_servicio=$request->numero_servicio;
-        // $arma->abogado_integrado=$request->abogado_integrado;
-        // $arma = estado;
-        // $arma = numero_expediente;
-        // $arma = poligono;
-        // $arma = solicitante;
-        // $arma = encargado;
-        // $arma = fecha_registro;
-        // $arma = motivo_investigacion;
-        // $arma = ofendido;
-        // $arma = fecha_resolucion;
-        // $arma = sentido_resolucion;
-        // $arma = estado_procesal;
+        //dd($request->all());
+        $messages = [
+            'required' => 'El :attribute es requerido',
+            'max' => 'El :attribute tiene demaciados caracteres'
+        ];
 
-        Armas::updateOrCreate(['id' => $request->id],
-        ['numero_servicio' => $request->numero_servicio,
-        'abogado_integrado' => $request->abogado_integrado,
-        'estado' => $request->estado,
-        'numero_expediente' => $request->numero_expediente,
-        'poligono' => $request->poligono,
-        'solicitante' => $request->solicitante,
-        'encargado' => $request->encargado,
-        'fecha_registro' => Carbon::now(),
-        'motivo_investigacion' => $request->motivo_investigacion,
-        'ofendido' => $request->ofendido,
-        'fecha_resolucion' => Carbon::now(),
-        'sentido_resolucion' => $request->sentido_resolucion,
-        'estado_procesal' => $request->estado_procesal
-        ]);
+        $validator = Validator::make($request->all(), [
+            'numero_servicio' => 'required',
+            'abogado_integrado' => 'required',
+            'estado' => 'required',
+            'numero_expediente'  => 'required',
+            'poligono'  => 'required',
+            'solicitante'  => 'required',
+            'encargado' => 'required',
+            'fecha_registro' => 'required',
+            'motivo_investigacion' => 'required',
+            'ofendido' => 'required',
+            'fecha_resolucion' => 'required',
+            'sentido_resolucion' => 'required',
+            'estado_procesal' => 'required'
+        ], $messages);
 
-        return response()->json(['success' => 'Registro guardado correctamente.']);
+        if($validator->fails()){
+            return response()->json(['error'=>$validator->errors()->all()]);
+        }else{
+            try {
+                $formato = 'Y-m-d H:i:s';
+                $dateRegistro = strtotime($this->formatDate($request->fecha_registro));
+                $dateResolucion = strtotime($this->formatDate($request->fecha_resolucion));
+
+                Armas::updateOrCreate(['id' => $request->id],
+                ['numero_servicio' => $request->numero_servicio,
+                'abogado_integrado' => $request->abogado_integrado,
+                'estado' => $request->estado,
+                'numero_expediente' => $request->numero_expediente,
+                'poligono' => $request->poligono,
+                'solicitante' => $request->solicitante,
+                'encargado' => $request->encargado,
+                'fecha_registro' => date($formato,$dateRegistro),
+                'motivo_investigacion' => $request->motivo_investigacion,
+                'ofendido' => $request->ofendido,
+                'fecha_resolucion' => date($formato,$dateResolucion),
+                'sentido_resolucion' => $request->sentido_resolucion,
+                'estado_procesal' => $request->estado_procesal
+                ]);
+
+                $response = ['success' => 'Se agrego el registro.'];
+
+        
+            } catch (Exception $e) {
+                return response()->json(['error' => $e]);
+            }
+        }
+
+        return response()->json($response,200);
     }
 
     /**
@@ -133,5 +157,15 @@ class ArmasController extends Controller
         $data = new Estado();
 
         return response()->json($data::all());
+    }
+
+    //Retorna un string datetime
+    public function formatDate($fechaoriginal){
+
+        $aux = Carbon::now();
+        $time = $aux->toDateTimeString();
+
+        $time = substr($time,10);
+        return $fechaoriginal . $time;
     }
 }

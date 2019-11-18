@@ -1,15 +1,62 @@
 $(document).ready(function() {
 
+    $('#formArmas').validate({
+        rules:{
+            numero_servicio:{
+                required: true,
+                maxlength: 15
+            },
+            abogado_integrado:{
+                required: true
+            },
+            estado:{
+                required: true
+            },
+            numero_expediente:{
+                required: true
+            },
+            poligono:{
+                required: true
+            },
+            solicitante:{
+                required: true
+            },
+            encargado:{
+                required: true
+            },
+            fecha_registro:{
+                required: true
+            },
+            motivo_investigacion:{
+                required: true
+            },
+            ofendido:{
+                required: true
+            },
+            fecha_resolucion:{
+                required: true
+            },
+            sentido_resolucion:{
+                required: true
+            },
+            estado_procesal:{
+                required: true
+            },
+        }
+    });
+
     $('#fecha_registro').datepicker({
 		autoclose: true,
         todayHighlight: true,
-        language: 'es'
+        language: 'es',
+        dateFormat: 'yy-mm-dd'
     });
 
     $('#fecha_resolucion').datepicker({
 		autoclose: true,
         todayHighlight: true,
-        language: 'es'
+        language: 'es',
+        dateFormat: 'yy-mm-dd'
     });
 
     $('#btnNuevo').click(function (e) {
@@ -63,7 +110,7 @@ $(document).ready(function() {
         scrollX: true,
         ajax: 'api/Armeria',
         columns: [
-            {data: 'id'},
+            {data: 'id', 'visible': false},
             {data: 'numero_servicio'},
             {data: 'abogado_integrado'},
             {data: 'estado',
@@ -102,10 +149,27 @@ $(document).ready(function() {
         {data:'btn'},
         ],
         buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',
-            'pdfHtml5'
+        {
+            extend: 'copyHtml5',
+            text: 'Copiar',
+        },
+        {
+            extend: 'excelHtml5',
+            title: 'Reporte de armas',
+            exportOptions:{
+                columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+            }
+        },
+        {
+                extend: 'pdfHtml5',
+                title: 'Reporte de armas',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+                }
+        },
+        'colvis'
         ]
     });
 
@@ -134,10 +198,10 @@ $(document).ready(function() {
             $('#solicitante').val(data.solicitante);
             $('#poligono').val(data.poligono);
             $('#encargado').val(data.encargado);
-            $('#fecha_registro').val(data.fecha_registro);
+            $('#fecha_registro').val(data.fecha_registro.substr(0,10));
             $('#motivo_investigacion').val(data.motivo_investigacion);
             $('#ofendido').val(data.ofendido);
-            $('#fecha_resolucion').val(data.fecha_resolucion);
+            $('#fecha_resolucion').val(data.fecha_resolucion.substr(0,10));
             $('#sentido_resolucion').val(data.sentido_resolucion);
             $('#estado_procesal').val(data.estado_procesal);
         })
@@ -148,23 +212,55 @@ $(document).ready(function() {
         e.preventDefault();
 
         $(this).html('Enviando...');
+        let formu = $('#formArmas');
         $.ajax({
-          data: $('#productForm').serialize(),
-          url: "armas-form",
+          data: formu.serialize(),
+          url: formu.attr('action'),
           type: "POST",
           dataType: 'json',
           success: function (data) {
-              $("#productForm")[0].reset();
+            if (data.success) {
+              formu[0].reset();
               $('#ajaxModel').modal('hide');
               $('#tablaArmas').DataTable().ajax.reload();
-              swal("OK!", "El registro fue actualizado.", "success");
+              swal({
+                title: "OK!",
+                text: "Tarea completada.",
+                icon: "success",
+                timer: 2000
+            });
+            }else{
+                printErrorMsg(data.error);
+                $('#ajaxModel').modal('hide');
+                swal({
+                    title: "Error!",
+                    text: "No se completo la tarea.",
+                    icon: "error",
+                    timer: 2000
+                });
+                $('#erroresBox').fadeOut(12000);
+            }
           },
           error: function (data) {
-              console.log('Error:', data);
-              $('#saveBtn').html('Save Changes');
+            swal({
+                title: "Error!",
+                text: "El registro no fue actualizado " + data.error,
+                icon: "error",
+                timer: 2000
+            });
+              $('#saveBtn').html('Guardar');
           }
       });
     });
+
+    //Mostrar errores
+    function printErrorMsg (msg) {
+        $(".print-error-msg").find("ul").html('');
+        $(".print-error-msg").css('display','block');
+        $.each( msg, function( key, value ) {
+            $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+        });
+    }
 
     //Eliminación del registro
     $('body').on('click', '.delete', function(e){

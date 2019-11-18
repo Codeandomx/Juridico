@@ -3,7 +3,8 @@ $(document).ready(function() {
 	$('#fecha_asignacion').datepicker({
 		autoclose: true,
         todayHighlight: true,
-        language: 'es'
+        language: 'es',
+        dateFormat: 'yy-mm-dd'
     });
 
     $("#servidor_publico").select2({
@@ -37,32 +38,141 @@ $(document).ready(function() {
 
     obtenerEstadosprocesales();
 
+    $('#formPenalSiniestros').validate({
+        rules: {
+            numero_consecutivo:{
+                required: true,
+                maxlength: 15
+            },
+
+            carpeta_investigacion:{
+                required: true,
+                maxlength: 150
+            },
+
+            fecha_asignacion:{
+                required: true,
+                date : true
+            },
+
+            agencia_mp:{
+                maxlength: 50
+            },
+
+            servidor_publico:{
+                required: false
+            },
+
+            denunciante:{
+                required: false,
+                maxlength: 30
+            },
+
+            delito:{
+                required: true,
+                maxlength: 30,
+                digits:false
+            },
+
+            poligono:{
+                required: true,
+                maxlength: 50
+            },
+
+            Estado_procesal:{
+                required: true
+            },
+
+            observaciones:{
+                required: true,
+                maxlength: 250
+            },
+        },
+        messages:{
+            numero_consecutivo: {
+                required: "",
+                maxlength: "No puedes ingresar más de 15 digitos."
+            },
+
+            carpeta_investigacion:{
+                required: "",
+                maxlength: "Ingresaste demaciados digitos."
+            },
+
+            fecha_asignacion:{
+                required: ""
+            },
+
+            agencia_mp:{
+                required: "",
+                maxlength: "No puedes ingresar más de 50 digitos."
+            },
+
+            servidor_publico:{
+                required: "Ingresa al menos un servidor publico."
+            },
+
+            denunciante:{
+                required: "",
+                maxlength: "No puedes ingresar más de 30 digitos."
+            },
+
+            delito:{
+                required: "",
+                maxlength: "No puedes ingresar más de 30 digitos."
+            },
+
+            poligono:{
+                required: "",
+                maxlength: "No puedes ingresar más de 50 digitos."
+            },
+
+            Estado_procesal:{
+                required: "Selecciona un estado procesal."
+            },
+
+            observaciones:{
+                required: ""
+            },
+        },
+    });
+
     // Enviar la información del formulario
     $('#formPenalSiniestros').submit(function(e){
         e.preventDefault();
 
         // Obtenemos los datos del formulario
         var form = $(this);
-        var url = form.attr('action');
-        console.log(url);
 
         $.ajax({
             type: "POST",
-            url: url,
+            url: form.attr('action'),
             data: form.serialize(),
             error: function (data){
-                toastr.error('Error al procesar la solicitud.');
+                swal("Error!", "El registro no fue actualizado.", "error");
             },
             success: function(data)
             {
-                if($.isEmptyObject(data.success)){
+                if(data.error){
+                    swal({
+                        title: "Error!",
+                        text: "No se completo la tarea.",
+                        icon: "error",
+                        timer: 2000
+                    });  
                     muestraErrores(data.error);
+                    $('#erroresBox').fadeOut(10000);
                 }else{
-                    toastr.success(data.success,'Correcto');
-                    $("#formPenalSiniestros")[0].reset();
+                    form[0].reset();
                     $('#servidor_publico').val(null).trigger('change');
                     $('#denunciante').val(null).trigger('change');
                     $('#delito').val(null).trigger('change');
+                    swal({
+                        title: "OK!", 
+                        text: "Tarea completada.", 
+                        icon: "success",
+                        timer: 2000
+                    });
                 }
             }
         }); //Fin llamada ajax
