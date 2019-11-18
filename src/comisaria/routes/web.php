@@ -42,6 +42,7 @@ Route::post('/derechos-humanos-form', 'DerechosHumanosController@create')->name(
 Route::get('/derechos-humanos-editar/{id}', 'DerechosHumanosController@edit');
 Route::get('/obtenerestadosprocesales', 'DerechosHumanosController@obtenerEstadosProcesales');
 Route::put('/derechos-humanos-edit/{id}','DerechosHumanosController@update');
+Route::get('/derechos-humanos-archivo','DerechosHumanosController@archivo');
 Route::delete('/derechos-humanos-del/{id}', 'DerechosHumanosController@destroy');
 Route::get('/obtenerabogados', 'DerechosHumanosController@obtenerAbogados');
 Route::get('/obtenerreportes', 'DerechosHumanosController@obtenerReportes');

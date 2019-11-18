@@ -44,6 +44,13 @@ Route::get('/DerechosHumano', function(){
     ->toJson();
 });
 
+Route::get('/DerechosHumanoArchivo', function(){
+    return DataTables(RepRecursoHumano::where('activo', false))
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
+
 Route::get('/transparencia', function(){
     return DataTables(Transparencia::listado())
     ->addColumn('btn', 'opciones')

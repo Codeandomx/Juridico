@@ -92,9 +92,8 @@
 						</a>
 						<ul>
 							<li><a href="/derechos-humanos">Registros</a></li>
-							<li><a href="/derechos-humanos-form">Formulario</a></li>
-                            <li><a href="index3.html">Exportar</a></li>
-                            <li><a href="#">Archivo</a></li>
+                            <li><a href="index3.html">Reportes</a></li>
+                            <li><a href="/derechos-humanos-archivo">Archivo</a></li>
 						</ul>
 					</li>
 					<li class="with-sub">

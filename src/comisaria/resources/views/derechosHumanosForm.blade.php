@@ -1,6 +1,6 @@
 @extends('layouts.main_layout')
 
-@section('title', 'Página principal')
+@section('title', 'Nuevo derechos humanos')
 
 @section('metas')
 <meta name="csrf-token" content="{{ csrf_token() }}" />

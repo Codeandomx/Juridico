@@ -27,6 +27,16 @@ class DerechosHumanosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function archivo()
+    {
+        return view('derechosHumanosArchivo');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function form()
     {
         return view('derechosHumanosForm');
@@ -88,8 +98,7 @@ class DerechosHumanosController extends Controller
                 'abogados' => $request->abogados,
                 'estado_procesal' => $request->estado_procesal,
                 'asunto' => $request->asunto,
-                'derecho_violado' => $request->derecho_violado,
-                'activo' => true
+                'derecho_violado' => $request->derecho_violado
             ]);
 
             $response = ['success' => 'El registro se edito con exito.'];
@@ -111,7 +120,7 @@ class DerechosHumanosController extends Controller
         $data = ['success' => 'Eliminacion completada.'];
         $row = RepRecursoHumano::find($id);
         if($row != null){
-            $row->activo = false;
+            $row->activo = !$row->activo;
             $row->save();
             return response()->json($data,200);
         }
