@@ -425,3 +425,56 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2019-11-18  2:17:53
+
+CREATE TABLE `tb_estados` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`estado` VARCHAR(50) NOT NULL DEFAULT 'activo',
+	`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	`updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)
+
+CREATE TABLE `tb_armas` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`numero_servicio` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`abogado_integrado` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`estado` INT(11) NOT NULL,
+	`numero_expediente` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`poligono` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8mb4_unicode_ci',
+	`solicitante` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`encargado` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`fecha_registro` TIMESTAMP NOT NULL,
+	`motivo_investigacion` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`ofendido` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`fecha_resolucion` TIMESTAMP NOT NULL,
+	`sentido_resolucion` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`estado_procesal` INT(11) NOT NULL,
+	`activo` TINYINT(1) NULL DEFAULT '1',
+	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`),
+	INDEX `tb_armas_estado_procesal_foreign` (`estado_procesal`),
+	INDEX `tb_armas_estado_foreign` (`estado`),
+	CONSTRAINT `tb_armas_estado_foreign` FOREIGN KEY (`estado`) REFERENCES `tb_estados` (`id`),
+	CONSTRAINT `tb_armas_estado_procesal_foreign` FOREIGN KEY (`estado_procesal`) REFERENCES `tb_catestadosprocesales` (`id`)
+)
+
+CREATE TABLE `tb_penaljuridico` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`numero_consecutivo` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`carpeta_investigacion` VARCHAR(150) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`fecha_asignacion` TIMESTAMP NOT NULL,
+	`agencia_mp` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`servidor_publico` INT(11) NULL DEFAULT NULL,
+	`denunciante` VARCHAR(30) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`delito` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`poligono` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8mb4_unicode_ci',
+	`observaciones` TEXT NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`estado_procesal` INT(11) NOT NULL,
+	`activo` TINYINT(1) NOT NULL DEFAULT '1',
+	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`),
+	INDEX `tb_penaljuridico_estado_procesal_foreign` (`estado_procesal`),
+	CONSTRAINT `tb_penaljuridico_estado_procesal_foreign` FOREIGN KEY (`estado_procesal`) REFERENCES `tb_catestadosprocesales` (`id`)
+)
