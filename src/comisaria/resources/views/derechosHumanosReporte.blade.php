@@ -1,6 +1,6 @@
 @extends('layouts.main_layout')
 
-@section('title', 'Página principal')
+@section('title', 'Reportes derechos humanos')
 
 @section('metas')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -20,9 +20,37 @@
                 <nav>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Derechos humanos</a></li>
-                        <li class="breadcrumb-item active"><a href="#">Archivo</a></li>
+                        <li class="breadcrumb-item active"><a href="#">Reportes</a></li>
                     </ul>
                 </nav>
+            <br>
+            <br>
+            <form id="formBuscar" method="POST" action="api/DerechosHumanoReporte">
+    
+                <div class="row">
+                  <div class="col col-md-4 form-group">
+                    <label for="exampleSelect1">Fecha inicio</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" name="fecha_recepcion">
+                      <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                    </div>
+                  </div>
+                  <div class="col col-md-4 form-group">
+                    <label for="exampleSelect1">Fecha fin</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="fecha_fin" name="fecha_fin" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" name="fecha_recepcion">
+                      <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                    </div>
+                  </div>
+                  <div class="col col-md-4 form-group">
+                    <label for="exampleSelect1">&nbsp;</label>
+                    <div class="input-group pull-right">
+                      <button type="submit" class="btn btn-primary">Buscar</button>
+                    </div>
+                  </div>
+                </div>
+    
+              </form>
             <br>
             <br>
             <table id="tabla" class="table table-striped table-bordered dataTable" style="width: 100%;">
@@ -64,5 +92,5 @@
 <script type="text/javascript" src="_vendor/DataTables/Buttons/js/buttons.print.min.js"></script>
 <script type="text/javascript" src="_vendor/DataTables/Buttons/js/buttons.colVis.min.js"></script>
 <script type="text/javascript" src="_vendor/select2/dist/js/select2.min.js"></script>
-<script type="text/javascript" src="js/site/derechosHumanosArchivoSite.js"></script>
+<script type="text/javascript" src="js/site/derechosHumanosReporteSite.js"></script>
 @endsection

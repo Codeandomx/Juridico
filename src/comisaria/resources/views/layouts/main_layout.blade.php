@@ -92,7 +92,7 @@
 						</a>
 						<ul>
 							<li><a href="/derechos-humanos">Registros</a></li>
-                            <li><a href="index3.html">Reportes</a></li>
+                            <li><a href="/derechos-humanos-reporte">Reportes</a></li>
                             <li><a href="/derechos-humanos-archivo">Archivo</a></li>
 						</ul>
 					</li>

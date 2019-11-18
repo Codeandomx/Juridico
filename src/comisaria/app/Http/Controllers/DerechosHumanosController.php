@@ -37,6 +37,16 @@ class DerechosHumanosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function reporte()
+    {
+        return view('derechosHumanosReporte');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function form()
     {
         return view('derechosHumanosForm');
