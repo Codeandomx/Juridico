@@ -7,6 +7,7 @@ use App\Estado;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Exception;
 
 class ArmasController extends Controller
 {
@@ -155,7 +156,6 @@ class ArmasController extends Controller
     public function obtenerEstados()
     {
         $data = new Estado();
-
         return response()->json($data::all());
     }
 

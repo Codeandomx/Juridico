@@ -78,7 +78,7 @@ class TransparenciaController extends Controller
                     'Respuesta' => $request->Respuesta,
                     'Envio_UT' => $request->Envio_UT,
                     'Fecha' =>  date($formato, $dateFecha),
-                    'idOservacion' => $request->idObservacion
+                    'idObservacion' => $request->idObservacion
                 ]);
 
                 $response = ['success' => 'Se agrego el registro.'];           

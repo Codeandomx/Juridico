@@ -3,7 +3,7 @@
 @section('title', 'Pagina Principal')
 
 @section('metas')
-<meta name="csrf-token" content="{{ csrf_token() }}" />
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('content')

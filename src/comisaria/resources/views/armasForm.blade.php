@@ -41,7 +41,7 @@
 
               <div class="col col-md-4 form-group">
                 <label for="exampleSelect1">Estado</label>
-                <select class="form-control" id="estado" name="estado"></select>
+                <select class="form-control" id="estado" name="estado" required></select>
             </div>
             </div>
 
@@ -102,15 +102,17 @@
                 </div>
                 <div class="col col-md-6 form-group">
                     <label for="estado_procesal">Estado procesal</label>
-                    <select class="form-control" id="estado_procesal" name="estado_procesal"></select>
+                    <select class="form-control" id="estado_procesal" name="estado_procesal" required></select>
                 </div>
             </div>
 
             <div class="row">
               <div class="col col-md-12 form-group">
                 <div class="pull-right">
-                  <button type="botton" class="btn btn-danger" id="btnCancelar">Cancelar</button>
-                  <button type="submit" class="btn btn-primary">Guardar</button>
+                  <button type="botton" class="btn btn-danger" id="btnCancelar"><i class="fa fa-trash"> </i> &nbsp Cancelar</button>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-save"> </i> &nbsp Guardar
+                </button>
                 </div>
               </div>
             </div>

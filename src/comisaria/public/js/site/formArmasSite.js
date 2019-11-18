@@ -4,6 +4,8 @@ $(document).ready(function(){
 
     obtenerEstados();
 
+    ('input, :input').attr('autocomplete', 'off');
+
     $('#formArmas').validate({
         rules:{
             numero_servicio:{
