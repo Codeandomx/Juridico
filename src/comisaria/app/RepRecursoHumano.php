@@ -39,7 +39,7 @@ class RepRecursoHumano extends Model
 		if($this->abogados != null){
 			$empleado = Empleados::where('user', $this->abogados)->first();
 
-	    	return $empleado->nombre;
+	    	return $empleado->nombreCompleto;
 	    } else {
 	    	return '';
 	    }

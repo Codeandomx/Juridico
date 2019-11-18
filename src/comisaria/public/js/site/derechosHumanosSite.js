@@ -95,49 +95,8 @@ $(document).ready(function() {
     //Mostrar un registro
     $('body').on('click', '.edit', function () {
         var _id = $(this).data('id');
-        $('#saveBtn').html('Guardar');
-        var url = 'derechos-humanos-edit/'+_id;
-        if (!$('#estado_procesal').val()){
-            obtenerEstadosprocesales();
-        }
-        $.get(url, function (data) {
-            $('#modelHeading').html("Editar registro");
-            $('#saveBtn').val("Actualizar");
-            $('#ajaxModel').modal('show');
-            $('#id').val(data.id);
-            $('#queja').val(data.queja);
-            $('#asunto').val(data.asunto);
-            $('#fecha_recepcion').val(data.fecha_recepcion);
-            $('#abogados').val(data.abogados);
-            $('#derecho_violado').val(data.derecho_violado);
-            $('#estado_procesal').val(data.estado_procesal);
-        })
-    });
-
-    //Guardar o actualizar
-    $('#saveBtn').click(function (e) {
-        e.preventDefault();
-
-        $(this).html('Enviando...');
-
-        var form = $('#productForm');
-
-        $.ajax({
-            data: form.serialize(),
-            url: form.attr('action'),
-            type: "POST",
-            dataType: 'json',
-            success: function (data) {
-                $("#productForm")[0].reset();
-                $('#ajaxModel').modal('hide');
-                $('#tabla').DataTable().ajax.reload();
-                swal("OK!", data.success, "success");
-            },
-            error: function (data) {
-            swal("Error!", "El registro no fue actualizado:" + data.error, "error");
-                $('#saveBtn').html('Save Changes');
-            }
-        });
+        
+        location.href = '/derechos-humanos-editar/'+_id;
     });
 
     //Eliminar un registro

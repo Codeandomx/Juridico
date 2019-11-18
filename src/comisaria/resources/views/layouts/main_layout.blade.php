@@ -15,20 +15,20 @@
     <title>Juridico - @yield('title')</title>
 
     <!-- vendor CSS -->
-    <link rel="stylesheet" href="_vendor/bootstrap4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="_vendor/themify-icons/themify-icons.css">
-    <link rel="stylesheet" href="_vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="_vendor/animate.css/animate.min.css">
-    <link rel="stylesheet" href="_vendor/jscrollpane/jquery.jscrollpane.css">
-    <link rel="stylesheet" href="_vendor/waves/waves.min.css">
-    <link rel="stylesheet" href="_vendor/switchery/dist/switchery.min.css">
-    <link rel="stylesheet" href="_vendor/morris/morris.css">
-	<link rel="stylesheet" href="_vendor/jvectormap/jquery-jvectormap-2.0.3.css">
-    <link rel="stylesheet" href="_vendor/toastr/toastr.min.css">
-    <link rel="stylesheet" href="_vendor/DataTables/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/_vendor/bootstrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/_vendor/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="/_vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/_vendor/animate.css/animate.min.css">
+    <link rel="stylesheet" href="/_vendor/jscrollpane/jquery.jscrollpane.css">
+    <link rel="stylesheet" href="/_vendor/waves/waves.min.css">
+    <link rel="stylesheet" href="/_vendor/switchery/dist/switchery.min.css">
+    <link rel="stylesheet" href="/_vendor/morris/morris.css">
+	<link rel="stylesheet" href="/_vendor/jvectormap/jquery-jvectormap-2.0.3.css">
+    <link rel="stylesheet" href="/_vendor/toastr/toastr.min.css">
+    <link rel="stylesheet" href="/_vendor/DataTables/css/dataTables.bootstrap4.min.css">
 
     <!-- Neptune CSS -->
-	<link rel="stylesheet" href="css/core.css">
+	<link rel="stylesheet" href="/css/core.css">
 
 	@yield("styles");
 
@@ -167,7 +167,7 @@
 						<li class="nav-item dropdown hidden-sm-down">
 							<a href="#" data-toggle="dropdown" aria-expanded="false">
 								<span class="avatar box-32">
-									<img src="img/avatars/1.jpg" alt="">
+									<img src="/img/avatars/1.jpg" alt="">
 								</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right animated fadeInUp">
@@ -230,33 +230,33 @@
 		</div>
     </div>
 
-    <!-- _vendor JS -->
-    <script type="text/javascript" src="_vendor/jquery/jquery-1.12.3.min.js"></script>
-    <script type="text/javascript" src="_vendor/tether/js/tether.min.js"></script>
-    <script type="text/javascript" src="_vendor/bootstrap4/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="_vendor/detectmobilebrowser/detectmobilebrowser.js"></script>
-    <script type="text/javascript" src="_vendor/jscrollpane/jquery.mousewheel.js"></script>
-    <script type="text/javascript" src="_vendor/jscrollpane/mwheelIntent.js"></script>
-    <script type="text/javascript" src="_vendor/jscrollpane/jquery.jscrollpane.min.js"></script>
-    <script type="text/javascript" src="_vendor/jquery-fullscreen-plugin/jquery.fullscreen-min.js"></script>
-    <script type="text/javascript" src="_vendor/waves/waves.min.js"></script>
-	<script type="text/javascript" src="_vendor/switchery/dist/switchery.min.js"></script>
-    <script type="text/javascript" src="_vendor/flot/jquery.flot.min.js"></script>
-    <script type="text/javascript" src="_vendor/flot/jquery.flot.pie.js"></script>
-    <script type="text/javascript" src="_vendor/flot/jquery.flot.stack.js"></script>
-	<script type="text/javascript" src="_vendor/flot/jquery.flot.resize.min.js"></script>
-    <script type="text/javascript" src="_vendor/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-    <script type="text/javascript" src="_vendor/CurvedLines/curvedLines.js"></script>
-    <script type="text/javascript" src="_vendor/TinyColor/tinycolor.js"></script>
-    <script type="text/javascript" src="_vendor/sparkline/jquery.sparkline.min.js"></script>
-    <script type="text/javascript" src="_vendor/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-	<script type="text/javascript" src="_vendor/jvectormap/jquery-jvectormap-world-mill.js"></script>
-	<script type="text/javascript" src="_vendor/toastr/toastr.min.js"></script>
-	<script type="text/javascript" src="js/jquery-validate.min.js"></script>
+    <!-- /_vendor JS -->
+    <script type="text/javascript" src="/_vendor/jquery/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="/_vendor/tether/js/tether.min.js"></script>
+    <script type="text/javascript" src="/_vendor/bootstrap4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/_vendor/detectmobilebrowser/detectmobilebrowser.js"></script>
+    <script type="text/javascript" src="/_vendor/jscrollpane/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="/_vendor/jscrollpane/mwheelIntent.js"></script>
+    <script type="text/javascript" src="/_vendor/jscrollpane/jquery.jscrollpane.min.js"></script>
+    <script type="text/javascript" src="/_vendor/jquery-fullscreen-plugin/jquery.fullscreen-min.js"></script>
+    <script type="text/javascript" src="/_vendor/waves/waves.min.js"></script>
+	<script type="text/javascript" src="/_vendor/switchery/dist/switchery.min.js"></script>
+    <script type="text/javascript" src="/_vendor/flot/jquery.flot.min.js"></script>
+    <script type="text/javascript" src="/_vendor/flot/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="/_vendor/flot/jquery.flot.stack.js"></script>
+	<script type="text/javascript" src="/_vendor/flot/jquery.flot.resize.min.js"></script>
+    <script type="text/javascript" src="/_vendor/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script type="text/javascript" src="/_vendor/CurvedLines/curvedLines.js"></script>
+    <script type="text/javascript" src="/_vendor/TinyColor/tinycolor.js"></script>
+    <script type="text/javascript" src="/_vendor/sparkline/jquery.sparkline.min.js"></script>
+    <script type="text/javascript" src="/_vendor/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+	<script type="text/javascript" src="/_vendor/jvectormap/jquery-jvectormap-world-mill.js"></script>
+	<script type="text/javascript" src="/_vendor/toastr/toastr.min.js"></script>
+	<script type="text/javascript" src="/js/jquery-validate.min.js"></script>
 
     <!-- Neptune JS -->
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/demo.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/demo.js"></script>
 
 	@yield('scripts')
 </body>

@@ -33,6 +33,19 @@ class DerechosHumanosController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request, $id)
+    {
+        // Obtenemos la informaciòn
+        $info = RepRecursoHumano::find($id);
+
+        return view('derechosHumanosedit')->with('info', $info);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -60,36 +73,30 @@ class DerechosHumanosController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        // Recibimos los datos
-
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function update(Request $request, $id)
     {
-        try {
-            $row = RepRecursoHumano::find($id);
+        try{
+            RepRecursoHumano::updateOrCreate(['id' => $request->id],
+            [
+                'queja' => $request->queja,
+                'fecha_recepcion' => date('Y-m-d H:i:s', strtotime($request['fecha_recepcion'])),
+                'abogados' => $request->abogados,
+                'estado_procesal' => $request->estado_procesal,
+                'asunto' => $request->asunto,
+                'derecho_violado' => $request->derecho_violado,
+                'activo' => true
+            ]);
 
-            if ($row != null) {
-                return response()->json($row);
-            }
+            $response = ['success' => 'El registro se edito con exito.'];
 
-            return response()->json("No se a podido cargar los datos.",203);
-        } catch (\Illuminate\Database\QueryException $exception) {
-            $errorInfo = $exception->errorInfo;
-            return response()->json($errorInfo);
+            return response()->json($response,200);
+        } catch(Excepction $e){
+            return response()->json(['error'=>$e], 500);
         }
     }
 
