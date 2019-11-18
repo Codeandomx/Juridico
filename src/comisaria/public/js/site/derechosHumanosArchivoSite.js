@@ -55,8 +55,16 @@ $(document).ready(function() {
             {data: 'fecha_recepcion'},
             {data: 'empleado'},
             {data: 'estado'},
-            {data: 'asunto'},
-            {data: 'derecho_violado'},
+            {data: 'asunto',
+                render: function(data, type, row){
+                    return data.substr(0, data.langth > 100 ? 100 : data.length);
+                }
+            },
+            {data: 'derecho_violado',
+                render: function(data, type, row){
+                    return data.substr(0, data.langth > 100 ? 100 : data.length);
+                }
+            },
             {data:'btn', orderable: false, searchable: false},
         ],
         dom: 'Bfrtip',
