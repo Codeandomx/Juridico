@@ -52,10 +52,6 @@
               <div class="col col-md-6 form-group">
                 <label for="exampleSelect1">Abogado</label>
                 <select class="form-control" id="abogados" name="abogados">
-                    <option value="1">Jose Manuel</option>
-                    <option value="2">Marco Antonio</option>
-                    <option value="3">Jose Luis</option>
-                    <option value="4">Angel Damian</option>
                 </select>
               </div>
             </div>

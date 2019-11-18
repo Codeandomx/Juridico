@@ -39,43 +39,24 @@ class DerechosHumanosController extends Controller
      */
     public function create(Request $request)
     {
-        //dd($request->all());
-        $messages = [
-            'required' => 'El :attribute es requerido',
-            'max' => 'El :attribute tiene demaciados caracteres'
-        ];
+        try{
+            RepRecursoHumano::updateOrCreate(['id' => $request->id],
+            [
+                'queja' => $request->queja,
+                'fecha_recepcion' => date('Y-m-d H:i:s', strtotime($request['fecha_recepcion'])),
+                'abogados' => $request->abogados,
+                'estado_procesal' => $request->estado_procesal,
+                'asunto' => $request->asunto,
+                'derecho_violado' => $request->derecho_violado,
+                'activo' => true
+            ]);
 
-        //Validaciones
-        $validator = Validator::make($request->all(), [
-            'queja' => 'required',
-            'fecha_recepcion' => 'required',
-            'abogados' => 'required',
-            'estado_procesal' => 'required',
-            'asunto' => 'required',
-            'derecho_violado' => 'required'
-        ], $messages);
+            $response = ['success' => 'El registro se creo con exito.'];
 
-        if($validator->fails()){
-            return response()->json(['error'=>$validator->error()->all()]);
-        }else{
-            try{
-                RepRecursoHumano::updateOrCreate(['id' => $request->id],
-                [
-                    'queja' => $request->queja,
-                    'fecha_recepcion' => date('Y-m-d H:i:s', strtotime($request['fecha_recepcion'])),
-                    'abogados' => $request->abogados,
-                    'estado_procesal' => $request->estado_procesal,
-                    'asunto' => $request->asunto,
-                    'derecho_violado' => $request->derecho_violado
-                ]);
-
-                $response = ['success' => 'registro añadido.'];
-            } catch(Excepction $e){
-                return response()->json(['error'=>$e]);
-            }
+            return response()->json($response,200);
+        } catch(Excepction $e){
+            return response()->json(['error'=>$e], 500);
         }
-
-        return response()->json($response,200);
     }
 
     /**

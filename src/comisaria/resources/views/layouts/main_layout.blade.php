@@ -252,6 +252,7 @@
     <script type="text/javascript" src="_vendor/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
 	<script type="text/javascript" src="_vendor/jvectormap/jquery-jvectormap-world-mill.js"></script>
 	<script type="text/javascript" src="_vendor/toastr/toastr.min.js"></script>
+	<script type="text/javascript" src="js/jquery-validate.min.js"></script>
 
     <!-- Neptune JS -->
     <script type="text/javascript" src="js/app.js"></script>

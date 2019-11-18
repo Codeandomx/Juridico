@@ -1,11 +1,14 @@
 $(document).ready(function(){
-    // Obtenemos los estados procesales
-    obtenerEstadosprocesales();
+    /*************************************************
+     * Configuraciones
+     * **********************************************/
 
-    // Obtenemos los abogados
-    //obtenerAbogados();
-
-    $('label').addClass("control-label");
+    // ajax setup
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     // Configuración para datapicker
     $('#fecha_recepcion').datepicker({
@@ -15,6 +18,16 @@ $(document).ready(function(){
         dateFormat: 'yy-mm-dd'
     });
 
+    /*************************************************
+     * FIN Configuraciones
+     * **********************************************/
+
+    // Obtenemos los estados procesales
+    obtenerEstadosprocesales();
+
+    // Obtenemos los abogados
+    obtenerAbogados();
+
     // Al cancelar el formulario
     $('#btnCancelar').click(function (e){
         e.preventDefault()
@@ -23,51 +36,97 @@ $(document).ready(function(){
         location.href = '/derechos-humanos';
     });
 
-    // ajax setup
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
     // Guardamos el formulario
     $("#formGuardar").submit(function(e) {
         e.preventDefault();
-
-        // Obtenemos los datos del formulario
-        var form = $(this);
-        var url = form.attr('action');
-
-        // enviamos el formulario
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: form.serialize(),
-            error: function (data){
-                toastr.error('Error al procesar la solicitud.');
+    }).validate({
+        debug: false,
+        rules: {
+            queja: {
+                required: true,
+                minlength: 5
             },
-            success: function(data)
-            {
-                if($.isEmptyObject(data.success)){
-                    muestraErrores(data.error);
-                }else{
-                    toastr.success(data.success,'Correcto');
-                    $(this)[0].reset();
-                    //$('#abogados').val(null).trigger('change');
-                }
+            fecha_recepcion: {
+                required: true,
+            },
+            abogados: {
+                required: true,
+            },
+            estado_procesal: {
+                required: true,
+            },
+            asunto: {
+                required: true,
+                minlength: 5
+            },
+            derecho_violado: {
+                required: true,
+                minlength: 5
+            },
+        },
+        messages: {
+            queja: {
+                required: "Campo requerido.",
+                minlength: jQuery.validator.format("Tamaño minimo {0} caracteres.")
+            },
+            fecha_recepcion: {
+                required: "Campo requerido.",
+                digits: "Ingrese solo números."
+            },
+            abogados: {
+                required: "Campo requerido.",
+            },
+            estado_procesal: {
+                required: "Campo requerido.",
+                min: jQuery.validator.format("Precio minimo de {0} peso.")  
+            },
+            asunto: {
+                required: "Campo requerido.",
+                minlength: jQuery.validator.format("Tamaño minimo {0} caracteres.")
+            },
+            derecho_violado: {
+                required: "Campo requerido.",
+                minlength: jQuery.validator.format("Tamaño minimo {0} caracteres.")
+            },
+            image: {
+                required: "Campo requerido.",
             }
-        }); //Fin llamada ajax
+        },
+        errorClass: "text-danger",
+        // validClass: "bg-success",
+        invalidHandler: function (){
+            toastr.error('Válide la información en el formulario.');
+        },
+        submitHandler : function(){
+            // Obtenemos los datos del formulario
+            var form = $("#formGuardar");
+            var url = form.attr('action');
+
+            // enviamos el formulario
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(),
+                error: function (data){
+                    toastr.error('Error al procesar la solicitud.');
+                },
+                success: function(data)
+                {
+                    if($.isEmptyObject(data.success)){
+                        muestraErrores(data.error);
+                    }else{
+                        form[0].reset();
+
+                        toastr.success(data.success);
+
+                        // reditigimos a la pagina principal
+                        location.href = '/derechos-humanos';
+                    }
+                }
+            }); //Fin llamada ajax
+        }
     }); //Fin del submit
 });
-
-var muestraErrores = function(msg){
-    $(".print-error-msg").find("ul").html('');
-    $(".print-error-msg").css('display','block');
-    $.each( msg, function( key, value ) {
-        $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
-    });
-    $('#lista-errores').append('<li>'+"Ha ocurrido un error en el servidor, revise el formulario."+'</li>');
-}
 
 // Obtiene los estados procesales
 var obtenerEstadosprocesales = function (){
@@ -82,6 +141,7 @@ var obtenerEstadosprocesales = function (){
         },
         success: function (data){
             var elem = $('#estado_procesal');
+            elem.append($('<option/>'));
 
             $.each(data, function (kay, val){
                 elem.append($('<option/>', { 'value': val.id, 'text': val.nombre }));
@@ -102,7 +162,8 @@ var obtenerAbogados = function (){
             console.error('Error al procesar la solicitud');
         },
         success: function (data){
-            var elem = $('#abogado');
+            var elem = $('#abogados');
+            elem.append($('<option/>'));
 
             $.each(data, function (kay, val){
                 elem.append($('<option/>', { 'value': val.user, 'text': val.nombreCompleto }));
