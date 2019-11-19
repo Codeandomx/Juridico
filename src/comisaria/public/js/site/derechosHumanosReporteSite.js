@@ -74,7 +74,7 @@ $(document).ready(function() {
             {data: 'estado'},
             {data: 'asunto'},
             {data: 'derecho_violado'},
-            {data:'btn', orderable: false, searchable: false},
+            {data:'btn', visible: false, orderable: false, searchable: false},
         ],
         dom: 'Bfrtip',
         language: espanol,
