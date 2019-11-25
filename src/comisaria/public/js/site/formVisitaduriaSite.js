@@ -26,7 +26,7 @@ $(document).ready(function() {
         e.preventDefault()
 
         // reditirimos a la pagina principal
-        location.href = '/penal-siniestros';
+        location.href = '/penal-siniestros-form';
     });
 
     // ajax setup
@@ -38,108 +38,107 @@ $(document).ready(function() {
 
     obtenerEstadosprocesales();
 
-    $('#formPenalSiniestros').validate({
-        rules: {
-            numero_consecutivo:{
-                required: true,
-                maxlength: 15
-            },
-
-            carpeta_investigacion:{
-                required: true,
-                maxlength: 150
-            },
-
-            fecha_asignacion:{
-                required: true,
-                date : true
-            },
-
-            agencia_mp:{
-                maxlength: 50
-            },
-
-            servidor_publico:{
-                required: false
-            },
-
-            denunciante:{
-                required: false,
-                maxlength: 30
-            },
-
-            delito:{
-                required: true,
-                maxlength: 30,
-                digits:false
-            },
-
-            poligono:{
-                required: true,
-                maxlength: 50
-            },
-
-            Estado_procesal:{
-                required: true
-            },
-
-            observaciones:{
-                required: true,
-                maxlength: 250
-            },
-        },
-        messages:{
-            numero_consecutivo: {
-                required: "",
-                maxlength: "No puedes ingresar más de 15 digitos."
-            },
-
-            carpeta_investigacion:{
-                required: "",
-                maxlength: "Ingresaste demaciados digitos."
-            },
-
-            fecha_asignacion:{
-                required: ""
-            },
-
-            agencia_mp:{
-                required: "",
-                maxlength: "No puedes ingresar más de 50 digitos."
-            },
-
-            servidor_publico:{
-                required: "Ingresa al menos un servidor publico."
-            },
-
-            denunciante:{
-                required: "",
-                maxlength: "No puedes ingresar más de 30 digitos."
-            },
-
-            delito:{
-                required: "",
-                maxlength: "No puedes ingresar más de 30 digitos."
-            },
-
-            poligono:{
-                required: "",
-                maxlength: "No puedes ingresar más de 50 digitos."
-            },
-
-            Estado_procesal:{
-                required: "Selecciona un estado procesal."
-            },
-
-            observaciones:{
-                required: ""
-            },
-        },
-    });
-
     // Enviar la información del formulario
     $('#formPenalSiniestros').submit(function(e){
         e.preventDefault();
+        $(this).validate({
+            rules: {
+                numero_consecutivo:{
+                    required: true,
+                    maxlength: 15
+                },
+
+                carpeta_investigacion:{
+                    required: true,
+                    maxlength: 150
+                },
+
+                fecha_asignacion:{
+                    required: true,
+                    date : true
+                },
+
+                agencia_mp:{
+                    maxlength: 50
+                },
+
+                servidor_publico:{
+                    required: false
+                },
+
+                denunciante:{
+                    required: false,
+                    maxlength: 30
+                },
+
+                delito:{
+                    required: true,
+                    maxlength: 30,
+                    digits:false
+                },
+
+                poligono:{
+                    required: true,
+                    maxlength: 50
+                },
+
+                Estado_procesal:{
+                    required: true
+                },
+
+                observaciones:{
+                    required: false,
+                    maxlength: 250
+                },
+            },
+            messages:{
+                numero_consecutivo: {
+                    required: "",
+                    maxlength: "No puedes ingresar más de 15 digitos."
+                },
+
+                carpeta_investigacion:{
+                    required: "",
+                    maxlength: "Ingresaste demaciados digitos."
+                },
+
+                fecha_asignacion:{
+                    required: ""
+                },
+
+                agencia_mp:{
+                    required: "",
+                    maxlength: "No puedes ingresar más de 50 digitos."
+                },
+
+                servidor_publico:{
+                    required: "Ingresa al menos un servidor publico."
+                },
+
+                denunciante:{
+                    required: "",
+                    maxlength: "No puedes ingresar más de 30 digitos."
+                },
+
+                delito:{
+                    required: "",
+                    maxlength: "No puedes ingresar más de 30 digitos."
+                },
+
+                poligono:{
+                    required: "",
+                    maxlength: "No puedes ingresar más de 50 digitos."
+                },
+
+                Estado_procesal:{
+                    required: "Selecciona un estado procesal."
+                },
+
+                observaciones:{
+                    required: ""
+                },
+            },
+        });
 
         // Obtenemos los datos del formulario
         var form = $(this);

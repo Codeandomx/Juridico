@@ -12,7 +12,7 @@
 
             <div class="modal-body">
 
-                <form id="productForm" name="productForm" class="form-horizontal" action="{{ route('postPS') }}">
+                <form id="PSFormV" method="POST" name="PSFormV" class="form-horizontal" action="{{ route('postPS') }}">
 
                    <input type="hidden" name="id" id="id">
 
@@ -32,7 +32,7 @@
                         <div class="col col-md-4 form-group">
                             <label for="exampleSelect1">Fecha de asignación</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="fecha_asignacion" name="fecha_asignacion" placeholder="yyyy-mm-dd" required data-date-format='yyyy-mm-dd'>
+                                <input type="text" class="form-control fecha" id="fecha_asignacion" name="fecha_asignacion" placeholder="yyyy-mm-dd" required data-date-format='yyyy-mm-dd'>
                                 <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                             </div>
                         </div>

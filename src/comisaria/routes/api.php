@@ -30,6 +30,17 @@ Route::get('/penal&siniestros', function(){
     ->toJson();
 });
 
+Route::post('/penal&siniestrosReporte', function(Request $request){
+    $fecha_inicio = date('Y-m-d H:i:s', strtotime($request['fecha_inicio']));
+    $fecha_fin = date('Y-m-d H:i:s', strtotime($request['fecha_fin']));
+
+    return datatables(PenalSiniestro::whereBetween('fecha_asignacion', 
+    [$fecha_inicio, $fecha_fin])->get())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+})->name('apiRV');
+
 Route::get('/Armeria', function(){
     return DataTables(Armas::listado())
     ->addColumn('btn', 'opciones')

@@ -1,52 +1,13 @@
+var tableV;
+
 $(document).ready(function() {
 
-    $('#productForm').validate({
-        rules:{
-            numero_consecutivo:{
-                required: true,
-                maxlength: 15
-            },
-            carpeta_investigacion:{
-                required: true
-            },
-            fecha_asignacion:{
-                required: true
-            },
-            agencia_mp:{
-                required: true
-            },
-            servidor_publico:{
-                required: true
-            },
-            denunciante:{
-                required: true
-            },
-            delito:{
-                required: true
-            },
-            poligono:{
-                required: true
-            },
-            estado_procesal:{
-                required: true
-            },
-            observaciones:{
-                required: true
-            },
-        } //Fin rules
-    }); 
-
-    $('#fecha_asignacion').datepicker({
+    // Configuración para datapicker
+    $('.fecha').datepicker({
 		autoclose: true,
         todayHighlight: true,
         language: 'es',
         dateFormat: 'yy-mm-dd'
-    });
-
-    $('#btnNuevo').click(function (e) {
-        e.preventDefault();
-
-        location.href = '/penal-siniestros-form';
     });
 
     $("#servidor_publico").select2({
@@ -97,11 +58,12 @@ $(document).ready(function() {
         }
     };
 
-    $('#tabla').DataTable( {
-        serverSide: true,
+    tableV = $('#tablaV').DataTable( {
+        //serverSide: true,
         scrollX: true,
         lengthChange: false,
-        ajax: 'api/penal&siniestros',
+        //ajax: 'api/penal&siniestros',
+        data: [],
         columns: [
             {data: 'id', 'visible': false},
             {data: 'numero_consecutivo'},
@@ -155,11 +117,71 @@ $(document).ready(function() {
         ]
     });
 
+    //Proceso de busqueda
+    $('#formBuscarV').submit(function (e){
+        e.preventDefault();
+    }).validate({
+        debug: false,
+        rules: {
+            fecha_inicioV: {
+                required: true,
+            },
+            fecha_finV: {
+                required: true,
+            },
+        },
+        messages: {
+            fecha_inicioV: {
+                required: "Campo requerido.",
+                digits: "Ingrese solo números."
+            },
+            fecha_finV: {
+                required: "Campo requerido.",
+                digits: "Ingrese solo números."
+            },
+        },
+        errorClass: "text-danger",
+        invalidHandler: function (){
+            swal({
+                title: "Error!",
+                text: "Datos erroneos",
+                icon: "error",
+                timer: 1500
+            });
+        },
+        submitHandler : function(){
+            // Obtenemos los datos del formulario
+            var form = $("#formBuscarV");
+            var url = form.attr('action');
+
+            // enviamos el formulario
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(),
+                error: function (data){
+                    swal({
+                        title: "Error en la solicitud!",
+                        text: "Algo salio mal: " + data,
+                        icon: "error",
+                        timer: 1500
+                    });
+                },
+                success: function(data)
+                {
+                    tableV.clear().draw();
+                    tableV.rows.add(data.data).draw();
+                }
+            }); //Fin llamada ajax
+        }
+    });//Fin del submit.
+
     //mostrar un registro
-    $('body').on('click', '.edit', function () {
-        var _id = $(this).data('id');
+    $('#tablaV').on('click', '.edit', function () {
+        let _id = $(this).data('id');
+        let _type = "/visitaduria";
         $('#saveBtn').html('Guardar');
-        var url = 'penal-siniestros-edit/'+_id;
+        var url = 'penal-siniestros-edit/'+_id+_type;
         if (!$('#estado_procesal').val()){
             obtenerEstadosprocesales();
         }
@@ -184,11 +206,49 @@ $(document).ready(function() {
      //Guardar o actualizar
      $('#saveBtn').click(function (e) {
         e.preventDefault();
+        var formu = $('#PSFormV');
+        formu.validate({
+            rules:{
+                numero_consecutivo:{
+                    required: true,
+                    maxlength: 15
+                },
+                carpeta_investigacion:{
+                    required: true
+                },
+                fecha_asignacion:{
+                    required: true
+                },
+                agencia_mp:{
+                    required: true
+                },
+                servidor_publico:{
+                    required: true
+                },
+                denunciante:{
+                    required: true
+                },
+                delito:{
+                    required: true
+                },
+                poligono:{
+                    required: true
+                },
+                estado_procesal:{
+                    required: true
+                },
+                observaciones:{
+                    required: true
+                },
+            } //Fin rules
+        }); 
 
-        $(this).html('Enviando...');
-        var formu = $('#productForm'); 
+        //Agregamos un campo extra al form
+        let data = formu.serializeArray();
+        data.push({name: "tipo", value: "visitaduria"});
+
         $.ajax({
-          data: formu.serialize(),
+          data: $.param(data),
           url: formu.attr('action'),
           type: "POST",
           dataType: 'json',
@@ -196,7 +256,7 @@ $(document).ready(function() {
             if (data.success) {
               formu[0].reset();
               $('#ajaxModel').modal('hide');
-              $('#tabla').DataTable().ajax.reload();
+              $('#tablaV').DataTable().ajax.reload();
               swal({
                 title: "OK!", 
                 text: "Tarea completada.", 
@@ -222,7 +282,6 @@ $(document).ready(function() {
                 icon: "error",
                 timer: 2000
             });
-              $('#saveBtn').html('Guardar');
           }
       });
     });
@@ -242,7 +301,6 @@ $(document).ready(function() {
         sel.length = 0;
         var arrai = array.split(',');
 
-        console.log(arrai);
         for(var i = 0; i < arrai.length; i++) {
             var opt = arrai[i];
             var el = document.createElement("option");
@@ -263,11 +321,11 @@ $(document).ready(function() {
     }
 
     //Eliminar un registro
-    $('body').on('click', '.delete', function(e){
+    $('#tablaV').on('click', '.delete', function(e){
         e.preventDefault();
 
         var _id = $(this).data("id");
-
+        var _type = "/visitaduria";
         swal({
             title: "¿Estas seguro?",
             text: "El registro sera archivado.",
@@ -280,10 +338,10 @@ $(document).ready(function() {
             if (willDelete){
                 $.ajax({
                     type: 'delete',
-                    url: 'penal-siniestros-del/'+_id,
+                    url: 'penal-siniestros-del/'+_id+_type,
                     success: function(data){
                         swal("OK!", "El registro fue archivado.", "success");
-                        $('#tabla').DataTable().ajax.reload();
+                        $('#tablaV').DataTable().ajax.reload();
                     },
                     error: function(data){
                         swal("Ocurrio un error", "Contacta a sistemas", "error");

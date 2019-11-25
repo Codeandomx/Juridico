@@ -40,7 +40,7 @@
             <br>
             <br>
             <br>
-            <table id="tabla" class="table table-striped table-bordered dataTable" style="width: 100%;">
+            <table id="tablaV" class="table table-striped table-bordered dataTable" style="width: 100%;">
                 <thead>
                     <tr>
                         <th>id</th>

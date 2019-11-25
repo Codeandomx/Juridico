@@ -62,10 +62,13 @@ Route::get('/obtenerobservaciones', 'TransparenciaController@obtenerObservacione
  * Penas y siniestros
  */
 
-Route::get('/penal-siniestros', 'PenalSiniestrosController@index');
+Route::get('/penal-siniestros', 'PenalSiniestrosController@index')->name('reportesPS');
 Route::get('/penal-siniestros-form', 'PenalSiniestrosController@create');
+Route::get('/Visitaduria', 'PenalSiniestrosController@Visitaduria')->name('postV');
+Route::get('/AgenciasVarias', 'PenalSiniestrosController@AgenciasVarias')->name('postAV');
+Route::get('/Anticorrupcion', 'PenalSiniestrosController@Anticorrupcion')->name('postAC');
 Route::post('/penal-siniestros-form', 'PenalSiniestrosController@store')->name('postPS');
-Route::get('/penal-siniestros-edit/{id}', 'PenalSiniestrosController@edit')->name('editPS');
-Route::delete('/penal-siniestros-del/{id}', 'PenalSiniestrosController@destroy');
+Route::get('/penal-siniestros-edit/{id}/{type}', 'PenalSiniestrosController@edit')->name('editPS');
+Route::delete('/penal-siniestros-del/{id}/{type}', 'PenalSiniestrosController@destroy');
 
 Route::get('/procedimientos-admin', 'ProcedimientosAdministrativosController@index');

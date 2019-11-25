@@ -26,7 +26,7 @@
             <nav>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Penal y Siniestros</a></li>
-                    <li class="breadcrumb-item active"><a href="#">Formulario</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Visitaduria</a></li>
                 </ul>
             </nav>
 
@@ -37,91 +37,92 @@
                 </ul>
             </div>
 
-          <form id="formPenalSiniestros" method="POST" action="{{ route('postPS') }}">
-            
-            <div class="row">
-              <div class="col col-md-4 form-group">
-                <label for="Numero consecutivo">Numero consecutivo</label>
-                <input class="form-control" id="numero_consecutivo" maxlength="15" name="numero_consecutivo" type="text" placeholder="Numero consecutivo" required>
-              </div>
+            <form id="formPenalSiniestros" method="POST" action="{{ route('postPS') }}">
+              
+              <input name="tipo" type="hidden" value="visitaduria">
 
-              <div class="col col-md-4 form-group">
-                <label for="Carpeta de investigación">Carpeta de investigación</label>
-                <input class="form-control" id="carpeta_investigacion" name="carpeta_investigacion" maxlength="150" type="text" placeholder="Carpeta investigación" required>
-              </div>
-
-              <div class="col col-md-4 form-group">
-                <label for="Fecha de asignación">Fecha de asignación</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="fecha_asignacion" name="fecha_asignacion" placeholder="dd/mm/yyyy" data-date-format='yyyy-mm-dd' required>
-                  <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
+              <div class="row">
                 <div class="col col-md-4 form-group">
-                    <label for="Agencia MP">Agencia MP</label>
-                    <input class="form-control" id="agencia_mp" name="agencia_mp" maxlength="50" type="text" placeholder="agencia MP" required>
+                  <label for="Numero consecutivo">Numero consecutivo</label>
+                  <input class="form-control" id="numero_consecutivo" maxlength="15" name="numero_consecutivo" type="text" placeholder="Numero consecutivo" required>
                 </div>
 
                 <div class="col col-md-4 form-group">
-                    <label for="Servidores publicos">Servidores publicos</label>
-                    <br>
-                    <select class="form-control" multiple="multiple" id="servidor_publico" name="servidor_publico[]"></select>
+                  <label for="Carpeta de investigación">Carpeta de investigación</label>
+                  <input class="form-control" id="carpeta_investigacion" name="carpeta_investigacion" maxlength="150" type="text" placeholder="Carpeta investigación" required>
                 </div>
 
                 <div class="col col-md-4 form-group">
-                  <label for="exampleTextarea">Denunciante</label>
-                  <select class="form-control" multiple="multiple" id="denunciante" name="denunciante[]"></select>
+                  <label for="Fecha de asignación">Fecha de asignación</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="fecha_asignacion" name="fecha_asignacion" placeholder="dd/mm/yyyy" data-date-format='yyyy-mm-dd' required>
+                    <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                  </div>
                 </div>
-            </div>
-
-            <div class="row">
-              <div class="col col-md-4 form-group">
-                <label for="exampleTextarea">Delito</label>
-                <select class="form-control" multiple="multipled" id="delito" name="delito[]"></select>
               </div>
 
-              <div class="col col-md-4 form-group">
-                    <label for="exampleTextarea">Poligono</label>
-                    <input class="form-control" id="poligono" name="poligono" type="text" placeholder="poligono" maxlength="50" required/>
+              <div class="row">
+                  <div class="col col-md-4 form-group">
+                      <label for="Agencia MP">Agencia MP</label>
+                      <input class="form-control" id="agencia_mp" name="agencia_mp" maxlength="50" type="text" placeholder="agencia MP" required>
+                  </div>
+
+                  <div class="col col-md-4 form-group">
+                      <label for="Servidores publicos">Servidores publicos</label>
+                      <br>
+                      <select class="form-control" multiple="multiple" id="servidor_publico" name="servidor_publico[]"></select>
+                  </div>
+
+                  <div class="col col-md-4 form-group">
+                    <label for="exampleTextarea">Denunciante</label>
+                    <select class="form-control" multiple="multiple" id="denunciante" name="denunciante[]"></select>
+                  </div>
               </div>
 
-              <div class="col col-md-4 form-group">
-                
-              </div>
-            </div>
+              <div class="row">
+                <div class="col col-md-4 form-group">
+                  <label for="exampleTextarea">Delito</label>
+                  <select class="form-control" multiple="multipled" id="delito" name="delito[]"></select>
+                </div>
 
-            <div class="row">
+                <div class="col col-md-4 form-group">
+                      <label for="exampleTextarea">Poligono</label>
+                      <input class="form-control" id="poligono" name="poligono" type="text" placeholder="poligono" maxlength="50" required/>
+                </div>
+
+                <div class="col col-md-4 form-group">
+                  
+                </div>
+              </div>
+
+              <div class="row">
                 <div class="col col-md-4 form-group">
                     <label for="exampleSelect1">Estado procesal</label>
                     <select class="form-control" id="estado_procesal" name="estado_procesal" required>
                     </select>
                 </div>
-            </div>
-
-            <div class="row">
-              <div class="col col-md-12 form-group">
-                <label for="exampleTextarea">Observaciones</label>
-                <textarea class="form-control" id="observaciones" name="observaciones" rows="4" required></textarea>
               </div>
-            </div>
 
-            <div class="row">
-              <div class="col col-md-12 form-group">
-                <div class="pull-right">
-                  <button type="botton" class="btn btn-danger" id="btnCancelar">
-                        <i class="fa fa-trash"></i> &nbsp Cancelar
-                  </button>
-                  <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-save"> </i> &nbsp Guardar
-                  </button>
+              <div class="row">
+                <div class="col col-md-12 form-group">
+                  <label for="exampleTextarea">Observaciones</label>
+                  <textarea class="form-control" id="observaciones" name="observaciones" rows="4"></textarea>
                 </div>
               </div>
-            </div>
 
-          </form>
+              <div class="row">
+                <div class="col col-md-12 form-group">
+                  <div class="pull-right">
+                    <button type="botton" class="btn btn-danger" id="btnCancelar">
+                          <i class="fa fa-trash"></i> &nbsp Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                          <i class="fa fa-save"> </i> &nbsp Guardar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
         </div>
       </div>
     </div>
