@@ -19,7 +19,7 @@ class DerechosHumanosController extends Controller
      */
     public function index()
     {
-        return view('derechosHumanos');
+        return view('derechosHumanos.derechosHumanos');
     }
 
     /**
@@ -29,7 +29,7 @@ class DerechosHumanosController extends Controller
      */
     public function archivo()
     {
-        return view('derechosHumanosArchivo');
+        return view('derechosHumanos.derechosHumanosArchivo');
     }
 
     /**
@@ -39,7 +39,7 @@ class DerechosHumanosController extends Controller
      */
     public function reporte()
     {
-        return view('derechosHumanosReporte');
+        return view('derechosHumanos.derechosHumanosReporte');
     }
 
     /**
@@ -49,7 +49,7 @@ class DerechosHumanosController extends Controller
      */
     public function form()
     {
-        return view('derechosHumanosForm');
+        return view('derechosHumanos.derechosHumanosForm');
     }
 
     /**
@@ -62,7 +62,7 @@ class DerechosHumanosController extends Controller
         // Obtenemos la informaciòn
         $info = RepRecursoHumano::find($id);
 
-        return view('derechosHumanosedit')->with('info', $info);
+        return view('derechosHumanos.derechosHumanosedit')->with('info', $info);
     }
 
     /**
