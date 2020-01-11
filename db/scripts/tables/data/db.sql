@@ -478,3 +478,56 @@ CREATE TABLE `tb_penaljuridico` (
 	INDEX `tb_penaljuridico_estado_procesal_foreign` (`estado_procesal`),
 	CONSTRAINT `tb_penaljuridico_estado_procesal_foreign` FOREIGN KEY (`estado_procesal`) REFERENCES `tb_catestadosprocesales` (`id`)
 )
+
+CREATE TABLE IF NOT EXISTS `tb_catactivospasivos` (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  fecha_registro datetime default NOW(),
+  nombre varchar(50),
+  primary key(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into tb_catactivospasivos (nombre) values ('ACTIVO');
+insert into tb_catactivospasivos (nombre) values ('PASIVO');
+
+CREATE TABLE IF NOT EXISTS `tb_catsuspensiones` (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  fecha_registro datetime default NOW(),
+  nombre varchar(50),
+  primary key(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into tb_catsuspensiones (nombre) values ('DEFINITIVA');
+insert into tb_catsuspensiones (nombre) values ('PROVICIONAL');
+
+CREATE TABLE IF NOT EXISTS `tb_catsemaforo` (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  fecha_registro datetime default NOW(),
+  nombre varchar(50),
+  primary key(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into tb_catsemaforo (nombre) values ('VERDE');
+insert into tb_catsemaforo (nombre) values ('AMARILLO');
+insert into tb_catsemaforo (nombre) values ('ROJO');
+insert into tb_catsemaforo (nombre) values ('NO GENERA PAGO');
+
+CREATE TABLE IF NOT EXISTS `tb_catincidente` (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  fecha_registro datetime default NOW(),
+  nombre varchar(50),
+  primary key(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into tb_catincidente (nombre) values ('SI');
+insert into tb_catincidente (nombre) values ('NO');
+
+CREATE TABLE IF NOT EXISTS `tb_catstatus` (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  fecha_registro datetime default NOW(),
+  nombre varchar(50),
+  primary key(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+insert into tb_catstatus (nombre) values ('CONTINGENTES');
+insert into tb_catstatus (nombre) values ('FIRMES');
+insert into tb_catstatus (nombre) values ('RESOLUCIÓN FINAL');
