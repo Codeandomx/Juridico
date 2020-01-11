@@ -31,14 +31,14 @@
                   <div class="col col-md-4 form-group">
                     <label for="exampleSelect1">Fecha inicio</label>
                     <div class="input-group">
-                      <input type="text" class="form-control" id="fecha_inicioV" name="fecha_inicioV" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" name="fecha_recepcion">
+                      <input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" name="fecha_recepcion">
                       <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                     </div>
                   </div>
                   <div class="col col-md-4 form-group">
                     <label for="exampleSelect1">Fecha fin</label>
                     <div class="input-group">
-                      <input type="text" class="form-control" id="fecha_finV" name="fecha_finV" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" name="fecha_recepcion">
+                      <input type="text" class="form-control" id="fecha_fin" name="fecha_fin" placeholder="yyyy-mm-dd" data-date-format="yyyy-mm-dd" name="fecha_recepcion">
                       <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
                     </div>
                   </div>
