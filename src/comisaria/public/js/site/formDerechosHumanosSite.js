@@ -123,9 +123,9 @@ $(document).ready(function(){
                         location.href = '/derechos-humanos';
                     }
                 }
-            }); //Fin llamada ajax
+            });
         }
-    }); //Fin del submit
+    });
 });
 
 // Obtiene los estados procesales

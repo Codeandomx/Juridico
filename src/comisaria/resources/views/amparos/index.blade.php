@@ -17,17 +17,19 @@
 <div class="row row-md mb-2">
     <div class="col-md-12">
         <div class="box box-block bg-white">
-                <nav>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Amparos</a></li>
-                        <li class="breadcrumb-item active"><a href="#">Registros</a></li>
-                    </ul>
-                </nav>
+            <nav>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Amparos</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Registros</a></li>
+                </ul>
+            </nav>
+
             <div class="pull-right">
                 <button id="btnNuevo" class="btn btn-primary" href="javascript:void(0)" style="margin-bottom: 15px;">
                     <i class="fa fa-plus"> </i> &nbsp Nuevo registro
                 </button>
             </div>
+            
             <br>
             <br>
             <table id="tabla" class="table table-striped table-bordered dataTable" style="width: 100%;">

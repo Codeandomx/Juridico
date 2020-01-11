@@ -24,3 +24,5 @@ CREATE TABLE IF NOT EXISTS `tb_amparos` (
   foreign key(incidente_ejecucion) references tb_catincidente(id),
   foreign key(status) references tb_catstatus(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+alter table tb_amparos add requerimientos varchar(250) null

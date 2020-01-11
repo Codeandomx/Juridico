@@ -21,6 +21,8 @@ Route::get('/', function () {
  * Amparos
  */
 Route::get('/amparos', 'AmparosController@index');
+Route::get('/amparos-form', 'AmparosController@form');
+Route::post('/amparos-form', 'AmparosController@create')->name('postAmparos');
 
 /**
  * Armas
