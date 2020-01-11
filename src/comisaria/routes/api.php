@@ -4,6 +4,7 @@ use App\Armas;
 use App\PenalSiniestro;
 use App\RepRecursoHumano;
 use App\Transparencia;
+use App\Amparos;
 use Illuminate\Http\Request;
 use PHPUnit\Util\Json;
 use Yajra\DataTables\Facades\DataTables;
@@ -67,6 +68,13 @@ Route::post('/DerechosHumanoReporte', function(Request $request){
     $fecha_fin = date('Y-m-d H:i:s', strtotime($request['fecha_fin']));
 
     return DataTables(RepRecursoHumano::whereBetween('fecha_recepcion', [$fecha_inicio, $fecha_fin])->get())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
+
+Route::get('/amparos', function(Request $request){
+    return DataTables(Amparos::all())
     ->addColumn('btn', 'opciones')
     ->rawColumns(['btn'])
     ->toJson();

@@ -1,6 +1,6 @@
 @extends('layouts.main_layout')
 
-@section('title', 'Derechos Humanos')
+@section('title', 'Amparos')
 
 @section('metas')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -19,7 +19,7 @@
         <div class="box box-block bg-white">
                 <nav>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Derechos humanos</a></li>
+                        <li class="breadcrumb-item"><a href="#">Amparos</a></li>
                         <li class="breadcrumb-item active"><a href="#">Registros</a></li>
                     </ul>
                 </nav>
@@ -34,12 +34,10 @@
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>Queja</th>
-                        <th>Fecha de resepción</th>
+                        <th>Fecha de ingreso</th>
                         <th>Abogados</th>
-                        <th>Estado procesal</th>
-                        <th>Asunto</th>
-                        <th>Derecho violado</th>
+                        <th>Quejoso</th>
+                        <th>Status</th>
                         <th width="150px">&nbsp;</th>
                     </tr>
                 </thead>
@@ -71,5 +69,5 @@
 <script type="text/javascript" src="_vendor/DataTables/Buttons/js/buttons.print.min.js"></script>
 <script type="text/javascript" src="_vendor/DataTables/Buttons/js/buttons.colVis.min.js"></script>
 <script type="text/javascript" src="_vendor/select2/dist/js/select2.min.js"></script>
-<script type="text/javascript" src="js/site/derechosHumanosSite.js"></script>
+<script type="text/javascript" src="js/site/amparosSite.js"></script>
 @endsection
