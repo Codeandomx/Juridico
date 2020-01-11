@@ -42,8 +42,8 @@ class Amparos extends Model
 	 */
 	public function getEmpleadoAttribute()
 	{
-		if($this->abogados != null){
-			$empleado = Empleados::where('user', $this->abogados)->first();
+		if($this->abogado != null){
+			$empleado = Empleados::where('user', $this->abogado)->first();
 
 	    	return $empleado->nombreCompleto;
 	    } else {
@@ -62,6 +62,22 @@ class Amparos extends Model
 			$suspension = Suspensiones::where('id', $this->suspension)->first();
 
 	    	return $suspension->nombre;
+	    } else {
+	    	return '';
+	    }
+    }
+
+    /**
+	 * Get the nactivo.
+	 *
+	 * @return object
+	 */
+	public function getNactivoAttribute()
+	{
+		if($this->activo_pasivo != null){
+			$activo = ActivosPasivos::where('id', $this->activo_pasivo)->first();
+
+	    	return $activo->nombre;
 	    } else {
 	    	return '';
 	    }

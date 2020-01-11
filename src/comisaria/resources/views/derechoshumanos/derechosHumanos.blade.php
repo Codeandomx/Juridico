@@ -35,7 +35,7 @@
                     <tr>
                         <th>id</th>
                         <th>Queja</th>
-                        <th>Fecha de resepción</th>
+                        <th>Fecha de recepción</th>
                         <th>Abogados</th>
                         <th>Estado procesal</th>
                         <th>Asunto</th>
