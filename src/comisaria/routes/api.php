@@ -74,7 +74,7 @@ Route::post('/DerechosHumanoReporte', function(Request $request){
 });
 
 Route::get('/amparos', function(Request $request){
-    return DataTables(Amparos::all())
+    return DataTables(Amparos::where('activo', true)->get())
     ->addColumn('btn', 'opciones')
     ->rawColumns(['btn'])
     ->toJson();

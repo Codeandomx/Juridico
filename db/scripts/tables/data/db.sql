@@ -575,4 +575,5 @@ CREATE TABLE IF NOT EXISTS `tb_amparos` (
   foreign key(status) references tb_catstatus(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-alter table tb_amparos add requerimientos varchar(250) null
+alter table tb_amparos add requerimientos varchar(250) null;
+alter table tb_amparos add activo bit default 1;

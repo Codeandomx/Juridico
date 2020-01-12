@@ -168,4 +168,23 @@ class AmparosController extends Controller
             return response()->json(['error'=>$e], 500);
         }
     }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $data = ['success' => 'Eliminacion completada.'];
+        $row = Amparos::find($id);
+        if($row != null){
+            $row->activo = !$row->activo;
+            $row->save();
+            return response()->json($data,200);
+        }
+
+        return response()->json(['error:' => 'error'], 500);
+    }
 }

@@ -115,7 +115,7 @@ $(document).ready(function() {
             if (willDelete){
                 $.ajax({
                     type: 'delete',
-                    url: 'amparos-del/'+_id,
+                    url: '/amparos-delete/'+_id,
                     success: function(data){
                         swal("OK!", "El registro fue archivado.", "success");
                         $('#tabla').DataTable().ajax.reload();

@@ -25,6 +25,7 @@ Route::get('/amparos-form', 'AmparosController@form');
 Route::get('/amparos-editar/{id}', 'AmparosController@edit');
 Route::post('/amparos-form', 'AmparosController@create')->name('postAmparos');
 Route::put('/amparos-form/{id}', 'AmparosController@update')->name('putAmparos');
+Route::delete('/amparos-delete/{id}', 'AmparosController@destroy')->name('deleteAmparos');
 
 /**
  * Armas
