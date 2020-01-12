@@ -36,7 +36,8 @@ Route::get('/armas', 'ArmasController@index');
 Route::get('/armas-form', 'ArmasController@create');
 Route::post('/armas-form', 'ArmasController@store')->name('postArmas');
 Route::get('/armas-edit/{id}', 'ArmasController@edit');
-Route::delete('/armas-del/{id}', 'ArmasController@destroy');
+Route::get('/armas-archivo', 'ArmasController@archivo');
+Route::delete('/armas-delete/{id}', 'ArmasController@destroy');
 Route::get('/obtenerestados', 'ArmasController@obtenerEstados');
 Route::get('/amparos-archivo','AmparosController@archivo');
 /**

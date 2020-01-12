@@ -280,7 +280,7 @@ $(document).ready(function() {
             if (willDelete){
                 $.ajax({
                     type: 'delete',
-                    url: 'armas-del/'+_id,
+                    url: 'armas-delete/'+_id,
                     success: function(data){
                         swal("OK!", "El registro fue eliminado.", "success");
                         $('#tablaArmas').DataTable().ajax.reload();

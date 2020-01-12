@@ -77,8 +77,8 @@
 						</a>
 						<ul>
 							<li><a href="/armas">Registros</a></li>
-							<li><a href="/armas-form">Formulario</a></li>
-							<li><a href="index3.html">Exportar</a></li>
+							<li><a href="/armas-reporte">Reportes</a></li>
+                            <li><a href="/armas-archivo">Archivo</a></li>
 						</ul>
 					</li>
 					<li class="with-sub">

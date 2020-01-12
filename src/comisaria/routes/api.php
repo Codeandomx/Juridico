@@ -43,7 +43,14 @@ Route::post('/penal&siniestrosReporte', function(Request $request){
 })->name('apiRV');
 
 Route::get('/Armeria', function(){
-    return DataTables(Armas::listado())
+    return DataTables(Armas::where('activo', false))
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
+
+Route::get('/armasarchivo', function(){
+    return DataTables(Armas::where('activo', true))
     ->addColumn('btn', 'opciones')
     ->rawColumns(['btn'])
     ->toJson();
