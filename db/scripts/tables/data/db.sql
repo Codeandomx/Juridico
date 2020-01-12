@@ -22,7 +22,7 @@
 DROP TABLE IF EXISTS `migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `migrations` (
+CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
@@ -47,7 +47,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `password_resets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `password_resets` (
+CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -71,7 +71,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_catdirecciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_catdirecciones` (
+CREATE TABLE IF NOT EXISTS `tb_catdirecciones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) NOT NULL,
   `estado` int(11) DEFAULT NULL,
@@ -96,7 +96,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_catestadoempleados`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_catestadoempleados` (
+CREATE TABLE IF NOT EXISTS `tb_catestadoempleados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
@@ -121,7 +121,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_catestadosprocesales`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_catestadosprocesales` (
+CREATE TABLE IF NOT EXISTS `tb_catestadosprocesales` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `activo` tinyint(1) NOT NULL,
@@ -148,7 +148,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_catnombramientos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_catnombramientos` (
+CREATE TABLE IF NOT EXISTS `tb_catnombramientos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `tipo` int(11) DEFAULT NULL,
@@ -176,7 +176,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_catsexo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_catsexo` (
+CREATE TABLE IF NOT EXISTS `tb_catsexo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
@@ -201,7 +201,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_cattipoempleado`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_cattipoempleado` (
+CREATE TABLE IF NOT EXISTS `tb_cattipoempleado` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `estado` int(10) unsigned DEFAULT NULL,
@@ -226,7 +226,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_datoslaborales`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_datoslaborales` (
+CREATE TABLE IF NOT EXISTS `tb_datoslaborales` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
   `rfc` varchar(45) DEFAULT NULL,
@@ -280,7 +280,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_departamentos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_departamentos` (
+CREATE TABLE IF NOT EXISTS `tb_departamentos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `estado` int(11) DEFAULT NULL,
@@ -306,7 +306,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_empleados`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_empleados` (
+CREATE TABLE IF NOT EXISTS `tb_empleados` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
   `nombre` varchar(45) DEFAULT NULL,
@@ -358,7 +358,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `tb_reprecursoshumanos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_reprecursoshumanos` (
+CREATE TABLE IF NOT EXISTS `tb_reprecursoshumanos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `queja` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha_recepcion` datetime NOT NULL,
@@ -392,7 +392,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -426,7 +426,7 @@ UNLOCK TABLES;
 
 -- Dump completed on 2019-11-18  2:17:53
 
-CREATE TABLE `tb_estados` (
+CREATE TABLE IF NOT EXISTS `tb_estados` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`estado` VARCHAR(50) NOT NULL DEFAULT 'activo',
 	`created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
@@ -434,20 +434,23 @@ CREATE TABLE `tb_estados` (
 	PRIMARY KEY (`id`)
 )
 
-CREATE TABLE `tb_armas` (
+insert into tb_estados (estado, created_at) values ('ACTIVO', NOW());
+insert into tb_estados (estado, created_at) values ('CONCLUIDO', NOW());
+
+CREATE TABLE IF NOT EXISTS `tb_armas` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
-	`numero_servicio` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`numero_servicio` VARCHAR(15) NOT NULL,
 	`abogado_integrado` int(11) DEFAULT NULL,,
 	`estado` INT(11) NOT NULL,
-	`numero_expediente` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_unicode_ci',
-	`poligono` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8mb4_unicode_ci',
-	`solicitante` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_unicode_ci',
-	`encargado` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`numero_expediente` VARCHAR(15) NOT NULL,
+	`poligono` VARCHAR(50) NOT NULL DEFAULT '',
+	`solicitante` VARCHAR(25) NOT NULL,
+	`encargado` VARCHAR(25) NOT NULL,
 	`fecha_registro` TIMESTAMP NOT NULL,
-	`motivo_investigacion` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_unicode_ci',
-	`ofendido` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`motivo_investigacion` VARCHAR(100) NOT NULL,
+	`ofendido` VARCHAR(25) NOT NULL,
 	`fecha_resolucion` TIMESTAMP NOT NULL,
-	`sentido_resolucion` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`sentido_resolucion` VARCHAR(25) NOT NULL,
 	`estado_procesal` INT(11) NOT NULL,
 	`activo` TINYINT(1) NULL DEFAULT '1',
 	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -459,7 +462,7 @@ CREATE TABLE `tb_armas` (
 	CONSTRAINT `tb_armas_estado_procesal_foreign` FOREIGN KEY (`estado_procesal`) REFERENCES `tb_catestadosprocesales` (`id`)
 )
 
-CREATE TABLE `tb_penaljuridico` (
+CREATE TABLE IF NOT EXISTS `tb_penaljuridico` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`numero_consecutivo` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`carpeta_investigacion` VARCHAR(150) NOT NULL COLLATE 'utf8mb4_unicode_ci',
@@ -532,6 +535,13 @@ insert into tb_catstatus (nombre) values ('CONTINGENTES');
 insert into tb_catstatus (nombre) values ('FIRMES');
 insert into tb_catstatus (nombre) values ('RESOLUCIÓN FINAL');
 
+CREATE TABLE IF NOT EXISTS `tb_catsestadoprocesalamparos` (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  fecha_registro datetime default NOW(),
+  nombre varchar(50),
+  primary key(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 insert into tb_catsestadoprocesalamparos (nombre) values ('EN TRAMITE SIN RESOLUCIÓN');
 insert into tb_catsestadoprocesalamparos (nombre) values ('EN TRAMITE CON RESOLUCIÓN');
 insert into tb_catsestadoprocesalamparos (nombre) values ('EN TRAMITE CUMPLIMIENTO');
@@ -588,6 +598,11 @@ CREATE TABLE `tb_catobservaciones` (
 )
 COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
+
+insert into tb_catobservaciones (nombre,Activo,createAT) values ('INCOPETENCIA', true, NOW());
+insert into tb_catobservaciones (nombre,Activo,createAT) values ('COMPETENCIA PARCIAL', true, NOW());
+insert into tb_catobservaciones (nombre,Activo,createAT) values ('RESERVA', true, NOW());
+insert into tb_catobservaciones (nombre,Activo,createAT) values ('CONFIDENCIAL', true, NOW());
 
 CREATE TABLE `tb_transparencia` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
