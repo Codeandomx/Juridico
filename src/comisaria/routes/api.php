@@ -114,7 +114,14 @@ Route::post('/amparosreporte', function(Request $request){
 });
 
 Route::get('/transparencia', function(){
-    return DataTables(Transparencia::listado())
+    return DataTables(Transparencia::where('activo', true)->get())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
+
+Route::get('/transparenciaarchivo', function(){
+    return DataTables(Transparencia::where('activo', false)->get())
     ->addColumn('btn', 'opciones')
     ->rawColumns(['btn'])
     ->toJson();

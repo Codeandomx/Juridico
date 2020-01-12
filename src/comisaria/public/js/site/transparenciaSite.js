@@ -255,7 +255,7 @@ $(document).ready(function() {
             if (willDelete){
                 $.ajax({
                     type: 'delete',
-                    url: 'transparencia-del/'+_id,
+                    url: 'transparencia-delete/'+_id,
                     success: function(data){
                         swal("OK!", "El registro fue eliminado.", "success");
                         $('#tabla').DataTable().ajax.reload();

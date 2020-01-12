@@ -32,6 +32,26 @@ class TransparenciaController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function archivo()
+    {
+        return view('transparencia.archivo');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function reporte()
+    {
+        return view('transparencia.reporte');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -136,7 +156,7 @@ class TransparenciaController extends Controller
         $data = ['success' => 'Eliminacion completada.'];
         $row = Transparencia::find($id);
         if($row != null){
-            $row->activo = 0;
+            $row->activo = !$row->activo;
             $row->save();
             return response()->json($data,200);
         }
