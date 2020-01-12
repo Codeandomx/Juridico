@@ -10,6 +10,7 @@ use App\Suspensiones;
 use App\Semaforo;
 use App\Incidentes;
 use App\EstadosAmparos;
+use App\EstadosProcesalesAmparos;
 
 class Amparos extends Model
 {
@@ -33,7 +34,7 @@ class Amparos extends Model
 	 *
 	 * @var array
 	 */
-    protected $appends = ['empleado', 'nsuspension', 'nactivo', 'nsemaforo', 'nincidente', 'nestado'];
+    protected $appends = ['empleado', 'nsuspension', 'nactivo', 'nsemaforo', 'nincidente', 'nestado', 'nprocesal'];
     
     /**
 	 * Get the empleado.
@@ -126,6 +127,22 @@ class Amparos extends Model
 			$status = EstadosAmparos::where('id', $this->status)->first();
 
 	    	return $status->nombre;
+	    } else {
+	    	return '';
+	    }
+    }
+
+    /**
+	 * Get the nestado.
+	 *
+	 * @return object
+	 */
+	public function getNprocesalAttribute()
+	{
+		if($this->status_procesal_actual != null){
+			$procesal = EstadosProcesalesAmparos::where('id', $this->status_procesal_actual)->first();
+
+	    	return $procesal->nombre;
 	    } else {
 	    	return '';
 	    }

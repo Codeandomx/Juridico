@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::get('/amparos', 'AmparosController@index');
 Route::get('/amparos-form', 'AmparosController@form');
 Route::get('/amparos-editar/{id}', 'AmparosController@edit');
+Route::get('/amparos-reporte', 'AmparosController@reporte');
 Route::post('/amparos-form', 'AmparosController@create')->name('postAmparos');
 Route::put('/amparos-form/{id}', 'AmparosController@update')->name('putAmparos');
 Route::delete('/amparos-delete/{id}', 'AmparosController@destroy')->name('deleteAmparos');
