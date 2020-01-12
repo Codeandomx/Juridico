@@ -126,3 +126,13 @@ Route::get('/transparenciaarchivo', function(){
     ->rawColumns(['btn'])
     ->toJson();
 });
+
+Route::post('/transparenciareporte', function(Request $request){
+    $fecha_inicio = date('Y-m-d H:i:s', strtotime($request['fecha_inicio']));
+    $fecha_fin = date('Y-m-d H:i:s', strtotime($request['fecha_fin']));
+
+    return DataTables(Transparencia::whereBetween('created_at', [$fecha_inicio, $fecha_fin])->get())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
