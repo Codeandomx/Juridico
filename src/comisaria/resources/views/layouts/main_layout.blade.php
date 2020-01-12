@@ -170,6 +170,7 @@
 								</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right animated fadeInUp">
+								<!--
 								<a class="dropdown-item" href="#">
 									<i class="ti-user mr-0-5"></i> Profile
 								</a>
@@ -178,6 +179,7 @@
 								</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#"><i class="ti-help mr-0-5"></i> Help</a>
+								-->
 								<a class="dropdown-item" href="#"><i class="ti-power-off mr-0-5"></i> Sign out</a>
 							</div>
 						</li>
@@ -190,6 +192,7 @@
 						</li>
 					</ul>
 					<!-- Formulario de busqueda -->
+					<!--
 					<div class="header-form float-md-left ml-md-2">
 						<form>
 							<input type="text" class="form-control b-a" placeholder="Search for...">
@@ -198,6 +201,7 @@
 							</button>
 						</form>
 					</div>
+					-->
 				</div>
 			</nav>
 		</div>
