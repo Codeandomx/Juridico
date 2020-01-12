@@ -178,12 +178,16 @@ $(document).ready(function() {
         var _id = $(this).data('id');
         $('#saveBtn').html('Guardar');
         var url = 'armas-edit/'+_id;
+
         if (!$('#estado_procesal').val()){
             obtenerEstadosprocesales();
         }
 
         if(!$('#estado').val()){
             obtenerEstados();
+        }
+        if(!$('#abogado_integrado').val()){
+            obtenerAbogados();
         }
         $.get(url, function (data) {
             $('#modelHeading').html("Editar registro");
@@ -331,6 +335,29 @@ var obtenerEstados = function(){
             var elem = $('#estado');
             $.each(data, function (kay, val){
                 elem.append($('<option/>', { 'value': val.id, 'text': val.estado }));
+            });
+        }
+    });
+};
+
+// Obtiene los Abogados
+var obtenerAbogados = function (){
+    $.ajax({
+        url: "/obtenerabogados",
+        method: "GET",
+        data: { },
+        dataType: "json",
+        cache: false,
+        error: function (){
+            console.error('Error al procesar la solicitud');
+        },
+        success: function (data){
+            $('#abogado_integrado').html('');
+            var elem = $('#abogado_integrado');
+            elem.append($('<option/>'));
+
+            $.each(data, function (kay, val){
+                elem.append($('<option/>', { 'value': val.user, 'text': val.nombreCompleto }));
             });
         }
     });

@@ -25,7 +25,7 @@
 
                 <div class="col col-md-4 form-group">
                   <label for="exampleTextarea">Abogado</label>
-                  <input class="form-control" id="abogado_integrado" name="abogado_integrado" maxlength="50" type="text" placeholder="Abogado" required>
+                  <select class="form-control" id="abogado_integrado" name="abogado_integrado"></select>
                 </div>
 
                 <div class="col col-md-4 form-group">
