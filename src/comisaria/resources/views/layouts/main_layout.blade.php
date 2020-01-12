@@ -62,8 +62,8 @@
 						</a>
 						<ul>
 							<li><a href="/amparos">Registros</a></li>
-							<li><a href="index2.html">Formulario</a></li>
-							<li><a href="index3.html">Exportar</a></li>
+							<li><a href="/amparos-reporte">Reportes</a></li>
+                            <li><a href="/amparos-archivo">Archivo</a></li>
 						</ul>
 					</li>
 					<li class="with-sub">

@@ -79,6 +79,12 @@ Route::get('/amparos', function(Request $request){
     ->rawColumns(['btn'])
     ->toJson();
 });
+Route::get('/amparosarchivo', function(Request $request){
+    return DataTables(Amparos::where('activo', false)->get())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
 
 Route::get('/transparencia', function(){
     return DataTables(Transparencia::listado())

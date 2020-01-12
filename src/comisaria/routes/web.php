@@ -37,6 +37,7 @@ Route::post('/armas-form', 'ArmasController@store')->name('postArmas');
 Route::get('/armas-edit/{id}', 'ArmasController@edit');
 Route::delete('/armas-del/{id}', 'ArmasController@destroy');
 Route::get('/obtenerestados', 'ArmasController@obtenerEstados');
+Route::get('/amparos-archivo','AmparosController@archivo');
 /**
  * Derechos humanos
  */
