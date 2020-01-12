@@ -437,7 +437,7 @@ CREATE TABLE `tb_estados` (
 CREATE TABLE `tb_armas` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`numero_servicio` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_unicode_ci',
-	`abogado_integrado` VARCHAR(25) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+	`abogado_integrado` int(11) DEFAULT NULL,,
 	`estado` INT(11) NOT NULL,
 	`numero_expediente` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	`poligono` VARCHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8mb4_unicode_ci',

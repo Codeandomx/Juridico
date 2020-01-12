@@ -18,7 +18,7 @@ class ArmasController extends Controller
      */
     public function index()
     {
-        return view('armas');
+        return view('armas.armas');
     }
 
     /**
@@ -28,7 +28,7 @@ class ArmasController extends Controller
      */
     public function create()
     {
-        return view('armasForm');
+        return view('armas.armasForm');
     }
 
     /**
@@ -56,7 +56,6 @@ class ArmasController extends Controller
             'fecha_registro' => 'required',
             'motivo_investigacion' => 'required',
             'ofendido' => 'required',
-            'fecha_resolucion' => 'required',
             'sentido_resolucion' => 'required',
             'estado_procesal' => 'required'
         ], $messages);

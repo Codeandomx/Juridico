@@ -1,10 +1,18 @@
 $(document).ready(function(){
+    obtenerAbogados();
 
     obtenerEstadosprocesales();
 
     obtenerEstados();
 
-    ('input, :input').attr('autocomplete', 'off');
+    $('input, :input').attr('autocomplete', 'off');
+
+    // ajax setup
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     $('#formArmas').validate({
         rules:{
@@ -39,9 +47,6 @@ $(document).ready(function(){
             ofendido:{
                 required: true
             },
-            fecha_resolucion:{
-                required: true
-            },
             sentido_resolucion:{
                 required: true
             },
@@ -51,46 +56,90 @@ $(document).ready(function(){
         },
         messages:{
             numero_servicio:{
-                required: "",
-                maxlength: ""
+                required: "Campo requerido.",
+                maxlength: jQuery.validator.format("Tamaño maximo {0} caracteres.")
             },
             abogado_integrado:{
-                required: ""
+                required: "Campo requerido.",
             },
             estado:{
-                required: ""
+                required: "Campo requerido.",
             },
             numero_expediente:{
-                required: ""
+                required: "Campo requerido.",
             },
             poligono:{
-                required: ""
+                required: "Campo requerido.",
             },
             solicitante:{
-                required: ""
+                required: "Campo requerido.",
             },
             encargado:{
-                required: ""
+                required: "Campo requerido.",
             },
             fecha_registro:{
-                required: ""
+                required: "Campo requerido.",
             },
             motivo_investigacion:{
-                required: ""
+                required: "Campo requerido.",
             },
             ofendido:{
-                required: ""
-            },
-            fecha_resolucion:{
-                required: ""
+                required: "Campo requerido.",
             },
             sentido_resolucion:{
-                required: ""
+                required: "Campo requerido.",
             },
             estado_procesal:{
-                required: ""
+                required: "Campo requerido.",
             },
         },
+        errorClass: "text-danger",
+        // validClass: "bg-success",
+        invalidHandler: function (){
+            toastr.error('Válide la información en el formulario.');
+        },
+        submitHandler : function(){
+            // Obtenemos los datos del formulario
+            var form = $("#formArmas");
+            var url = form.attr('action');
+        
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: form.serialize(),
+                error: function (data){
+                    swal({
+                        title: "Error!",
+                        text: "El registro no fue actualizado " + data.error,
+                        icon: "error",
+                        timer: 2000
+                    });
+                },
+                success: function(data)
+                {
+                    if(data.success){
+                        form[0].reset();
+                        swal({
+                            title: "OK!", 
+                            text: "Tarea completada.", 
+                            icon: "success",
+                            timer: 2000
+                        });
+
+                        location.haref = '/armas'
+                    }else{                
+                        swal({
+                            title: "Error!",
+                            text: "No se completo la tarea.",
+                            icon: "error",
+                            timer: 2000
+                        });                    
+                        muestraErrores(data.error);
+                        $('#erroresBox').fadeOut(10000);
+                    }
+                }
+            }); //Fin llamada ajax
+        }
     });
 
     $('#fecha_registro').datepicker({
@@ -114,54 +163,6 @@ $(document).ready(function(){
         // reditigimos a la pagina principal
         location.href = '/armas';
     });
-
-    // ajax setup
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    // Enviar la información del formulario
-    $('#formArmas').submit(function(e){
-        e.preventDefault();
-
-        var form = $(this);
-        $.ajax({
-            type: 'POST',
-            url: form.attr('action'),
-            data: form.serialize(),
-            error: function (data){
-                swal({
-                    title: "Error!",
-                    text: "El registro no fue actualizado " + data.error,
-                    icon: "error",
-                    timer: 2000
-                });
-            },
-            success: function(data)
-            {
-                if(data.success){
-                    form[0].reset();
-                    swal({
-                        title: "OK!", 
-                        text: "Tarea completada.", 
-                        icon: "success",
-                        timer: 2000
-                    });
-                }else{                
-                    swal({
-                        title: "Error!",
-                        text: "No se completo la tarea.",
-                        icon: "error",
-                        timer: 2000
-                    });                    
-                    muestraErrores(data.error);
-                    $('#erroresBox').fadeOut(10000);
-                }
-            }
-        }); //Fin llamada ajax
-    }); //Fin del sumit
 });
 
 var muestraErrores = function(msg){
@@ -207,6 +208,28 @@ var obtenerEstados = function(){
             var elem = $('#estado');
             $.each(data, function (kay, val){
                 elem.append($('<option/>', { 'value': val.id, 'text': val.estado }));
+            });
+        }
+    });
+};
+
+// Obtiene los Abogados
+var obtenerAbogados = function (){
+    $.ajax({
+        url: "/obtenerabogados",
+        method: "GET",
+        data: { },
+        dataType: "json",
+        cache: false,
+        error: function (){
+            console.error('Error al procesar la solicitud');
+        },
+        success: function (data){
+            var elem = $('#abogado_integrado');
+            elem.append($('<option/>'));
+
+            $.each(data, function (kay, val){
+                elem.append($('<option/>', { 'value': val.user, 'text': val.nombreCompleto }));
             });
         }
     });
