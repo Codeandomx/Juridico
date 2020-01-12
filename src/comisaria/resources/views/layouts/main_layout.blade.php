@@ -107,8 +107,8 @@
 						</a>
 						<ul>
 							<li><a href="/transparencia">Registros</a></li>
-							<li><a href="/transparencia-form">Formulario</a></li>
-							<li><a href="index3.html">Exportar</a></li>
+							<li><a href="/transparencia-reporte">Reportes</a></li>
+                            <li><a href="/transparencia-archivo">Archivo</a></li>
 						</ul>
 					</li>
 					<li class="with-sub">

@@ -18,7 +18,7 @@ class TransparenciaController extends Controller
      */
     public function index()
     {
-        return view('transparencia');
+        return view('transparencia.transparencia');
     }
 
     /**
@@ -28,7 +28,7 @@ class TransparenciaController extends Controller
      */
     public function create()
     {
-        return view('transparenciaForm');
+        return view('transparencia.transparenciaForm');
     }
 
     /**
