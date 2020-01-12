@@ -13,7 +13,7 @@ class ProcedimientosAdministrativosController extends Controller
      */
     public function index()
     {
-        return view('ProcedimientosAdministrativos');
+        return view('procedimientos.index');
     }
 
     /**

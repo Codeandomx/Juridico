@@ -82,4 +82,8 @@ Route::post('/penal-siniestros-form', 'PenalSiniestrosController@store')->name('
 Route::get('/penal-siniestros-edit/{id}/{type}', 'PenalSiniestrosController@edit')->name('editPS');
 Route::delete('/penal-siniestros-del/{id}/{type}', 'PenalSiniestrosController@destroy');
 
-Route::get('/procedimientos-admin', 'ProcedimientosAdministrativosController@index');
+/**
+ * Procedimientos administrativos
+ */
+
+Route::get('/procedimientos-administrativos', 'ProcedimientosAdministrativosController@index');
