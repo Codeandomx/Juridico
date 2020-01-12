@@ -1,6 +1,6 @@
 @extends('layouts.main_layout')
 
-@section('title', 'Reporte Amparos')
+@section('title', 'Reporte Armas')
 
 @section('metas')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -19,13 +19,13 @@
         <div class="box box-block bg-white">
                 <nav>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/amparos">Amparos</a></li>
+                        <li class="breadcrumb-item"><a href="/armas">Armas</a></li>
                         <li class="breadcrumb-item active"><a href="#">Reportes</a></li>
                     </ul>
                 </nav>
             <br>
             <br>
-            <form id="formBuscar" method="POST" action="api/amparosreporte">
+            <form id="formBuscar" method="POST" action="api/armasreporte">
     
                 <div class="row">
                   <div class="col col-md-4 form-group">
@@ -58,21 +58,19 @@
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>Fecha ingreso</th>
+                        <th># de servicio</th>
                         <th>Abogado</th>
-                        <th>Quejoso</th>
-                        <th>Juzgado y expediente</th>
-                        <th>Acto y reclamo</th>
-                        <th>Suspensión</th>
-                        <th>Recurso diverso</th>
-                        <th>Activo/Pasivo</th>
-                        <th>Sentencia</th>
-                        <th>Fecha ejecutoria</th>
-                        <th>Recurso revición</th>
-                        <th>semaforo</th>
-                        <th>Incidente ejecución</th>
-                        <th>Status</th>
-                        <th>Estado procesal actual</th>
+                        <th>Estado</th>
+                        <th># de espediente</th>
+                        <th>Poligono</th>
+                        <th>Solicitante</th>
+                        <th>Encargado</th>
+                        <th>Fecha registro</th>
+                        <th>Motivo de investigación</th>
+                        <th>Ofendido</th>
+                        <th>Fecha de resolución</th>
+                        <th>Sentido resolución</th>
+                        <th>Estado procesal</th>
                         <th width="150px">&nbsp;</th>
                     </tr>
                 </thead>
@@ -102,5 +100,5 @@
 <script type="text/javascript" src="_vendor/DataTables/Buttons/js/buttons.print.min.js"></script>
 <script type="text/javascript" src="_vendor/DataTables/Buttons/js/buttons.colVis.min.js"></script>
 <script type="text/javascript" src="_vendor/select2/dist/js/select2.min.js"></script>
-<script type="text/javascript" src="js/site/amparosReporteSite.js"></script>
+<script type="text/javascript" src="js/site/armasReporteSite.js"></script>
 @endsection

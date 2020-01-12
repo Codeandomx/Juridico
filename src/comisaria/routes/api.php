@@ -56,6 +56,16 @@ Route::get('/armasarchivo', function(){
     ->toJson();
 });
 
+Route::post('/armasreporte', function(Request $request){
+    $fecha_inicio = date('Y-m-d H:i:s', strtotime($request['fecha_inicio']));
+    $fecha_fin = date('Y-m-d H:i:s', strtotime($request['fecha_fin']));
+
+    return DataTables(Armas::whereBetween('created_at', [$fecha_inicio, $fecha_fin])->get())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
+
 Route::get('/DerechosHumano', function(){
     return DataTables(RepRecursoHumano::where('activo', true))
     ->addColumn('btn', 'opciones')
