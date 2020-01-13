@@ -11,6 +11,7 @@
     <!-- Content -->
     <div class="content-area py-1">
       <div class="container-fluid">
+        <h4>Resumen Amparos</h4>
         <div class="box box-block bg-white">
 
         <nav aria-label="breadcrumb">
