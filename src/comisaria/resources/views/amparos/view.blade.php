@@ -12,8 +12,14 @@
     <!-- Content -->
     <div class="content-area py-1">
       <div class="container-fluid">
-        <h4>Formulario amparos</h4>
+        <h4>Resumen Amparos</h4>
         <div class="box box-block bg-white">
+            <nav>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/amparos">Amparos</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Resumen</a></li>
+                </ul>
+            </nav>
 
           <div class="row">
             <div class="col-sm-6">

@@ -183,13 +183,13 @@ $(document).ready(function() {
         console.log(res[1]);
 
         if(res[1] == 1){
-            location.href = '/amparos-ver/'+res[0];
+            location.href = '/amparos-view/'+res[0];
         } else if(res[1] == 2){
-            location.href = '/armas-ver/'+res[0];
+            location.href = '/armas-view/'+res[0];
         } else if(res[1] == 3){
-            location.href = '/derechos-humanos-ver/'+res[0];
+            location.href = '/derechos-humanos-view/'+res[0];
         } else if(res[1] == 4){
-            location.href = '/transparencia-ver/'+res[0];
+            location.href = '/transparencia-view/'+res[0];
         }
     });
 }); //Fin del onReady

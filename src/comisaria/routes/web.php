@@ -69,6 +69,7 @@ Route::post('transparencia-form', 'TransparenciaController@store')->name('postT'
 Route::get('/transparencia-edit/{id}', 'TransparenciaController@edit')->name('editT');
 Route::get('/transparencia-archivo', 'TransparenciaController@archivo');
 Route::get('/transparencia-reporte', 'TransparenciaController@reporte');
+Route::get('/transparencia-view/{id}', 'TransparenciaController@view');
 Route::delete('/transparencia-delete/{id}', 'TransparenciaController@destroy');
 Route::get('/obtenerobservaciones', 'TransparenciaController@obtenerObservaciones');
 

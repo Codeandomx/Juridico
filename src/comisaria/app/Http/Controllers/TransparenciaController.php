@@ -52,6 +52,19 @@ class TransparenciaController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function view(Request $request, $id)
+    {
+        // Obtenemos el de armas
+        $transparencia = Transparencia::find($id);
+
+        return view('transparencia.view')->with('info', $transparencia);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

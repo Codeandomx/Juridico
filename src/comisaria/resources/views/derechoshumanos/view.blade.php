@@ -15,11 +15,12 @@
     <!-- Content -->
     <div class="content-area py-1">
       <div class="container-fluid">
+        <h4>Resumen Derechos Humanos</h4>
         <div class="box box-block bg-white">
             <nav>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/derechos-humanos">Derechos Humanos</a></li>
-                    <li class="breadcrumb-item active"><a href="#">Editar</a></li>
+                    <li class="breadcrumb-item active"><a href="#">Resumen</a></li>
                 </ul>
             </nav>
 

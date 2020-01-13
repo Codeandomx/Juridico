@@ -11,13 +11,13 @@
     <!-- Content -->
     <div class="content-area py-1">
       <div class="container-fluid">
-        <h4>Resumen Amparos</h4>
+        <h4>Resumen Armas</h4>
         <div class="box box-block bg-white">
 
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/armas">Armas</a></li>
-                <li class="breadcrumb-item active"><a href="#">Formulario</a></li>
+                <li class="breadcrumb-item active"><a href="#">Resumen</a></li>
             </ul>
         </nav>
         

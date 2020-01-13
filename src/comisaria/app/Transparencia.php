@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Observaciones;
+
 class Transparencia extends Model
 {
     protected $table = "tb_transparencia";
@@ -22,6 +24,24 @@ class Transparencia extends Model
         'Fecha',
         'idObservacion'
     ];
+
+    protected $appends = ['nobservacion'];
+
+    /**
+     * Get the empleado.
+     *
+     * @return object
+     */
+    public function getNobservacionAttribute()
+    {
+        if($this->idObservacion != null){
+            $observacion = Observaciones::where('id', $this->idObservacion)->first();
+
+            return $observacion->nombre;
+        } else {
+            return '';
+        }
+    }
 
     public function scopeListado($query){
         return $query->select(

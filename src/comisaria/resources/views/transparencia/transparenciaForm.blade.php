@@ -1,6 +1,6 @@
 @extends('layouts.main_layout')
 
-@section('title', 'Pagina Principal')
+@section('title', 'Transparencia')
 
 @section('metas')
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -15,7 +15,7 @@
 
             <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Transparencia</a></li>
+                    <li class="breadcrumb-item"><a href="/transparencia">Transparencia</a></li>
                     <li class="breadcrumb-item active"><a href="#">Formulario</a></li>
                 </ul>
             </nav>
