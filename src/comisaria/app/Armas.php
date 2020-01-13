@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Empleados;
+use App\Estado;
+use App\EstadoProcesal;
 
 class Armas extends Model
 {
@@ -33,7 +35,7 @@ class Armas extends Model
      *
      * @var array
      */
-    protected $appends = ['empleado'];
+    protected $appends = ['empleado', 'nestado', 'nprocesal'];
 
     /**
      * Get the empleado.
@@ -46,6 +48,38 @@ class Armas extends Model
             $empleado = Empleados::where('user', $this->abogado_integrado)->first();
 
             return $empleado->nombreCompleto;
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * Get the empleado.
+     *
+     * @return object
+     */
+    public function getNestadoAttribute()
+    {
+        if($this->estado != null){
+            $estado = Estado::where('id', $this->estado)->first();
+
+            return $estado->estado;
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * Get the empleado.
+     *
+     * @return object
+     */
+    public function getNprocesalAttribute()
+    {
+        if($this->estado_procesal != null){
+            $estado = EstadoProcesal::where('id', $this->estado_procesal)->first();
+
+            return $estado->nombre;
         } else {
             return '';
         }

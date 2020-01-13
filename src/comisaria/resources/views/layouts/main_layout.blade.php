@@ -118,13 +118,10 @@
 								<span class="tag tag-purple">3</span>
 							-->
 							<span class="s-icon"><i class="ti-book"></i></span>
-							<span class="s-text">Penal y siniestros</span>
+							<span class="s-text">Procedimientos administrativos</span>
 						</a>
 						<ul>
-							<li><a href="/penal-siniestros">Registros</a></li>
-							<li><a href="/penal-siniestros-form">Formularios</a></li>
-                            <li><a href="#">Exportación</a></li>
-                            <li><a href="#">Archivo</a></li>
+							<li><a href="/procedimientos-administrativos">Reporte</a></li>
 						</ul>
 					</li>
 					<li class="with-sub">
@@ -134,12 +131,13 @@
 								<span class="tag tag-purple">3</span>
 							-->
 							<span class="s-icon"><i class="ti-book"></i></span>
-							<span class="s-text">Procedimientos administrativos</span>
+							<span class="s-text">Penal y siniestros</span>
 						</a>
 						<ul>
-							<li><a href="/procedimientos-admin">Formulario 1</a></li>
-							<li><a href="index2.html">Formulario 2</a></li>
-							<li><a href="index3.html">Formulario 3</a></li>
+							<li><a href="/penal-siniestros">Registros</a></li>
+							<li><a href="/penal-siniestros-form">Formularios</a></li>
+                            <li><a href="#">Exportación</a></li>
+                            <li><a href="#">Archivo</a></li>
 						</ul>
 					</li>
 				</ul>

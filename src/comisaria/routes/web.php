@@ -24,6 +24,7 @@ Route::get('/amparos', 'AmparosController@index');
 Route::get('/amparos-form', 'AmparosController@form');
 Route::get('/amparos-editar/{id}', 'AmparosController@edit');
 Route::get('/amparos-reporte', 'AmparosController@reporte');
+Route::get('/amparos-view/{id}', 'AmparosController@view');
 Route::post('/amparos-form', 'AmparosController@create')->name('postAmparos');
 Route::put('/amparos-form/{id}', 'AmparosController@update')->name('putAmparos');
 Route::delete('/amparos-delete/{id}', 'AmparosController@destroy')->name('deleteAmparos');
@@ -38,6 +39,7 @@ Route::post('/armas-form', 'ArmasController@store')->name('postArmas');
 Route::get('/armas-edit/{id}', 'ArmasController@edit');
 Route::get('/armas-archivo', 'ArmasController@archivo');
 Route::get('/armas-reporte', 'ArmasController@reporte');
+Route::get('/armas-view/{id}', 'ArmasController@view');
 Route::delete('/armas-delete/{id}', 'ArmasController@destroy');
 Route::get('/obtenerestados', 'ArmasController@obtenerEstados');
 Route::get('/amparos-archivo','AmparosController@archivo');
@@ -50,6 +52,7 @@ Route::get('/derechos-humanos-form', 'DerechosHumanosController@form');
 Route::post('/derechos-humanos-form', 'DerechosHumanosController@create')->name('postDH');
 Route::get('/derechos-humanos-editar/{id}', 'DerechosHumanosController@edit');
 Route::get('/obtenerestadosprocesales', 'DerechosHumanosController@obtenerEstadosProcesales');
+Route::get('/derechos-humanos-view/{id}', 'DerechosHumanosController@view');
 Route::put('/derechos-humanos-edit/{id}','DerechosHumanosController@update');
 Route::get('/derechos-humanos-archivo','DerechosHumanosController@archivo');
 Route::get('/derechos-humanos-reporte','DerechosHumanosController@reporte');
@@ -66,6 +69,7 @@ Route::post('transparencia-form', 'TransparenciaController@store')->name('postT'
 Route::get('/transparencia-edit/{id}', 'TransparenciaController@edit')->name('editT');
 Route::get('/transparencia-archivo', 'TransparenciaController@archivo');
 Route::get('/transparencia-reporte', 'TransparenciaController@reporte');
+Route::get('/transparencia-view/{id}', 'TransparenciaController@view');
 Route::delete('/transparencia-delete/{id}', 'TransparenciaController@destroy');
 Route::get('/obtenerobservaciones', 'TransparenciaController@obtenerObservaciones');
 
@@ -82,4 +86,8 @@ Route::post('/penal-siniestros-form', 'PenalSiniestrosController@store')->name('
 Route::get('/penal-siniestros-edit/{id}/{type}', 'PenalSiniestrosController@edit')->name('editPS');
 Route::delete('/penal-siniestros-del/{id}/{type}', 'PenalSiniestrosController@destroy');
 
-Route::get('/procedimientos-admin', 'ProcedimientosAdministrativosController@index');
+/**
+ * Procedimientos administrativos
+ */
+
+Route::get('/procedimientos-administrativos', 'ProcedimientosAdministrativosController@index');

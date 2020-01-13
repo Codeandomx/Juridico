@@ -52,6 +52,19 @@ class ArmasController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function view(Request $request, $id)
+    {
+        // Obtenemos el de armas
+        $armas = Armas::find($id);
+
+        return view('armas.view')->with('info', $armas);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

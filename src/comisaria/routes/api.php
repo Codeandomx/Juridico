@@ -8,6 +8,7 @@ use App\Amparos;
 use Illuminate\Http\Request;
 use PHPUnit\Util\Json;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,6 +133,23 @@ Route::post('/transparenciareporte', function(Request $request){
     $fecha_fin = date('Y-m-d H:i:s', strtotime($request['fecha_fin']));
 
     return DataTables(Transparencia::whereBetween('created_at', [$fecha_inicio, $fecha_fin])->get())
+    ->addColumn('btn', 'opciones')
+    ->rawColumns(['btn'])
+    ->toJson();
+});
+
+Route::post('/procedimientosReporte', function(Request $request){
+    $fecha_inicio = date('Y-m-d', strtotime($request['fecha_inicio']));
+    $fecha_fin = date('Y-m-d', strtotime($request['fecha_fin']));
+    $nombre = $request['nombre'];
+
+    return DataTables(DB::select('select concat(id,"-",1) as id, solicitante, 1 as tipo, fecha_registro as fecha from tb_armas where solicitante like "%'.$nombre.'%" and fecha_registro between CAST("'.$fecha_inicio.'" AS DATE) AND CAST("'.$fecha_fin.'" AS DATE)
+        union 
+        select concat(id,"-",2) as id, quejoso as solicitante, 2 as tipo, fecha_ingreso as fecha from tb_amparos where quejoso like "%'.$nombre.'%" and fecha_ingreso between CAST("'.$fecha_inicio.'" AS DATE) AND CAST("'.$fecha_fin.'" AS DATE)
+        union
+        select concat(id,"-",3) as id, queja as solicitante, 3 as tipo, fecha_recepcion as fecha from tb_reprecursoshumanos where queja like "%'.$nombre.'%" and fecha_recepcion between CAST("'.$fecha_inicio.'" AS DATE) AND CAST("'.$fecha_fin.'" AS DATE)
+        union
+        select concat(id,"-",4) as id, solicitante, 4 as tipo, Recepcion as fecha from tb_transparencia where solicitante like "%'.$nombre.'%" and Recepcion between CAST("'.$fecha_inicio.'" AS DATE) AND CAST("'.$fecha_fin.'" AS DATE)'))
     ->addColumn('btn', 'opciones')
     ->rawColumns(['btn'])
     ->toJson();

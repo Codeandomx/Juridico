@@ -50,6 +50,19 @@ class AmparosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function view(Request $request, $id)
+    {
+        // Obtenemos el de armas
+        $amparos = Amparos::find($id);
+
+        return view('amparos.view')->with('info', $amparos);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function form()
     {
         // Obtenemos los catalogos
