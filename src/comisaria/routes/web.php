@@ -38,6 +38,7 @@ Route::post('/armas-form', 'ArmasController@store')->name('postArmas');
 Route::get('/armas-edit/{id}', 'ArmasController@edit');
 Route::get('/armas-archivo', 'ArmasController@archivo');
 Route::get('/armas-reporte', 'ArmasController@reporte');
+Route::get('/armas-view/{id}', 'ArmasController@view');
 Route::delete('/armas-delete/{id}', 'ArmasController@destroy');
 Route::get('/obtenerestados', 'ArmasController@obtenerEstados');
 Route::get('/amparos-archivo','AmparosController@archivo');

@@ -19,7 +19,7 @@
         <div class="box box-block bg-white">
                 <nav>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Derechos humanos</a></li>
+                        <li class="breadcrumb-item"><a href="/amparos">Amparos</a></li>
                         <li class="breadcrumb-item active"><a href="#">Archivo</a></li>
                     </ul>
                 </nav>
