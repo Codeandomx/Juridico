@@ -9,7 +9,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
 	<meta name="author" content="">
-	@yield("metas");
+	@yield("metas")
 
     <!-- Title -->
     <title>Juridico - @yield('title')</title>
@@ -30,7 +30,7 @@
     <!-- Neptune CSS -->
 	<link rel="stylesheet" href="/css/core.css">
 
-	@yield("styles");
+	@yield("styles")
 
     <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
