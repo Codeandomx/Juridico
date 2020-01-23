@@ -91,3 +91,16 @@ Route::delete('/penal-siniestros-del/{id}/{type}', 'PenalSiniestrosController@de
  */
 
 Route::get('/procedimientos-administrativos', 'ProcedimientosAdministrativosController@index');
+
+/**
+ * Contratos y convenios
+ */
+
+Route::get('/contratos-convenios', 'ContratosyConveniosController@index')->name('reportesCC');
+Route::get('/contratos-convenios-reporte', 'ContratosyConveniosController@reporte');
+Route::get('/contratos-convenios-form', 'ContratosyConveniosController@create');
+Route::post('/contratos-convenios-form', 'ContratosyConveniosController@store')->name('postCC');
+Route::get('/contratos-convenios-archivo','ContratosyConveniosController@archivo');
+Route::get('/contratos-convenio-edit/{id}', 'ContratosyConveniosController@edit')->name('editCC');
+Route::delete('/contratos-convenio-del/{id}', 'ContratosyConveniosController@destroy');
+Route::get('/obtenerTipos', 'ContratosyConveniosController@obtenerTipos');

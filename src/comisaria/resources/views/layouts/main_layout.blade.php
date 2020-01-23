@@ -139,6 +139,19 @@
                             <li><a href="#">Exportación</a></li>
                             <li><a href="#">Archivo</a></li>
 						</ul>
+                    </li>
+					<li class="with-sub">
+						<a href="#" class="waves-effect  waves-light">
+							<span class="s-caret"><i class="fa fa-angle-down"></i></span>
+
+							<span class="s-icon"><i class="ti-book"></i></span>
+							<span class="s-text">Contratos y Convenios</span>
+						</a>
+						<ul>
+							<li><a href="/contratos-convenios">Registros</a></li>
+							<li><a href="/contratos-convenios-reporte">Reportes</a></li>
+							<li><a href="/contratos-convenios-archivo">Archivo</a></li>
+						</ul>
 					</li>
 				</ul>
 			</div>
