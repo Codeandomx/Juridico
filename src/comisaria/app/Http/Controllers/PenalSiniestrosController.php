@@ -3,114 +3,305 @@
 namespace App\Http\Controllers;
 
 use App\PenalSiniestro;
-use App\Http\Requests\PenalStoreResquest;
+use App\AgenciasVarias;
+use App\Anticorrupcion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+use DateTime;
 
 class PenalSiniestrosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $collection = PenalSiniestro::listado()->get();
-        return view('penalSiniestros',compact('collection'));
+        //return view('penalSiniestros');
+        return view('penalSiniestrosReporte');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('penalSiniestrosForm');
+        return view('penalSiniestrosForms');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Resquest $request)
+    public function Visitaduria()
     {
-        $validator = $request->validate([
-            'fecha_asignacion' => 'required',
-            'servidor_publico'  => 'required',
-            'denunciante'  => 'required|string|max:30',
-            'delito'  => 'required|string|max:50',
-            'poligono' => 'required',
-            'estado_procesal' => 'required'
-        ]);
-
-        //para testear ees el DD
-        dd($request);
-        //insnercion a l BD
-        $penal = new PenalJuridico;
-        $penal->numero_consecutivo=$request->numero_consecutivo;
-        $penal->carpeta_investigacion=$request->carpeta_investigacion;
-        $penal->fecha_asignacion=$request->fecha_asignacion;
-        $penal->agencia_mp=$request->agencia_mp;
-        $penal->servidor_publico=$request->servidor_publico;
-        $penal->denunciante=$request->denunciante;
-        $penal->delito=$request->delito;
-        $penal->poligono=$request->poligono;
-        $penal->estado_procesal=$request->estado_procesal;
-        $penal->observaciones=$request->observaciones;
-        $penal->save();
-
-        //acceder al id guardado
-        $penal->id_penal;
-
-        //redireccionar la pagina despues de guardar
-        return redirect()->route('penal-siniestros');
+        return view('visitaduria');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function AgenciasVarias()
+    {
+        return view('AgenciasVarias');
+    }
+
+    public function Anticorrupcion()
+    {
+        return view('Anticorrupcion');
+    }
+
+    public function VisitaduriaForm()
+    {
+        return view('VisitaduriaForm');
+    }
+
+    public function AgenciasVariasForm()
+    {
+        return view('AgenciasVariasForm');
+    }
+
+    public function AnticorrupcionForm()
+    {
+        return view('AnticorrupcionForm');
+    }
+
+    public function VisitaduriaReporte()
+    {
+        return view('VisitaduriaReporte');
+    }
+
+    public function AgenciasVariasReporte()
+    {
+        return view('AgenciasVariasReporte');
+    }
+
+    public function AnticorrupcionReporte()
+    {
+        return view('AnticorrupcionReporte');
+    }
+
+    public function VisitaduriaArchivo()
+    {
+        return view('VisitaduriaArchivo');
+    }
+
+    public function AgenciasVariasArchivo()
+    {
+        return view('AgenciasVariasArchivo');
+    }
+
+    public function AnticorrupcionArchivo()
+    {
+        return view('AnticorrupcionArchivo');
+    }
+
+    public function archivo()
+    {
+        return view('penalSiniestrosArchivo');
+    }
+
+    public function store(Request $request)
+    {
+        //dump("Karla");
+        $tipo = $request->tipo;
+        $formato = 'Y-m-d H:i:s';
+        switch ($tipo) {
+            case "visitaduria":
+                try {
+                    $servidores = $request->input('servidor_publico');
+                    $servidores = implode(',', $servidores);
+
+                    $denunciantes = $request->input('denunciante');
+                    $denunciantes = implode(',', $denunciantes);
+
+                    $delitos = $request->input('delito');
+                    $delitos = implode(',', $delitos);
+
+                    $fecha = $this->formatDate($request->fecha_asignacion);
+                    $date = strtotime($fecha);
+                    PenalSiniestro::updateOrCreate(['id' => $request->id],
+                    [
+                        'numero_consecutivo' => $request->numero_consecutivo,
+                        'carpeta_investigacion' => $request->carpeta_investigacion,
+                        'fecha_asignacion' => date($formato, $date),
+                        'agencia_mp' => $request->agencia_mp,
+                        'servidor_publico' => $servidores,
+                        'denunciante' => $denunciantes,
+                        'delito' => $delitos,
+                        'poligono' => $request->poligono,
+                        'estado_procesal' => $request->estado_procesal,
+                        'observaciones' => $request->observaciones
+                    ]);
+
+                    $response = ['success' => true];
+                    return response()->json($response,200);
+                } catch (Exception $e) {
+                    return response()->json(['error' => $e]);
+                }
+            break;
+
+            case "agenciasVarias":
+                try {
+                    $fecha = $this->formatDate($request->fecha_asignacion);
+                    $date = strtotime($fecha);
+
+                    AgenciasVarias::updateOrCreate(['id' => $request->id],
+                    [
+                        'expediente' => $request->expediente,
+                        'carpetaAdministrativa' => $request->carpetaAdministrativa,
+                        'carpetaInvestigacion' => $request->carpetaInvestigacion,
+                        'fechaAsignacion' => date($formato,$date),
+                        'averiguacionPrevia' => $request->averiguacionPrevia,
+                        'civil' => $request->civil,
+                        'policia' => $request->policia,
+                        'observaciones' => $request->observaciones
+                    ]);
+
+                    $response = ['success' => true];
+                    return response()->json($response,200);
+                } catch (Exception $e) {
+                    return response()->json(['error' => $e]);
+                }
+            break;
+
+            case "antiCorrupcion":
+               try {
+                    $fecha = $this->formatDate($request->fecha_asignacion);
+                    $date = strtotime($fecha);
+
+                    Anticorrupcion::updateOrCreate(['id' => $request->id],
+                    [
+                        'expediente' => $request->expediente,
+                        'carpetaAdministracion' => $request->carpetaAdministrativa,
+                        'carpetaInvestigacion' => $request->carpetaInvestigacion,
+                        'fechaAsignacion' => date($formato,$date),
+                        'averiguacionPrevia' => $request->averiguacionPrevia,
+                        'civil' => $request->civil,
+                        'policia' => $request->policia,
+                        'observaciones' => $request->observaciones
+                    ]);
+
+                    $response = ['success' => true];
+                    return response()->json($response,200);
+                } catch (Exception $e) {
+                    return response()->json(['error' => $e]);
+                }
+            break;
+        }
+
+        return response()->json($response,500);
+    }
+
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function edit($id, $tipo)
     {
-        //
+        switch ($tipo) {
+            case "visitaduria":
+                try {
+                    $row = PenalSiniestro::find($id);
+
+                    if ($row != null) {
+                        return response()->json($row);
+                    }
+
+                    return response()->json("No se a podido cargar los datos.",203);
+                } catch (\Illuminate\Database\QueryException $exception) {
+                    $errorInfo = $exception->errorInfo;
+                    return response()->json($errorInfo);
+                }
+            break;
+
+            case "agenciasVarias":
+                try {
+                    $row = AgenciasVarias::find($id);
+
+                    if ($row != null) {
+                        return response()->json($row);
+                    }
+                } catch (\Illuminate\Database\QueryException $exception) {
+                     $errorInfo = $exception->errorInfo;
+                    return response()->json($errorInfo);
+                }
+            break;
+
+            case "antiCorrupcion":
+                try {
+                    $row = Anticorrupcion::find($id);
+
+                    if ($row != null) {
+                        return response()->json($row);
+                    }
+                } catch (\Illuminate\Database\QueryException $exception) {
+                     $errorInfo = $exception->errorInfo;
+                    return response()->json($errorInfo);
+                }
+            break;
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy($id, $tipo)
     {
-        //
+        switch ($tipo) {
+            case "visitaduria":
+                try {
+                    $row = PenalSiniestro::find($id);
+
+                    if($row != null){
+                        $row->activo = !$row->activo;
+                        $row->save();
+                        $data = ['success' => true];
+                        return response()->json($data,200);
+                    }
+                } catch (\Illuminate\Database\QueryException $exception) {
+                    $errorInfo = $exception->errorInfo;
+                    return response()->json($errorInfo);
+                }
+            break;
+
+            case "agenciasVarias":
+                try {
+                    $row = AgenciasVarias::find($id);
+
+                    if($row != null){
+                        $row->activo = !$row->activo;
+                        $row->save();
+                        $data = ['success' => true];
+                        return response()->json($data,200);
+                    }
+                } catch (\Illuminate\Database\QueryException $exception) {
+                    $errorInfo = $exception->errorInfo;
+                    return response()->json($errorInfo);
+                }
+            break;
+
+            case "antiCorrupcion":
+                try {
+                    $row = Anticorrupcion::find($id);
+
+                    if($row != null){
+                        $row->activo = !$row->activo;
+                        $row->save();
+                        $data = ['success' => true];
+                        return response()->json($data,200);
+                    }
+                } catch (\Illuminate\Database\QueryException $exception) {
+                    $errorInfo = $exception->errorInfo;
+                    return response()->json($errorInfo);
+                }
+            break;
+        }
+
+        return response()->json(['error:' => 'error']);
+    }
+
+    //Retorna un string datetime
+    public function formatDate($fechaoriginal)
+    {
+
+        $aux = Carbon::now();
+        $time = $aux->toDateTimeString();
+
+        $time = substr($time,10);
+        return $fechaoriginal . $time;
     }
 }
